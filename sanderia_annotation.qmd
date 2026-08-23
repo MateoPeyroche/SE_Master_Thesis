@@ -1,0 +1,166 @@
+---
+title: "sanderia_annotation"
+format: html
+---
+
+
+
+```{r}
+library(readr)
+library(dplyr)
+library(tidyverse)
+
+sa.interpro = read_tsv(file="../../sanderia/annotations/interpro/Sanma_proteome_1p1g_clean.tsv",quote = "")
+sa.interpro$trancriptID <- gsub("^Sanma[-_]", "", sa.interpro$trancriptID)
+gene_table.sa <- read.table(file="../../data/seqs/genomes/Sanderia/Sanma_gene_transcript_protein_table.tsv", header=F)
+names(gene_table.sa)[names(gene_table.sa)=="V1"] <- "gene_id"
+names(gene_table.sa)[names(gene_table.sa)=="V2"] <- "transcript_id"
+names(gene_table.sa)[names(gene_table.sa)=="V3"] <- "protein_id"
+
+sa.interpro <- sa.interpro %>%
+  left_join(gene_table.sa, by = c('trancriptID'='protein_id'))
+
+OMA.AcSa <- read_tsv(file= "../../data/OMA/kostya-sa_repaired.tsv", quote="")
+
+#Filtering the output file which has comments at the top and bottom
+lines <- readLines("../../sanderia/annotations/eggnog/sanderia.emapper.annotations")
+
+# header is the line starting with "#query"
+header_idx <- which(grepl("^#query", lines))
+header <- strsplit(sub("^#", "", lines[header_idx]), "\t")[[1]]
+
+# data lines are everything that doesn't start with "#"
+data_lines <- lines[!grepl("^#", lines)]
+
+sa.eggnog <- read_tsv(paste(data_lines, collapse = "\n"), col_names = header)
+sa.eggnog$query <- gsub("^Sanma[-_]", "", sa.eggnog$query)
+sa.eggnog <- sa.eggnog %>%
+  left_join(gene_table.sa, by = c('query'='protein_id'))
+
+Sa_TF_table <- read.csv(file = '../../data/seqs/TF_lists/SanMa_TF_list_split.csv')
+
+Sa_TF_table <- Sa_TF_table %>%
+  distinct(GeneID, .keep_all = TRUE)
+
+Sa_TF_table$GeneID <- sub("\\..*$", "", Sa_TF_table$GeneID)
+Sa_TF_table$ProteinID <- sub("\\..*$", "", Sa_TF_table$ProteinID)
+
+library(ggvenn)
+ggvenn(list(eggNOG = sa.eggnog$gene_id, InterProScan = sa.interpro$gene_id, OMA_AcSa = OMA.AcSa$Gene.Sa , TFs = Sa_TF_table$GeneID))
+
+
+sa.annotations <- gene_table.sa %>%
+  group_by(gene_id) %>%
+  summarise(
+    transcript_id = paste(transcript_id, collapse = ","),
+    protein_id = paste(protein_id, collapse = ",")
+  ) %>%
+  ungroup()
+
+sa.annotations <- sa.annotations %>%
+  left_join(sa.eggnog, by = c('gene_id'='gene_id'))
+
+sa.annotations <- sa.annotations %>%
+  left_join(sa.interpro, by = c('gene_id'='gene_id'))
+
+combine_go <- function(go_eggnog, go_ips) {
+  # split each on commas (handle NA/"-"/empty as no GO terms)
+  split_clean <- function(x) {
+    if (is.na(x) || x == "-" || x == "") return(character(0))
+    terms <- strsplit(x, ",")[[1]]
+    # strip anything in parentheses, e.g. "GO:0005737(PANTHER)" -> "GO:0005737"
+    terms <- gsub("\\(.*\\)", "", terms)
+    # trim any stray whitespace just in case
+    trimws(terms)
+  }
+  
+  eggnog_terms <- split_clean(go_eggnog)
+  ips_terms <- split_clean(go_ips)
+  
+  combined <- union(eggnog_terms, ips_terms)
+  
+  if (length(combined) == 0) return(NA_character_)
+  paste(combined, collapse = ",")
+}
+
+sa.annotations$GO_combined <- mapply(combine_go, sa.annotations$GOs, sa.annotations$GO)
+
+sa.annotations <- sa.annotations%>%
+  relocate(GO, .after = GOs)
+sa.annotations <- sa.annotations%>%
+  relocate(GO_combined, .after = GO)
+
+load (file= "../../data/scyphozoa_AGC/ACOE.genes.RData")
+
+ac_to_sa.names <- OMA.AcSa %>%
+  left_join(genes.ac %>% select(cellranger,gene_short_name), by=c('Gene.Ac'='cellranger'))
+
+ac_to_sa.names <- ac_to_sa.names %>%
+  filter(pairing %in% c('1:1','many:1'))
+
+pattern <- "^[A-Z]+[0-9]+G[0-9]+$"
+ac_to_sa.names <- ac_to_sa.names %>%
+  filter(!grepl(pattern, gene_short_name))
+
+ac_to_sa.names <- ac_to_sa.names %>%
+  group_by(Gene.Sa) %>%
+  summarise(
+    gene_short_name = paste(gene_short_name, collapse = "_")
+  ) %>%
+  ungroup()
+
+sa.annotations <- sa.annotations %>%
+  left_join(ac_to_sa.names, by=c('gene_id'='Gene.Sa'))
+
+sa.annotations <- sa.annotations %>%
+  left_join(Sa_TF_table %>% select(TF_Fam,GeneID), by = c('gene_id'='GeneID'))
+
+sa.annotations_light <- sa.annotations %>% 
+  select(gene_id, transcript_id.x,protein_id, eggNOG_OGs,Description,Preferred_name,GO_combined,KEGG_ko,KEGG_Pathway,PFAMs,
+         SUPERFAMILY_IPS_Desc,Pfam_IPS_Desc,TF_Fam,gene_short_name)
+
+sa.annotations_light <- sa.annotations_light %>%
+  mutate(
+    name = coalesce(
+      na_if(gene_short_name, "-"),
+      na_if(Preferred_name, "-"),
+      na_if(gene_id, "-")
+    )
+  )
+
+sa.annotations_light <- sa.annotations_light %>%
+  select(-gene_short_name)
+
+sa.annotations_light <- sa.annotations_light %>%
+  relocate(name, .after = gene_id)
+
+names(sa.annotations_light)[names(sa.annotations_light)=="transcript_id.x"] <- "transcript_id"
+
+sp.lines <- readLines("../../sanderia/annotations/signalP/predicition_positive_clean.txt")
+
+# the real header is the line starting with "# ID"
+sp.header_line <- sp.lines[grepl("^# ID", sp.lines)]
+sp.header <- strsplit(sub("^# ", "", sp.header_line), "\t")[[1]]
+
+# data lines: skip anything starting with "#"
+sp.data_lines <- sp.lines[!grepl("^#", sp.lines)]
+
+sa.signalP <- read_tsv(paste(sp.data_lines, collapse = "\n"), col_names = sp.header)
+
+sa.signalP$ID <- gsub("^Sanma[-_]", "", sa.signalP$ID)
+sa.signalP <- sa.signalP %>%
+  left_join(gene_table.sa, by= c('ID'='protein_id'))
+
+names(sa.signalP)[names(sa.signalP)=="Prediction"] <- "SP-prediction"
+
+sa.annotations_light <- sa.annotations_light %>%
+  left_join(sa.signalP %>% select(gene_id, `SP-prediction`), by = c('gene_id'='gene_id'))
+sa.annotations_light <- sa.annotations_light %>%
+  relocate(Preferred_name, .after = name)
+
+write.table(sa.annotations_light, file = "../../sanderia/annotations/sanderia_func_annotations.tsv", sep = "\t", 
+            row.names = FALSE, quote = FALSE)
+
+
+```
+

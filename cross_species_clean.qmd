@@ -1,0 +1,487 @@
+---
+title: "Scyphozoa cross species comparison"
+author: "Matéo Peyroche"
+format: html
+---
+
+```{r}
+library(ComplexHeatmap)
+library(circlize)
+library(harmony)
+library(Matrix)
+library(Seurat,quietly=F)
+library(RColorBrewer,quietly=T)
+library(patchwork,quietly=T)
+library(ggplot2,quietly=T)
+library(pals,quietly=T)
+library(readxl,quietly=T)
+library(tidyr,quietly=T)
+```
+
+
+```{r}
+OMA.RhSa <- read.table(file="../../data/OMA/re2-sa_repaired.tsv",header = T,fill = T)
+OMA.AcSa <- read.table(file="../../data/OMA/kostya-sa_repaired.tsv",header = T,fill = T)
+OMA.RhAc <- read.table(file="../../data/OMA/re2-kostya_repaired.tsv",header = T,fill = T)
+
+load (file= "../../data/Ac_manuscript_revision_ACOE/Ac.Alldata.Robj")
+load (file= "../../data/scyphozoa_AGC/ACOE.genes.RData")
+load (file= "../../data/scyphozoa/RhAllData.RData")
+load (file= "../../data/scyphozoa/SaAllData.RData")
+
+#We will only work on the ephyrae so we subset the diffrent datasets
+data.ac <- Ac.Alldata
+ac.ephyra <- subset(data.ac, subset = orig.ident %in% c("ephyra.early","ephyra.late"))
+
+data.sa <- Sa.alldata
+data.sa <- JoinLayers(data.sa)
+sa.ephyra <- subset(data.sa, subset = orig.ident == "Sa.ephyra")
+
+data.rh <- Rh.alldata
+data.rh <- JoinLayers(data.rh)
+rh.ephyra <- subset(data.rh, subset = orig.ident == "Rh.ephyra")
+
+#Fusing the OMA tables to allow for comparison
+omaSaRhAc<-merge(OMA.RhAc,OMA.AcSa,by='Gene.Ac')
+omaSaRhAc.f <- omaSaRhAc[
+  omaSaRhAc$pairing.x == "1:1" &
+    omaSaRhAc$pairing.y == "1:1",
+]
+
+#add the aurelia name to this table.
+omaSaRhAc.f<- omaSaRhAc.f %>%
+  dplyr::left_join(
+    genes.ac %>% dplyr::select(cellranger, gene_short_name),
+    by = c("Gene.Ac" = "cellranger")
+  )
+omaSaRhAc.f$names<-omaSaRhAc.f$gene_short_name
+omaSaRhAc.f$names <- gsub(
+  "-like",
+  "-oma",
+  omaSaRhAc.f$names
+)
+omaSaRhAc.f$names <- gsub(
+  "ACOE",
+  "oma-",
+  omaSaRhAc.f$names
+)
+
+#Subsetting the datasets with the OMA genes
+
+ac.ephyra.oma <- subset(ac.ephyra, features = omaSaRhAc.f$gene_short_name)
+sa.ephyra.oma <- subset(sa.ephyra, features = omaSaRhAc.f$Gene.Sa)
+rh.ephyra.oma <- subset(rh.ephyra, features = omaSaRhAc.f$Gene.Re)
+
+#Now let's build the marker gene lists for these datasets, coarse and fine
+
+Idents(ac.ephyra.oma) <- ac.ephyra.oma$IDs
+Idents(sa.ephyra.oma) <- sa.ephyra.oma$IDs
+Idents(rh.ephyra.oma) <- rh.ephyra.oma$IDs
+
+ac.ephyra.oma_markers_coarse <- FindAllMarkers(
+  ac.ephyra.oma,
+  assay = "RNA",
+  logfc.threshold = 0.25,
+  return.thresh   = 0.001,
+  min.pct         = 0.2,
+  only.pos        = TRUE
+)
+
+sa.ephyra.oma_markers_coarse <- FindAllMarkers(
+  sa.ephyra.oma,
+  assay = "RNA",
+  logfc.threshold = 0.25,
+  return.thresh   = 0.001,
+  min.pct         = 0.2,
+  only.pos        = TRUE
+)
+
+rh.ephyra.oma_markers_coarse <- FindAllMarkers(
+  rh.ephyra.oma,
+  assay = "RNA",
+  logfc.threshold = 0.25,
+  return.thresh   = 0.001,
+  min.pct         = 0.2,
+  only.pos        = TRUE
+)
+
+Idents(ac.ephyra.oma) <- ac.ephyra.oma$ID.separate
+Idents(sa.ephyra.oma) <- sa.ephyra.oma$ID.separate
+Idents(rh.ephyra.oma) <- rh.ephyra.oma$ID.separate
+
+ac.ephyra.oma_markers_fine <- FindAllMarkers(
+  ac.ephyra.oma,
+  assay = "RNA",
+  logfc.threshold = 0.25,
+  return.thresh   = 0.001,
+  min.pct         = 0.2,
+  only.pos        = TRUE
+)
+
+sa.ephyra.oma_markers_fine <- FindAllMarkers(
+  sa.ephyra.oma,
+  assay = "RNA",
+  logfc.threshold = 0.25,
+  return.thresh   = 0.001,
+  min.pct         = 0.2,
+  only.pos        = TRUE
+)
+
+rh.ephyra.oma_markers_fine <- FindAllMarkers(
+  rh.ephyra.oma,
+  assay = "RNA",
+  logfc.threshold = 0.25,
+  return.thresh   = 0.001,
+  min.pct         = 0.2,
+  only.pos        = TRUE
+)
+```
+
+
+```{r}
+
+#Building named list of cluster markers 
+get_cluster_markers_name <- function(all.markers) {
+  clusters <- unique(all.markers$cluster)
+  setNames(
+    lapply(clusters, function(cl) {
+      all.markers$gene[all.markers$cluster == cl]
+    }),
+    clusters
+  )
+}
+
+cluster_markers_name_ac <- get_cluster_markers_name(ac.ephyra.oma_markers_fine)
+cluster_markers_name_sa <- get_cluster_markers_name(sa.ephyra.oma_markers_fine)
+cluster_markers_name_rh <- get_cluster_markers_name(rh.ephyra.oma_markers_fine)
+
+#Replacing with the shared name for each marker list
+get_cluster_markers_id <- function(cluster_markers_name, ortho_table, gene_col) {
+  lapply(cluster_markers_name, function(genes) {
+    ids <- ortho_table$names[match(genes, ortho_table[[gene_col]])]
+    ids[!is.na(ids)]
+  })
+}
+
+cluster_markers_id_ac <- get_cluster_markers_id(cluster_markers_name_ac, omaSaRhAc.f, "gene_short_name")
+cluster_markers_id_sa <- get_cluster_markers_id(cluster_markers_name_sa, omaSaRhAc.f, "Gene.Sa")
+cluster_markers_id_rh <- get_cluster_markers_id(cluster_markers_name_rh, omaSaRhAc.f, "Gene.Re")
+
+#Function to build the contengency matrix of the clusters for a pair of species
+build_shared_matrix <- function(list1, list2) {
+  n1 <- names(list1); n2 <- names(list2)
+  mat <- matrix(0, nrow = length(n1), ncol = length(n2), dimnames = list(n1, n2))
+  for (i in n1) {
+    for (j in n2) {
+      mat[i, j] <- length(intersect(list1[[i]], list2[[j]])) #this is the number of shared markers between clusters
+    }
+  }
+  mat
+}
+
+#Function to compute Jaccard normalization as in the Clytia paper 
+#It is the intersection over the union. 
+#It is not perfect. It corrects sizes difference between clusters
+#but does not correct size difference between datasets
+
+jaccard_normalize <- function(mat, list1, list2) {
+  sizes1 <- sapply(list1, length)
+  sizes2 <- sapply(list2, length)
+  mat / (outer(sizes1, sizes2, "+") - mat)
+}
+
+#Function to plot a heatmap from a contingency table with the ComplexHeatmap package
+
+plot_heatmap <- function(mat, species1_name, species2_name, main_title, 
+                          show_values = TRUE, col_fun = NULL) {
+  if (is.null(col_fun)) {
+    col_fun <- colorRamp2(c(0, max(mat)), c("white", "firebrick"))
+  }
+  
+  cell_fun <- if (show_values) {
+    function(j, i, x, y, width, height, fill) {
+      grid.text(mat[i, j], x, y, gp = gpar(fontsize = 7))
+    }
+  } else NULL
+  
+  Heatmap(mat,
+          col             = col_fun,
+          name            = main_title,
+          cluster_rows    = FALSE,
+          cluster_columns = FALSE,
+          row_title       = species1_name,
+          column_title    = species2_name)
+}
+
+#Now looping over the three pairs and building 4 heatmaps for each :
+# raw, Jaccard, top100 markers/cluster, top50 markers/clusters
+
+order_ac <- levels(Idents(ac.ephyra.oma))
+order_ac <- order_ac[order_ac %in% names(cluster_markers_id_ac)]
+order_sa <- c("6_6.STmuscle","17_8.epidermis","18_8.epidermis","19_8.epidermis","20_9.epidermis", "21_9.epidermis", "11_14.gastrodermis", "12_14.gastrodermis" ,"13_14.gastrodermis","14_14.gastrodermis","15_14.gastrodermis","16_14.gastrodermis", "29_5.gland.muc", "30_5.gland.muc", "24_11.neural", "25_11.neural", "10_13.neural", "26_12.neural","27_12.neural","28_12.neural","22_10.cnido.mature","23_10.cnido.mature", "1_4.cnido", "9_4.cnido", "3_1.gland.dig","4_3.gland.dig","5_3.gland.dig","8_3.gland.dig","2_2.gland.dig","14_15.mitotic")
+order_rh <- c("20_12.muscle.ST", "3_1.epithelia.SM",  "4_1.epithelia.SM" , "5_1.epithelia.SM", "10_9.gastrodermis", "11_9.gastrodermis", "12_9.gastrodermis", "21_10.unchar","22_10.unchar","6_10.unchar","7_2.gast.unch",  "8_2.gast.unch" ,"9_3.gast.unch","15_4.gland.m", "16_4.gland.m", "13_7.neural", "14_6.neural","25_6.neural", "26_6.neural", "1_8.cnido","2_8.cnido", "23_5.cnido.mat"  ,"24_5.cnido.mat" , "17_11.gland.dig" ,"18_11.gland.dig"  ,"19_11.gland.dig")
+
+
+species_ids <- list(Aurelia = cluster_markers_id_ac,
+                     Sanderia = cluster_markers_id_sa,
+                     Rhopilema = cluster_markers_id_rh)
+
+pairs <- combn(names(species_ids), 2, simplify = FALSE)
+
+species_names <- list(Aurelia = "Aurelia", Sanderia = "Sanderia", Rhopilema = "Rhopilema")
+cluster_order <- list(Aurelia = order_ac, Sanderia = order_sa, Rhopilema = order_rh)
+
+pairs <- combn(names(species_ids), 2, simplify = FALSE)
+
+results <- list()
+
+for (p in pairs) {
+  s1 <- p[1]; s2 <- p[2]
+  pair_name <- paste(s1, s2, sep = "_vs_")
+  
+  list1 <- species_ids[[s1]]
+  list2 <- species_ids[[s2]]
+  
+  list1_top100 <- lapply(list1, head, 100)
+  list2_top100 <- lapply(list2, head, 100)
+  list1_top50  <- lapply(list1, head, 50)
+  list2_top50  <- lapply(list2, head, 50)
+  mat_general <- build_shared_matrix(list1, list2)[cluster_order[[s1]], cluster_order[[s2]]]
+  mat_jaccard <- jaccard_normalize(mat_general, list1, list2)  # note below
+  mat_top100  <- build_shared_matrix(list1_top100, list2_top100)[cluster_order[[s1]], cluster_order[[s2]]]
+  mat_top50   <- build_shared_matrix(list1_top50, list2_top50)[cluster_order[[s1]], cluster_order[[s2]]]
+  
+  mats <- list(jaccard = mat_jaccard, 
+               top100 = mat_top100) #Only keeping the top 100 and the Jaccard as they seem to be the more relevant
+  results[[pair_name]] <- mats
+  
+  for (type in names(mats)) {
+  show_vals <- type != "jaccard"
+  title_text <- paste(pair_name, type, sep = " - ")
+  
+  ht <- plot_heatmap(mats[[type]], 
+                      species_names[[s1]], species_names[[s2]],
+                      main_title = title_text,
+                      show_values = show_vals)
+  
+  assign(paste0(pair_name, "_", type, "_heatmap"), ht, envir = .GlobalEnv)
+  draw(ht, column_title = title_text, column_title_gp = gpar(fontsize = 20, fontface = "bold"))
+}
+}
+
+out_dir <- "../../results/R/cross_species/"
+
+png("../../results/R/cross_species/Aurelia_vs_Rhopilema_top100_heatmap.png", width = 14, height = 9, units = "in", res = 300)
+draw(Aurelia_vs_Rhopilema_top100_heatmap)
+dev.off()
+
+png("../../results/R/cross_species/Sanderia_vs_Rhopilema_top100_heatmap.png", width = 14, height = 9, units = "in", res = 300)
+draw(Sanderia_vs_Rhopilema_top100_heatmap)
+dev.off()
+
+png("../../results/R/cross_species/Aurelia_vs_Sanderia_top100_heatmap.png", width = 14, height = 9, units = "in", res = 300)
+draw(Aurelia_vs_Sanderia_top100_heatmap)
+dev.off()
+
+```
+
+#Distance tree of the clusters
+
+This code is adapted from Alison Cole. 
+
+```{r}
+run_seurat <- function(object,res) {   
+  object<-NormalizeData(object,scale.factor=median(object$nCount_RNA))
+  object <- FindVariableFeatures(object,nfeatures = 5000,verbose = F)#
+  object <- ScaleData(object,split.by = 'orig.ident')
+  object <- RunPCA(object, pcs.compute = 50,verbose = F) 
+  pct <- object[["pca"]]@stdev / sum(object[["pca"]]@stdev) * 100
+  # Calculate cumulative percents for each PC
+  cumu <- cumsum(pct)
+  co1 <- which(cumu > 90 & pct < 5)[1]
+  co2 <- sort(which((pct[1:length(pct) - 1] - pct[2:length(pct)]) > 0.1), decreasing = T)[1] + 1
+  pcs <- min(co1, co2)
+  d = 1:pcs
+  object <- RunUMAP(object, reduction ="pca", n.neighbors = 10L,spread =1,seed.use = 0, 
+                    dims = d,reduction.name ='umap',
+                    reduction.key ='umap',min.dist = 0.2,
+                    local.connectivity = 1,verbose = F)#
+  object <- FindNeighbors(object = object,reduction ="pca",dims = d,
+                          nn.method = 'annoy',  annoy.metric = 'cosine',verbose = F)
+  object <- FindClusters(object = object,resolution = res,verbose = F)
+  #object<-merge_clusters(object)
+  object<-BuildClusterTree(object,dims = d,reorder = T, reorder.numeric = T)
+  return (object)
+}
+
+#Clustering only from the OMA genes (it is enough to recover the clusters, not shown here)
+data1<-ac.ephyra.oma
+data1<-run_seurat(data1,0.2)
+ac.ephyra.oma<-data1
+
+data1<-sa.ephyra.oma
+data1<-run_seurat(data1,0.2)
+sa.ephyra.oma <-data1
+
+data1<-rh.ephyra.oma
+data1<-run_seurat(data1,0.2)
+rh.ephyra.oma<-data1
+
+
+#Transferring the shared name of the OMA merged table to the different datasets 
+
+###Aurelia
+mapping <- setNames(omaSaRhAc.f$names, omaSaRhAc.f$gene_short_name)
+new.names <- mapping[rownames(ac.ephyra.oma)]
+rna <- ac.ephyra.oma[["RNA"]]
+rownames(rna@counts) <- new.names
+rownames(rna@data) <- new.names
+if (nrow(rna@scale.data) > 0)
+  rownames(rna@scale.data) <- mapping[rownames(rna@scale.data)]
+rownames(rna@meta.features) <- mapping[rownames(rna@meta.features)]
+rna@var.features <- intersect(rna@var.features, rownames(rna@data))
+ac.ephyra.oma[["RNA"]] <- rna
+View(rownames(ac.ephyra.oma))
+ac.ephyra.oma$species='Aurco'
+ac.ephyra.oma$ID.sp<-paste(ac.ephyra.oma$species,ac.ephyra.oma$ID.separate)
+ac.ephyra.oma$ID.sp.st<-paste(ac.ephyra.oma$orig.ident,ac.ephyra.oma$ID.sp)
+
+###rhopilema ----
+mapping <- setNames(omaSaRhAc.f$names, omaSaRhAc.f$Gene.Re)
+new.names <- mapping[rownames(rh.ephyra.oma)]
+rna <- rh.ephyra.oma[["RNA"]]
+  rownames(rna@layers$counts) <- new.names
+  rownames(rna@layers$data) <- new.names
+  if (nrow(rna@layers$scale.data) > 0)
+  rownames(rna@layers$scale.data) <- mapping[rownames(rna@layers$scale.data)]
+  rownames(rna@features) <- mapping[rownames(rna@features)]
+# rna@meta.data$var.features <- intersect(rna@meta.data$var.features, rownames(rna@layers$data.Rh.ephyra))
+rh.ephyra.oma[["RNA"]] <- rna
+rh.ephyra.oma<-SetIdent(rh.ephyra.oma,value='ID.separate')
+DimPlot(rh.ephyra.oma,split.by = 'orig.ident',reduction='umap')
+rh.ephyra.oma$species<-'Rhoes'
+rh.ephyra.oma$ID.sp<-paste(rh.ephyra.oma$species,rh.ephyra.oma$ID.separate)
+rh.ephyra.oma$ID.sp.st<-paste(rh.ephyra.oma$orig.ident,rh.ephyra.oma$ID.sp)
+
+###Sanderia ----
+mapping <- setNames(omaSaRhAc.f$names, omaSaRhAc.f$Gene.Sa)
+new.names <- mapping[rownames(sa.ephyra.oma)]
+rna <- sa.ephyra.oma[["RNA"]]
+rownames(rna@layers$counts) <- new.names
+rownames(rna@layers$counts) <- new.names
+rownames(rna@layers$data) <- new.names
+rownames(rna@layers$data) <- new.names
+if (nrow(rna@layers$scale.data) > 0)
+  rownames(rna@layers$scale.data) <- mapping[rownames(rna@layers$scale.data)]
+rownames(rna@features) <- mapping[rownames(rna@features)]
+# rna@var.features <- intersect(rna@var.features, rownames(rna@data))
+sa.ephyra.oma[["RNA"]] <- rna
+#update IDs so that they match the tree:
+# levels(Sa.alldata.oma$IDs)[3]="3.muc.gland"
+# levels(Sa.alldata.oma$IDs)[12]="12.dig.gland"
+sa.ephyra.oma$species<-'Sanma'
+sa.ephyra.oma$ID.sp<-paste(sa.ephyra.oma$species,sa.ephyra.oma$ID.separate)
+sa.ephyra.oma$ID.sp.st<-paste(sa.ephyra.oma$orig.ident,sa.ephyra.oma$ID.sp)
+sa.ephyra.oma<-SetIdent(sa.ephyra.oma,value='ID.separate')
+DimPlot(sa.ephyra.oma,reduction='umap.h')
+
+#Now we merge 
+data1<-merge(rh.ephyra.oma,c(sa.ephyra.oma,ac.ephyra.oma))
+data1<-run_seurat(data1,0.2)
+Scyphozoa_plot<-DimPlot(data1,reduction = 'umap',split.by = 'species',group.by = 'IDs')
+Scyphozoa_plot
+
+data1<-harmony::RunHarmony(data1,group.by.vars = c('orig.ident','species'))
+data1 <- RunUMAP(data1, dims = 1:50,
+                 reduction = 'harmony',
+                 reduction.name ='umap.h.all',reduction.key ='umap.h.all', #this is default;
+                 n.neighbors = 30L, #how many similar cells do you expect
+                 spread =1, #how big is the axis space: 0.2 for lineages; 1 for separation
+                 min.dist = 0.2, #how close to plot each cell higher=spread
+                 local.connectivity = 10)#overall how connected is the graph
+
+data1<-SetIdent(data1,value='ID.sp')
+data1<-BuildClusterTree(data1)
+
+scypho_dimplot_spe_split <- DimPlot(data1, reduction = 'umap.h.all',
+       split.by='species')+NoAxes()+labs(title='Harmony',subtitle = 'Original IDs')+NoLegend()+labs(title = "Species clusters in the integrated Scyphozoan object",size = 20, face = "bold")+
+  theme(plot.title = element_text(hjust = 0.5))
+
+scypho_dimplot_species_contribution <- DimPlot(data1, reduction = 'umap.h.all',
+        group.by='species',cols = c("#00BFC4","#F8766D",'black') )+NoAxes()+labs(title = "Contribution of species in the integrated Scyphozoan object",size = 20, face = "bold")+
+  theme(plot.title = element_text(hjust = 0.5))+theme(
+    legend.text = element_text(size = 20),
+    legend.key.size = unit(0.6, "cm")
+  )
+
+scypho_highlight_st_muscle_clusters <- Cluster_Highlight_Plot(
+  seurat_object = data1,
+  reduction = "umap.h.all",
+  cluster_name = c("Aurco stM.2","Aurco stM.1","Sanma 6_6.STmuscle","Rhoes 20_12.muscle.ST"),
+  highlight_color = c("#EE3377","#EE3377", "#009988", "#EE7733"),  # one color per cluster, matched by order
+  background_color = "lightgray"
+)+NoAxes()+labs(title = "Striated muscle clusters in the Scyphozoan integrated object",size = 20, face = "bold")+
+  theme(plot.title = element_text(hjust = 0.5))+theme(
+    legend.text = element_text(size = 20),
+    legend.key.size = unit(0.6, "cm") )
+
+scypho_dimplot_spe_split
+scypho_dimplot_species_contribution
+scypho_highlight_st_muscle_clusters
+
+ggsave(
+  filename = file.path(out_dir, "scypho_dimplot_spe_split.png"),
+  plot = scypho_dimplot_spe_split,
+  width = 14,
+  height = 9,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "scypho_dimplot_species_contribution.png"),
+  plot = scypho_dimplot_species_contribution,
+  width = 14,
+  height = 9,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "scypho_highlight_st_muscle_clusters.png"),
+  plot = scypho_highlight_st_muscle_clusters,
+  width = 14,
+  height = 9,
+  dpi = 300
+)
+
+#Now let's build a distance tree based on the 
+levels(data1)
+ElbowPlot(data1,reduction='harmony',ndims=50)
+
+
+embeddings <- Embeddings(object = data1, reduction = 'harmony')[,1:40] 
+data.dims=matrix('0',dim(embeddings)[[2]],length(levels(data1)))
+for (i in 1:length(levels(data1)))
+{  cells <- WhichCells(object = data1, idents = levels(data1)[i])
+data.dims[,i] <- colMeans(embeddings[cells,])
+}
+library(ape)
+colnames(x = data.dims) <- levels(x = data1)
+data.dist <- dist(x = t(x = data.dims),method = 'euclidean')
+nj.tree <- ape::bionj(data.dist)
+#nj.boot.tree <- ape::boot.phylo(nj.tree, t(data.dims), FUN = function(xx) bionj(dist(xx,method = 'euclidean')), B = 1000)
+# add bootstraps:
+#nj.tree$node.label <- nj.boot.tree/10
+#nj.tree$node.label <- round(nj.tree$node.label)
+#nj.tree$edge.length <- sqrt(nj.tree$edge.length)
+plot.phylo(nj.tree, type = "tidy", label.offset = -0.1,show.node.label = T,use.edge.length = F,lab4ut = 'axial', cex = 1,no.margin = T,direction='down')
+# ape::plot.phylo(nj.tree, type = "unrooted", label.offset = 0.5,show.node.label = T,use.edge.length = F,lab4ut = 'axial', cex = 1,no.margin = T, rotate.tree = 120)
+ape::plot.phylo(nj.tree, type = "fan", label.offset = 0.1,show.node.label = F,use.edge.length = F,lab4ut = 'axial', cex = 0.5,no.margin = T)
+write.tree(nj.tree,file='../../results/R/cross_species/AcSaRh.bionjstree.IDseparate.40PCs.newAc.nwk')
+#* even the non-harmonized PCs from this reduced set look good. This was from the flat standard workflow: 2000 genes; selected automatically 15 dims.
+scyphozoa<-data1
+save(scyphozoa,file='../../data/scyphozoa/AcRhSa.ephyra_integrated.RObj')
+
+
+```
+
+

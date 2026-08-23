@@ -1,0 +1,692 @@
+---
+title: "Microsynteny figures"
+format: html
+---
+
+Plotting the synteny of otx cluster across Medusozoa from gff/gtf files and coorrdinates. 
+```{r}
+library(gggenomes)
+library(dplyr)
+library(readr)
+library(tidyr)
+
+#Importing gtf/gff files, trimming it down to genes only and building a table containing only the information
+#needed for plotting (id, starrt, end, strand, gene_id). All of it is attached to a bin_id needed by gggenome 
+
+
+aurelia.genes <- read_gff3("../../data/seqs/genomes/AurCo_genome/genes.gtf") %>% filter(type == "mRNA")
+aurelia.genes %>% select(gene_id, type) %>% head()
+aurelia.genes <- aurelia.genes %>% 
+  transmute(
+    bin_id        = "Aurelia_coerulea",
+    seq_id     = seq_id,
+    start      = start,
+    end        = end,
+    strand     = strand,
+    match_id   = gene_id,
+    gene_label = gene_id
+  )
+
+aurelia.genes <-  aurelia.genes %>%
+  distinct(gene_label, .keep_all=TRUE)
+
+sanderia.genes <- read_gff3("../../data/seqs/genomes/Sanderia/Sanderia_malayensis-GCA_013076295.1-2023_10-genes.gff3", types="gene") #%>% filter(type == "gene")
+sanderia.genes %>% select(feat_id, type) %>% head()
+sanderia.genes <- sanderia.genes %>% 
+  transmute(
+    bin_id        = "Sanderia_malayensis",
+    seq_id     = seq_id,
+    start      = start,
+    end        = end,
+    strand     = strand,
+    match_id   = gene_id,
+    gene_label = gene_id
+  )
+
+rhopilema.genes <- read_gff3("../../data/seqs/genomes/RhoEs_GCF_013076305.1/rhopilemia_genome_annotations.gff", types = "gene")
+rhopilema.genes %>% select(feat_id, type) %>% head()
+rhopilema.genes <- rhopilema.genes %>% 
+  transmute(
+    bin_id        = "Rhopilema_esculentum",
+    seq_id     = seq_id,
+    start      = start,
+    end        = end,
+    strand     = strand,
+    match_id   = gene,
+    gene_label = gene
+  )
+
+cassiopea.genes <- read_gff3("../../data/seqs/genomes/Casxa1/Casxa1/Mycocosm/Annotation/Filtered_Models___best__/Genes/Casxa1_GeneCatalog_20200306.gff3", types = "gene")
+cassiopea.genes %>% select(feat_id, type) %>% head()
+cassiopea.genes <- cassiopea.genes %>% 
+  transmute(
+    bin_id        = "Cassiopea_xamachana",
+    seq_id     = seq_id,
+    start      = start,
+    end        = end,
+    strand     = strand,
+    match_id   = protein_id,
+    gene_label = protein_id
+  )
+
+
+clytia.genes <- read_gff3("../../data/seqs/genomes/ClyHe/Copley/transcripts.fa.transdecoder.genome.gff3", types = "gene")
+clytia.genes %>% select(feat_id, type) %>% head()
+clytia.genes <- clytia.genes %>% 
+  transmute(
+    bin_id        = "Clytia_hemisphaerica",
+    seq_id     = seq_id,
+    start      = start,
+    end        = end,
+    strand     = strand,
+    match_id   = feat_id,
+    gene_label = feat_id
+  )
+
+
+hydsy.genes <- read_gff3("../../data/seqs/genomes/HydSy/genomic.gff", types = "gene")
+hydsy.genes %>% select(feat_id, type) %>% head()
+hydsy.genes <- hydsy.genes %>% 
+  transmute(
+    bin_id        = "Hydractinia_symbiologicarpus",
+    seq_id     = seq_id,
+    start      = start,
+    end        = end,
+    strand     = strand,
+    match_id   = gene,
+    gene_label = gene
+  )
+
+#Doing it differently for tripedalia because of a weird gtf format
+gtf_cols <- c("seq_id", "source", "type", "start", "end",
+              "score", "strand", "phase", "attributes")
+
+tripedalia.genes <- read_tsv("../../data/seqs/genomes/Tripedalia_maipoensis/Tripedalia_maipoensis_v1.braker.gtf", col_names = gtf_cols, comment = "#",
+              col_types = cols(.default = "c"))
+
+tripedalia.genes <- tripedalia.genes %>%
+  filter(type == "gene") %>%
+  mutate(
+    start = as.integer(start),
+    end   = as.integer(end),
+    gene_id = attributes          # for "gene" rows, attributes IS just the bare ID
+  ) %>%
+  select(seq_id, start, end, strand, gene_id)
+
+tripedalia.genes %>% head()
+tripedalia.genes <- tripedalia.genes %>%
+  transmute(
+    bin_id        = "Tripedalia_maipoensis",
+    seq_id     = seq_id,
+    start      = start,
+    end        = end,
+    strand     = strand,
+    match_id   = gene_id,
+    gene_label = gene_id
+  )
+
+
+#Getting the tracks from the fai files for all the different genomes and attaching them 
+#to a bin_id
+
+medu_seqs <- bind_rows(
+  read_fai("../../data/seqs/genomes/AurCo_genome/genome.fa.fai") %>% mutate(bin_id = "Aurelia_coerulea"),
+  read_fai("../../data/seqs/genomes/Casxa1/Casxa1/Mycocosm/Assembly/Genome_Assembly__masked_/Casxa1_AssemblyScaffolds_Repeatmasked.fasta.fai") %>% mutate(bin_id = "Cassiopea_xamachana"),
+  read_fai("../../data/seqs/genomes/ClyHe/Copley/c_hem_hic.fa.fai") %>% mutate(bin_id = "Clytia_hemisphaerica"),
+  read_fai("../../data/seqs/genomes/HydSy/GCF_029227915.1_HSymV2.1_genomic.fasta.fai") %>% mutate(bin_id = "Hydractinia_symbiologicarpus"),
+  read_fai("../../data/seqs/genomes/RhoEs_GCF_013076305.1/GCF_013076305.1_ASM1307630v1_genomic.fna.fai") %>% mutate(bin_id = "Rhopilema_esculentum"),
+  read_fai("../../data/seqs/genomes/Sanderia/SanMa_renamed_GCA_013076295.1.fasta.fai") %>% mutate(bin_id = "Sanderia_malayensis"),
+  read_fai("../../data/seqs/genomes/Tripedalia_maipoensis/Tripedalia_maipoensis_v1_genomic.fna.fai") %>% mutate(bin_id = "Tripedalia_maipoensis")
+  )
+
+scypho_seqs <- bind_rows(
+  read_fai("../../data/seqs/genomes/AurCo_genome/genome.fa.fai") %>% mutate(bin_id = "Aurelia_coerulea"),
+  read_fai("../../data/seqs/genomes/Casxa1/Casxa1/Mycocosm/Assembly/Genome_Assembly__masked_/Casxa1_AssemblyScaffolds_Repeatmasked.fasta.fai") %>% mutate(bin_id = "Cassiopea_xamachana"),
+  read_fai("../../data/seqs/genomes/RhoEs_GCF_013076305.1/GCF_013076305.1_ASM1307630v1_genomic.fna.fai") %>% mutate(bin_id = "Rhopilema_esculentum"),
+  read_fai("../../data/seqs/genomes/Sanderia/SanMa_renamed_GCA_013076295.1.fasta.fai") %>% mutate(bin_id = "Sanderia_malayensis"))
+
+#Flagging chromosome level species to display their tracknames as it will be relevant to display genes 
+#being on the same chromosome
+chromosome_level_species <- c("Aurelia_coerulea", "Sanderia_malayensis","Rhopilema_esculentum","Tripedalia_maipoensis","Hydractinia_symbiologicarpus","Clytia_hemisphaerica")  
+
+
+#Loading the tsv file matching the seq IDs for each species to an orthogroup
+
+full_otx_ortho_table <- read_tsv("../../synteny/ortho_table_otx_synteny.tsv")
+full_otx_ortho_table$Cassiopea_xamachana <- as.character(full_otx_ortho_table$Cassiopea_xamachana)
+
+#Getting it into a long format required by gggenome
+full_otx_ortho_long <- full_otx_ortho_table %>%
+  pivot_longer(
+    cols = -orthogroup,
+    names_to = "bin_id",
+    values_to = "match_id"
+  ) %>%
+  filter(!is.na(match_id))  
+
+#Adding the gene coordinates from the gtf dataframes to the ortho table
+
+full_all_otx_genes <- bind_rows(aurelia.genes, cassiopea.genes, clytia.genes, hydsy.genes, rhopilema.genes, sanderia.genes, tripedalia.genes) %>%
+  left_join(full_otx_ortho_long, by = c("bin_id", "match_id"))
+
+full_all_otx_genes %>% count(bin_id, is.na(orthogroup))
+
+full_otx_genes  <- full_all_otx_genes %>%
+  rename(gene_id = gene_label) 
+
+#Flipping the Cassiopea scaffold as it is a reverse complement of the others
+casio_scaffold <- "Scaffold_40168"   
+casio_len <- medu_seqs %>%
+  filter(seq_id == casio_scaffold) %>%
+  pull(length)
+
+full_otx_genes <- full_otx_genes %>%
+  mutate(
+    new_start = if_else(seq_id == casio_scaffold, casio_len - end + 1, start),
+    new_end   = if_else(seq_id == casio_scaffold, casio_len - start + 1, end),
+    strand    = if_else(seq_id == casio_scaffold,
+                         if_else(strand == "+", "-", "+"),
+                         strand)
+  ) %>%
+  select(-start, -end) %>%
+  rename(start = new_start, end = new_end)
+
+#Keeping only the genes relevant to be plotted i.e otx and unchHomeobox
+
+full_otx_genes_plot <-  full_otx_genes %>% filter(!is.na(orthogroup))
+
+#Function to make links between two consecutive genomes to be displayed
+
+make_links <- function(genes, bin_a, bin_b) {
+  a <- genes %>% filter(bin_id == bin_a, !is.na(orthogroup)) %>%
+    select(seq_id, start, end, orthogroup)
+  b <- genes %>% filter(bin_id == bin_b, !is.na(orthogroup)) %>%
+    select(seq_id, start, end, orthogroup)
+
+  inner_join(a, b, by = "orthogroup", suffix = c("1", "2")) %>%
+    transmute(
+      seq_id = seq_id1, start = start1, end = end1,
+      seq_id2 = seq_id2, start2 = start2, end2 = end2,
+      orthogroup = orthogroup
+    ) %>%
+    mutate(bin1 = bin_a, bin2 = bin_b)
+}
+
+
+#Making links based on bin_id, order really matters otherwise they wont be displayed
+full_medu_links <- bind_rows(
+  make_links(full_otx_genes, "Cassiopea_xamachana", "Sanderia_malayensis"),
+  make_links(full_otx_genes, "Sanderia_malayensis", "Aurelia_coerulea"),
+  make_links(full_otx_genes, "Aurelia_coerulea","Rhopilema_esculentum"),
+  make_links(full_otx_genes, "Rhopilema_esculentum","Tripedalia_maipoensis"),
+  make_links(full_otx_genes, "Tripedalia_maipoensis","Clytia_hemisphaerica"),
+  make_links(full_otx_genes, "Clytia_hemisphaerica","Hydractinia_symbiologicarpus")
+)
+
+
+#Now plotting everything together
+
+#This first plot displays genes in the same window by 'breaking' chromosomes if genes as split appart based on the 
+#focus function distance
+
+full_medu.p <- gggenomes(genes = full_otx_genes_plot, seqs = medu_seqs, links = full_medu_links) +
+  geom_seq() +
+  geom_link(aes(fill = orthogroup), alpha = 0.4) +
+  geom_gene(aes(fill = orthogroup), position = "strand")+scale_fill_manual(values = c(
+  "otxB" = "#c0f4b8", "otxC" = "#adb2fb", "otxD" = "#e394ff",
+  "otxE" = "#E9C46A", "unch_homeobox" = "grey35","otxA"="pink"))+
+  geom_bin_label(
+    aes(label = recode(bin_id,
+    "Aurelia_coerulea"    = "Aurelia coerulea",
+    "Sanderia_malayensis" = "Sanderia malayensis",
+    "Cassiopea_xamachana" = "Cassiopea xamachana",
+    "Rhopilema_esculentum"="Rhopilema esculentum",
+    "Tripedalia_maipoensis"="Tripedalia maipoensis",
+    "Clytia_hemisphaerica" = "Clytia hemisphaerica",
+    "Hydractinia_symbiologicarpus" = "Hyd. symbiologicarpus"
+    ), color= bin_id),
+    size = 4, fontface = "italic"
+  )+
+  scale_color_manual(values = c(
+    "Aurelia_coerulea"    = "#CC79A7",
+    "Sanderia_malayensis" = "#CC79A7",
+    "Cassiopea_xamachana" = "#CC79A7",
+    "Rhopilema_esculentum"="#CC79A7",
+    "Tripedalia_maipoensis"="#E69F00",
+    "Clytia_hemisphaerica" = "#0072B2",
+    "Hydractinia_symbiologicarpus" = "#0072B2"
+  ), guide = "none")
+
+full_medu.p <- full_medu.p %>%
+  focus(!is.na(orthogroup), .max_dist = 300000, .expand = 5000)
+full_medu.p <- full_medu.p %>%
+  gggenomes::pick(Cassiopea_xamachana,Sanderia_malayensis,Aurelia_coerulea,Rhopilema_esculentum,Tripedalia_maipoensis,Clytia_hemisphaerica,Hydractinia_symbiologicarpus)
+
+#Only displaying track names for chromosome level species, and only one
+#per track instead of per locus
+label_data <- pull_seqs(full_medu.p) %>%
+  filter(bin_id %in% chromosome_level_species) %>%
+  group_by(bin_id) %>%
+  slice_max(xend, n = 1) %>%          # keep only the rightmost locus per genome
+  ungroup() %>%
+  mutate(label = str_remove(seq_id, "_lc\\d+$"))  # strip the _lc1/_lc2 suffix
+full_medu.p <- full_medu.p +
+  geom_text(
+    data = label_data,
+    aes(x = xend, y = y, label = label),
+    hjust = 0,          # left-justify text, so it grows rightward from x
+    vjust = 0.5,         # vertically centered on the sequence line, not below it
+    nudge_x = 3000,      # small gap so text doesn't touch the sequence end 
+    size = 3
+  )
+
+break_marks <- pull_seqs(full_medu.p) %>%
+  arrange(bin_id, i) %>%
+  group_by(bin_id) %>%
+  mutate(next_x = lead(x)) %>%     # x of the following locus, if one exists
+  filter(!is.na(next_x)) %>%       # drops the LAST locus per bin - no seam after it
+  ungroup()
+
+full_medu.p <- full_medu.p +
+  geom_text(data = break_marks, aes(x = xend, y = y), label = "/", size = 4, hjust = 0.5, color="red") +
+  geom_text(data = break_marks, aes(x = next_x, y = y), label = "/", size = 4, hjust = 0.5, color="red")
+
+full_medu.p <- full_medu.p +
+  labs(title = "Microsynteny of otx genes across Medusozoa") +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 18))+
+  scale_x_bp(expand = expansion(mult = c(0, 0.05)))+
+  theme(legend.position = "bottom")+
+  guides(fill = guide_legend(nrow = 1))+
+  theme(
+    legend.key.size = unit(1.2, "cm"),      # size of the color swatches
+    legend.text = element_text(size = 12),   # size of "otxB", "otxC", etc.
+    legend.title = element_text(size = 13)   # size of the "orthogroup" title, if shown
+  )+
+  labs(fill = "Ortholog group :") +
+  theme(legend.title = element_text(face = "bold", size = 13, family = "sans"))
+
+print(full_medu.p)
+
+###
+
+#Redoing the same thing but not focusing the window, to show full chromosomes
+
+large_full_medu.p <- gggenomes(genes = full_otx_genes_plot, seqs = medu_seqs, links = full_medu_links) +
+  geom_seq() +
+  geom_link(aes(fill = orthogroup), alpha = 0.4) +
+  geom_gene(aes(fill = orthogroup), position = "strand")+scale_fill_manual(values = c(
+  "otxB" = "#c0f4b8", "otxC" = "#adb2fb", "otxD" = "#e394ff",
+  "otxE" = "#E9C46A", "unch_homeobox" = "grey35","otxA"="pink"))+
+  geom_bin_label(
+    aes(label = recode(bin_id,
+    "Aurelia_coerulea"    = "Aurelia coerulea",
+    "Sanderia_malayensis" = "Sanderia malayensis",
+    "Cassiopea_xamachana" = "Cassiopea xamachana",
+    "Rhopilema_esculentum"="Rhopilema esculentum",
+    "Tripedalia_maipoensis"="Tripedalia maipoensis",
+    "Clytia_hemisphaerica" = "Clytia hemisphaerica",
+    "Hydractinia_symbiologicarpus" = "Hyd. symbiologicarpus"
+    ),color=bin_id),
+    size = 4, fontface = "italic"
+  )+
+  scale_color_manual(values = c(
+    "Aurelia_coerulea"    = "#CC79A7",
+    "Sanderia_malayensis" = "#CC79A7",
+    "Cassiopea_xamachana" = "#CC79A7",
+    "Rhopilema_esculentum"="#CC79A7",
+    "Tripedalia_maipoensis"="#E69F00",
+    "Clytia_hemisphaerica" = "#0072B2",
+    "Hydractinia_symbiologicarpus" = "#0072B2"
+  ), guide = "none")
+
+large_full_medu.p <- large_full_medu.p %>%
+  focus(!is.na(orthogroup), .max_dist = 12300000, .expand = 325000)
+large_full_medu.p <- large_full_medu.p %>%
+  gggenomes::pick(Cassiopea_xamachana,Sanderia_malayensis,Aurelia_coerulea,Rhopilema_esculentum,Tripedalia_maipoensis,Clytia_hemisphaerica,Hydractinia_symbiologicarpus)
+
+label_data <- pull_seqs(large_full_medu.p) %>%
+  filter(bin_id %in% chromosome_level_species) %>%
+  group_by(bin_id) %>%
+  slice_max(xend, n = 1) %>%          # keep only the rightmost locus per genome
+  ungroup() %>%
+  mutate(label = str_remove(seq_id, "_lc\\d+$"))  # strip the _lc1/_lc2 suffix
+large_full_medu.p <- large_full_medu.p +
+  geom_text(
+    data = label_data,
+    aes(x = xend, y = y, label = label),
+    hjust = 0,          # left-justify text, so it grows rightward from x
+    vjust = 0.5,         # vertically centered on the sequence line, not below it
+    nudge_x = 3000,      # small gap so text doesn't touch the sequence end - tune to your scale
+    size = 3
+  )
+
+large_full_medu.p <- large_full_medu.p +
+  labs(title = "Microsynteny of otx genes across Medusozoa") +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 18))+
+  scale_x_bp(expand = expansion(mult = c(0, 0.05)))+
+  theme(legend.position = "bottom")+
+  guides(fill = guide_legend(nrow = 1))
+
+print(large_full_medu.p)
+
+
+#Saving
+ggsave(full_medu.p, filename = "../../screenshots/R/synteny/otx_synteny_plot.svg",height = 7,width = 15
+       )
+
+ggsave(large_full_medu.p, filename = "../../screenshots/R/synteny/large_otx_synteny_plot.svg",height = 7,width = 15
+       )
+       
+
+
+
+```
+
+
+
+
+
+
+BIGWIG PLOTIING 
+
+Plotting the scRNA-seq reads from the bigwig file for the foxB1 locus using ggcoverage to plot each genome
+then combine them with patchwork. Needs : a gff/gtf file, bigwig files, locus of interest name and coordinates
+
+```{r}
+
+library(rtracklayer)
+library(GenomicRanges)
+library(ggcoverage)
+library(S4Vectors)
+library(ggplot2)
+library(patchwork)
+
+
+#Rhopilema
+
+## ------------------------------------------------------------
+## 1) LOAD BIGWIG TRACKS FOR THIS GENOME'S LOCUS
+## ------------------------------------------------------------
+
+# sample metadata - SampleName must match the .bw filenames WITHOUT
+# the .bw extension 
+
+sample_meta <- data.frame(
+  SampleName = c("Rh_ephyra_2_possorted_genome_bw", "Rh_polyp_possorted_genome_bw"),
+  Type       = "scRNA-seq reads",
+  Group      = "Rhopilema esculentum"
+)
+
+region_str <- "NW_027019762.1:7788970-7833289"   # this genome's locus coordinates
+
+track_df <- LoadTrackFile(
+  track.folder = "../../data/seqs/genomes/RhoEs_GCF_013076305.1/",
+  format       = "bw",
+  region       = region_str,
+  meta.info    = sample_meta
+)
+
+## ------------------------------------------------------------
+## 2) LOAD AND CLEAN THIS GENOME'S GTF/GFF
+## ------------------------------------------------------------
+
+gtf_gr <- rtracklayer::import.gff(
+  "../../data/seqs/genomes/RhoEs_GCF_013076305.1/genomic.gff",  # adjust path/filename
+  format = "gff3"
+)
+
+# a) subset to just the locus of interest FIRST : a small region-only subset is much faster
+region_gr <- GRanges(
+  seqnames = "NW_027019762.1",
+  ranges   = IRanges(start = 7788970, end = 7833289)
+)
+gtf_gr <- subsetByOverlaps(gtf_gr, region_gr)
+
+df <- as.data.frame(gtf_gr)
+
+nrow(df)
+length(df$type); length(df$gene_name); length(df$gene_type)
+
+#Building a clean dataframe with only the useful information
+
+df_clean <- data.frame(
+  seqnames  = df$seqnames,
+  start     = df$start,
+  end       = df$end,
+  strand    = df$strand,
+  type      = as.character(df$type),
+  gene_name = as.character(df$gene),          # NCBI's gene symbol column
+  gene_type = as.character(df$gene_biotype),  # NCBI's biotype column = gene_type
+  stringsAsFactors = FALSE
+)
+
+clean_gr <- makeGRangesFromDataFrame(df_clean, keep.extra.columns = TRUE)
+
+mark_region <- data.frame(
+  start = c(7813099),
+  end   = c(7813888),
+  label = c("foxB1 miniprot match")
+)
+
+panel_A <- ggcoverage(
+  data           = track_df,
+  range.position = "out",
+  color          = "#0072B2",
+  mark.region    = mark_region,
+  mark.color = "#E69F00",
+  show.mark.label = TRUE,
+  mark.label.size = 5,
+  facet.color = "pink"
+)+
+  theme(strip.text = element_text(color = "black", face = "bold", size=15)
+  ) +
+  ggcoverage::geom_gene(gtf.gr = clean_gr,plot.height = 0.3,
+    color.by   = "strand",
+    fill.color = c(`+` = "#56B4E9", `-` = "#CC79A7"),
+    exon.size=5)
+
+
+print(panel_A)
+
+
+##AURELIA
+
+#Lots of files so we just load them all at once
+
+ac.bw_files <- list.files("../../data/seqs/genomes/AurCo_genome/bam2bw/", pattern = "\\.bw$")
+ac.sample_names <- sub("\\.bw$", "",ac.bw_files) 
+
+
+ac.sample_meta <- data.frame(
+  SampleName = ac.sample_names,
+  Type       = "scRNA-seq reads",
+  Group      = "Aurelia coerulea")
+
+
+ac.region_str <- "scaffold13:21364597-21417212"   # this genome's locus coordinates
+
+ac.track_df <- LoadTrackFile(
+  track.folder = "../../data/seqs/genomes/AurCo_genome/bam2bw/",
+  format       = "bw",
+  region       = ac.region_str,
+  meta.info    = ac.sample_meta
+)
+
+ac.gtf_gr <- rtracklayer::import.gff(
+  "../../data/seqs/genomes/AurCo_genome/genes.gtf",  
+  format = "gtf"
+)
+
+ac.region_gr <- GRanges(
+  seqnames = "scaffold13",
+  ranges   = IRanges(start = 21364597, end = 21417212)
+)
+ac.gtf_gr <- subsetByOverlaps(ac.gtf_gr, ac.region_gr)
+
+ac.df <- as.data.frame(ac.gtf_gr)
+
+
+ac.df_clean <- data.frame(
+  seqnames  = ac.df$seqnames,
+  start     = ac.df$start,
+  end       = ac.df$end,
+  strand    = ac.df$strand,
+  type      = ifelse(ac.df$type == "transcript", "gene", as.character(ac.df$type)),
+  gene_name = as.character(ac.df$gene_id),          
+  gene_type = "protein_coding",                  
+  stringsAsFactors = FALSE
+)
+
+ac.clean_gr <- makeGRangesFromDataFrame(ac.df_clean, keep.extra.columns = TRUE)
+
+ac.mark_region <- data.frame(
+  start = c(21391222),
+  end   = c(21391975),
+  label = c("foxB1 miniprot match")
+)
+
+
+panel_B <- ggcoverage(
+  data           = ac.track_df,
+  range.position = "out",
+  color          = "#0072B2",
+  mark.region    = ac.mark_region,
+  mark.color = "#E69F00",
+  show.mark.label = TRUE,
+  mark.label.size = 5,
+  facet.color = "pink"
+)+
+  theme(strip.text = element_text(color = "black", face = "bold", size=15)
+  ) +
+  ggcoverage::geom_gene(gtf.gr = ac.clean_gr,plot.height = 0.3,
+    color.by   = "strand",
+    fill.color = c(`+` = "#56B4E9", `-` = "#CC79A7"),
+    exon.size=5)
+
+print(panel_B)
+
+
+###SANDERIA
+
+sa.sample_meta <- data.frame(
+  SampleName = c("Sa_ephyra_bw"),
+  Type       = "scRNA-seq reads",
+  Group      = "Sanderia malayensis"
+)
+
+
+sa.region_str <- "RQOL01000658.1:2400590-2417795"   # this genome's locus coordinates
+
+sa.track_df <- LoadTrackFile(
+  track.folder = "../../data/seqs/genomes/Sanderia/",
+  format       = "bw",
+  region       = sa.region_str,
+  meta.info    = sa.sample_meta
+)
+
+sa.gtf_gr <- rtracklayer::import.gff(
+  "../../data/seqs/genomes/Sanderia/Sanderia_malayensis-GCA_013076295.1-2023_10-genes.gff3",  
+  format = "gff3"
+)
+
+sa.region_gr <- GRanges(
+  seqnames = "RQOL01000658.1",
+  ranges   = IRanges(start = 2400590, end = 2417795)
+)
+sa.gtf_gr <- subsetByOverlaps(sa.gtf_gr, sa.region_gr)
+
+sa.df <- as.data.frame(sa.gtf_gr)
+
+#Here we need to build a look up table from Parent to exons as the gff file structure is different,
+#otherwise it just displays as a continuous arrow instead of exons
+
+# 1. flatten Parent/ID first, in case they're still list-columns
+sa.df$Parent <- sapply(sa.df$Parent, function(x) paste(x, collapse = ";"))
+sa.df$ID     <- sapply(sa.df$ID,     function(x) paste(x, collapse = ";"))
+
+# 2. transcript -> gene lookup, built from mRNA rows (their own ID = transcript key,
+#    their Parent = the gene key)
+mrna_lookup <- sa.df %>%
+  filter(type == "mRNA") %>%
+  transmute(transcript_key = ID, gene_key = Parent)
+
+# 3. gene_id already correctly populated on gene rows - just grab it keyed by gene ID
+gene_lookup <- sa.df %>%
+  filter(type == "gene") %>%
+  transmute(gene_key = ID, gene_id_resolved = gene_id)
+
+# 4. chain: exon's Parent (transcript key) -> mrna_lookup -> gene_key -> gene_lookup -> gene_id
+transcript_to_gene <- mrna_lookup %>%
+  left_join(gene_lookup, by = "gene_key") %>%
+  select(transcript_key, gene_id_resolved)
+
+sa.df_fixed <- sa.df %>%
+  left_join(transcript_to_gene, by = c("Parent" = "transcript_key")) %>%
+  mutate(gene_id = coalesce(gene_id, gene_id_resolved))
+
+#Now back to normal
+
+sa.df_clean <- data.frame(
+  seqnames  = sa.df_fixed$seqnames,
+  start     = sa.df_fixed$start,
+  end       = sa.df_fixed$end,
+  strand    = sa.df_fixed$strand,
+  type      = as.character(sa.df_fixed$type),
+  gene_name = as.character(sa.df_fixed$gene_id),          
+  gene_type = as.character(sa.df_fixed$biotype), 
+  stringsAsFactors = FALSE
+)
+
+sa.clean_gr <- makeGRangesFromDataFrame(sa.df_clean, keep.extra.columns = TRUE)
+
+sa.mark_region <- data.frame(
+  start = c(2408157),
+  end   = c(2409014),
+  label = c("foxB1 cds")
+)
+
+
+panel_C <- ggcoverage(
+  data           = sa.track_df,
+  range.position = "out",
+  color          = "#0072B2",
+  mark.region    = sa.mark_region,
+  mark.color = "#E69F00",
+  show.mark.label = TRUE,
+  mark.label.size = 5,
+  facet.color = "pink"
+)+
+  theme(strip.text = element_text(color = "black", face = "bold", size=15)
+  ) +
+  ggcoverage::geom_gene(gtf.gr = sa.clean_gr, plot.height = 0.3,
+    color.by   = "strand",
+    fill.color = c(`+` = "#56B4E9", `-` = "#CC79A7"),
+    exon.size=5)
+
+
+print(panel_C)
+
+species_label <- function(text) {
+  ggplot() +
+    annotate("text", x = 0, y = 0, label = text, angle = 90, size = 4, fontface = "bold.italic") +
+    theme_void()
+}
+
+row_A <- species_label("Rhopilema esculentum") + wrap_elements(panel_A) + plot_layout(widths = c(0.05, 1))
+row_B <- species_label("Aurelia coerulea") + wrap_elements(panel_B) + plot_layout(widths = c(0.05, 1))
+row_C <- species_label("Sanderia malayensis") + wrap_elements(panel_C) + plot_layout(widths = c(0.05, 1))
+
+combined <- row_A / row_B / row_C +
+  plot_annotation(title = "scRNA-seq reads support presence of foxB1 in Aurelia coerulea and Rhopilema esculentum",
+                  theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14)))
+
+print(combined)
+
+ggsave(combined, filename = "../../screenshots/R/foxB1/foxB1_bw_plot.svg",height = 9,width = 15
+       )
+
+#yay !
+
+```
+
+

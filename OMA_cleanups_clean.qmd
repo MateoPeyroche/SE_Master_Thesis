@@ -1,0 +1,654 @@
+---
+title: "OMA_re_ac"
+format: html
+---
+
+Trying to get the proper format for the OMA table of rhopi
+
+```{r}
+library(readxl)
+library(Matrix)
+library(dplyr)
+
+```
+
+#Cleaning up the Clytia OMA maps 
+Let's first try it on the Aurelia-Clytia OMA map
+```{r}
+#Loading Aurelia genes in case
+genes.Ac <- read.csv(file= '../../data/seqs/genomes/ACOE.functional.annot.csv')
+#Loading mapping of TCONS to XLOC with awk/grep one liner for fasta headers in cufflink
+#transcriptome file
+TCONS_to_XLOC <- read.table(file='../../data/OMA/Clytia_tcons_xloc_table.tsv',header=F)
+
+OMA.ChAc = read.table(file="../../data/OMA/ch-kostya.txt",header = F,fill = T)
+names(OMA.ChAc)=c('IDn.Ch','IDn.Ac','Gene.Ch','Gene.Ac','pairing','OMA.all')
+OMA.ChAc$Gene.Ch <- sub("-protein$","",OMA.ChAc$Gene.Ch)
+
+OMA.ChAc <- OMA.ChAc %>%
+  left_join(TCONS_to_XLOC, by=c("Gene.Ch"="V1"))
+names(OMA.ChAc)[names(OMA.ChAc)=="V2"] <- "Ch.XLOC"
+OMA.ChAc$Gene.Ac <- gsub("\\.t[0-9]+$", "", OMA.ChAc$Gene.Ac ) #Removing the transcript id 
+#in order to keep only one per gene 
+OMA.ChAc=OMA.ChAc[,c(-1,-2)] #drop the index columns
+OMA.ChAc <- OMA.ChAc %>%
+  distinct(Gene.Ac, Ch.XLOC, .keep_all = TRUE)
+
+
+OMA.ChAc_renamed <- OMA.ChAc %>%
+  add_count(Gene.Ac, name = "n_col1") %>%
+  add_count(Ch.XLOC, name = "n_col2") %>%
+  mutate(
+    pairing = 
+      ifelse(n_col1 == 1 & n_col2 == 1, "1:1",
+      ifelse(n_col1 == 1 & n_col2 > 1,  "1:many",
+      ifelse(n_col1 > 1  & n_col2 == 1, "many:1",
+      pairing)))
+  ) %>%
+  select(-n_col1, -n_col2)
+OMA.ChAc_renamed=OMA.ChAc_renamed[,c(-1)]
+OMA.ChAc_renamed <- OMA.ChAc_renamed %>% 
+  relocate(Ch.XLOC, .before = Gene.Ac)
+OMA.ChAc_renamed <- OMA.ChAc_renamed %>% 
+  relocate(pairing, .before = Gene.Ac)
+
+write.table(OMA.ChAc_renamed, file = "../../data/OMA/ch-kostya_repaired.tsv", sep = "\t", 
+            row.names = FALSE, quote = FALSE)
+
+```
+
+
+Onto Rhopilema !
+
+```{r}
+#Loading the cleaned object (with awk to only keep the protein ID)
+OMA.ReCh = read.table(file="../../data/OMA/re2-ch_clean.txt",header = F,fill = T)
+names(OMA.ReCh)=c('IDn.Re','IDn.Ch','Prot.Re','Gene.Ch','pairing','OMA.all')
+
+#Loading the object containing the genes.Rh table
+#load(file ="../../data/scyphozoa_AGC/rhopilema.g2g.RData")
+gene_table.rh <- read.table(file="../../data/seqs/genomes/RhoEs_GCF_013076305.1/RhoEs_all_protein_gene_table.tsv", header=F)
+OMA.ReCh$Gene.Ch <- sub("-protein$","",OMA.ReCh$Gene.Ch)
+OMA.ReCh <- OMA.ReCh %>%
+  left_join(TCONS_to_XLOC, by=c("Gene.Ch"="V1"))
+names(OMA.ReCh)[names(OMA.ReCh)=="V2"] <- "Ch.XLOC"
+names(gene_table.rh)[names(gene_table.rh)=="V1"] <- "protein_id"
+names(gene_table.rh)[names(gene_table.rh)=="V2"] <- "gene_id"
+
+OMA.ReCh <- OMA.ReCh %>%
+  left_join(gene_table.rh, by =c('Prot.Re'='protein_id'))
+names(OMA.ReCh)[names(OMA.ReCh)=="gene_id"] <- "Gene.Re"
+OMA.ReCh=OMA.ReCh[,c(-1,-2)] #drop the index columns
+OMA.ReCh <- OMA.ReCh %>%
+  distinct(Gene.Re, Ch.XLOC, .keep_all = TRUE)
+OMA.ReCh_renamed <- OMA.ReCh %>%
+  add_count(Gene.Re, name = "n_col1") %>%
+  add_count(Ch.XLOC, name = "n_col2") %>%
+  mutate(
+    pairing = 
+      ifelse(n_col1 == 1 & n_col2 == 1, "1:1",
+      ifelse(n_col1 == 1 & n_col2 > 1,  "many:1",
+      ifelse(n_col1 > 1  & n_col2 == 1, "1:many",
+      pairing)))
+  ) %>%
+  select(-n_col1, -n_col2)
+
+OMA.ReCh_renamed=OMA.ReCh_renamed[,c(-2)]
+OMA.ReCh_renamed=OMA.ReCh_renamed[,c(-1)]
+OMA.ReCh_renamed <- OMA.ReCh_renamed %>% 
+  relocate(Gene.Re, .before = pairing)
+OMA.ReCh_renamed <- OMA.ReCh_renamed %>% 
+  relocate(Ch.XLOC, .after = pairing)
+
+write.table(OMA.ReCh_renamed, file = "../../data/OMA/re2-ch_repaired.tsv", sep = "\t", 
+            row.names = FALSE, quote = FALSE)
+
+
+```
+
+And Sanderia now
+
+```{r}
+
+OMA.ChSa = read.table(file="../../data/OMA/ch-sa.txt",header = F,fill = T)
+names(OMA.ChSa)=c('IDn.Ch','IDn.Sa','Gene.Ch','Transcript.Sa','pairing','OMA.all')
+gene_table.sa <- read.table(file="../../data/seqs/genomes/Sanderia/Sanma_gene_transcript_protein_table.tsv", header=F)
+names(gene_table.sa)[names(gene_table.sa)=="V1"] <- "gene_id"
+names(gene_table.sa)[names(gene_table.sa)=="V2"] <- "transcript_id"
+names(gene_table.sa)[names(gene_table.sa)=="V3"] <- "protein_id"
+OMA.ChSa$Gene.Ch <- sub("-protein$","",OMA.ChSa$Gene.Ch)
+OMA.ChSa <- OMA.ChSa %>%
+  left_join(TCONS_to_XLOC, by=c("Gene.Ch"="V1"))
+names(OMA.ChSa)[names(OMA.ChSa)=="V2"] <- "Ch.XLOC"
+
+OMA.ChSa <- OMA.ChSa %>%
+  left_join(gene_table.sa, by =c('Transcript.Sa'='transcript_id'))
+names(OMA.ChSa)[names(OMA.ChSa)=="gene_id"] <- "Gene.Sa"
+names(OMA.ChSa)[names(OMA.ChSa)=="protein_id"] <- "Protein.Sa"
+
+OMA.ChSa=OMA.ChSa[,c(-1,-2)] #drop the index columns
+OMA.ChSa <- OMA.ChSa %>%
+  distinct(Gene.Sa, Ch.XLOC, .keep_all = TRUE)
+OMA.ChSa_renamed <- OMA.ChSa %>%
+  add_count(Gene.Sa, name = "n_col1") %>%
+  add_count(Ch.XLOC, name = "n_col2") %>%
+  mutate(
+    pairing = 
+      ifelse(n_col1 == 1 & n_col2 == 1, "1:1",
+      ifelse(n_col1 == 1 & n_col2 > 1,  "1:many",
+      ifelse(n_col1 > 1  & n_col2 == 1, "many:1",
+      pairing)))
+  ) %>%
+  select(-n_col1, -n_col2)
+
+OMA.ChSa_renamed=OMA.ChSa_renamed[,c(-1)]
+OMA.ChSa_renamed=OMA.ChSa_renamed[,c(-1,-6)]
+
+OMA.ChSa_renamed <- OMA.ChSa_renamed %>% 
+  relocate(Ch.XLOC, .before = pairing)
+OMA.ChSa_renamed <- OMA.ChSa_renamed %>% 
+  relocate(Gene.Sa, .after = pairing)
+
+
+write.table(OMA.ChSa_renamed, file = "../../data/OMA/ch-sa_repaired.tsv", sep = "\t", 
+            row.names = FALSE, quote = FALSE)
+
+
+```
+
+Now let's also clean up the other ones while i'm at it. Not Tripedalia though because we cant really tell 
+betwenn duplicates 
+
+Kostya-Rhopilema
+```{r}
+#cuation name of the species were inverted here in regard to the file
+OMA.AcRe = read.table(file="../../data/OMA/re2-kostya_clean.txt",header = F,fill = T)
+names(OMA.AcRe)=c('IDn.Re','IDn.Ac','Prot.Re','Gene.Ac','pairing','OMA.all')
+#take out the transcript variant on the gene ids for Aurelia
+OMA.AcRe$Gene.Ac   <- gsub("\\.t[0-9]+$", "", OMA.AcRe$Gene.Ac ) 
+OMA.AcRe=OMA.AcRe[,c(-1,-2)] #drop the index columns
+
+OMA.AcRe <- OMA.AcRe %>%
+  left_join(gene_table.rh, by =c('Prot.Re'='protein_id'))
+names(OMA.AcRe)[names(OMA.AcRe)=="gene_id"] <- "Gene.Re"
+OMA.AcRe <- OMA.AcRe %>%
+  distinct(Gene.Ac, Gene.Re, .keep_all = TRUE)
+OMA.AcRe_renamed <- OMA.AcRe %>%
+  add_count(Gene.Re, name = "n_col1") %>%
+  add_count(Gene.Ac, name = "n_col2") %>%
+  mutate(
+    pairing = 
+      ifelse(n_col1 == 1 & n_col2 == 1, "1:1",
+      ifelse(n_col1 == 1 & n_col2 > 1,  "many:1",
+      ifelse(n_col1 > 1  & n_col2 == 1, "1:many",
+      pairing)))
+  ) %>%
+  select(-n_col1, -n_col2)
+
+OMA.AcRe_renamed=OMA.AcRe_renamed[,c(-1)]
+OMA.AcRe_renamed <- OMA.AcRe_renamed %>% 
+  relocate(Gene.Re, .before = pairing)
+OMA.AcRe_renamed <- OMA.AcRe_renamed %>% 
+  relocate(Gene.Ac, .after = pairing)
+
+
+write.table(OMA.AcRe_renamed, file = "../../data/OMA/re2-kostya_repaired.tsv", sep = "\t", 
+            row.names = FALSE, quote = FALSE)
+
+```
+
+
+Kostya-Sanderia 
+
+```{r}
+
+OMA.AcSa = read.table(file="../../data/OMA/kostya-sa.txt",header = F,fill = T)
+names(OMA.AcSa)=c('IDn.Ac','IDn.Sa','Gene.Ac','Transcript.Sa','pairing','OMA.all')
+#take out the transcript variant on the gene ids for Aurelia
+OMA.AcSa$Gene.Ac   <- gsub("\\.t[0-9]+$", "", OMA.AcSa$Gene.Ac ) 
+OMA.AcSa=OMA.AcSa[,c(-1,-2)] #drop the index columns
+
+OMA.AcSa <- OMA.AcSa %>%
+  left_join(gene_table.sa, by =c('Transcript.Sa'='transcript_id'))
+names(OMA.AcSa)[names(OMA.AcSa)=="gene_id"] <- "Gene.Sa"
+names(OMA.AcSa)[names(OMA.AcSa)=="protein_id"] <- "Protein.Sa"
+
+OMA.AcSa <- OMA.AcSa %>%
+  distinct(Gene.Ac, Gene.Sa, .keep_all = TRUE)
+OMA.AcSa_renamed <- OMA.AcSa %>%
+  add_count(Gene.Ac, name = "n_col1") %>%
+  add_count(Gene.Sa, name = "n_col2") %>%
+  mutate(
+    pairing = 
+      ifelse(n_col1 == 1 & n_col2 == 1, "1:1",
+      ifelse(n_col1 == 1 & n_col2 > 1,  "many:1",
+      ifelse(n_col1 > 1  & n_col2 == 1, "1:many",
+      pairing)))
+  ) %>%
+  select(-n_col1, -n_col2)
+
+OMA.AcSa_renamed=OMA.AcSa_renamed[,c(-2,-6)]
+OMA.AcSa_renamed <- OMA.AcSa_renamed %>% 
+  relocate(Gene.Sa, .after = pairing)
+
+write.table(OMA.AcSa_renamed, file = "../../data/OMA/kostya-sa_repaired.tsv", sep = "\t", 
+            row.names = FALSE, quote = FALSE)
+
+```
+
+Sanderia+Rhopilema
+
+```{r}
+OMA.ReSa = read.table(file="../../data/OMA/re2-sa_clean.txt",header = F,fill = T)
+names(OMA.ReSa)=c('IDn.Re','IDn.Sa','Prot.Re','Transcript.Sa','pairing','OMA.all')
+OMA.ReSa=OMA.ReSa[,c(-1,-2)] #drop the index columns
+
+OMA.ReSa <- OMA.ReSa %>%
+  left_join(gene_table.rh, by =c('Prot.Re'='protein_id'))
+names(OMA.ReSa)[names(OMA.ReSa)=="gene_id"] <- "Gene.Re"
+
+OMA.ReSa <- OMA.ReSa %>%
+  left_join(gene_table.sa, by =c('Transcript.Sa'='transcript_id'))
+names(OMA.ReSa)[names(OMA.ReSa)=="gene_id"] <- "Gene.Sa"
+names(OMA.ReSa)[names(OMA.ReSa)=="protein_id"] <- "Protein.Sa"
+
+OMA.ReSa <- OMA.ReSa %>%
+  distinct(Gene.Re, Gene.Sa, .keep_all = TRUE)
+
+OMA.ReSa_renamed <- OMA.ReSa %>%
+  add_count(Gene.Re, name = "n_col1") %>%
+  add_count(Gene.Sa, name = "n_col2") %>%
+  mutate(
+    pairing = 
+      ifelse(n_col1 == 1 & n_col2 == 1, "1:1",
+      ifelse(n_col1 == 1 & n_col2 > 1,  "many:1",
+      ifelse(n_col1 > 1  & n_col2 == 1, "1:many",
+      pairing)))
+  ) %>%
+  select(-n_col1, -n_col2)
+OMA.ReSa_renamed <- OMA.ReSa_renamed %>% 
+  relocate(Gene.Re, .before = pairing)
+OMA.ReSa_renamed <- OMA.ReSa_renamed %>% 
+  relocate(Gene.Sa, .after = pairing)
+
+OMA.ReSa_renamed=OMA.ReSa_renamed[,c(-1,-2,-7)]
+
+
+write.table(OMA.ReSa_renamed, file = "../../data/OMA/re2-sa_repaired.tsv", sep = "\t", 
+            row.names = FALSE, quote = FALSE)
+
+```
+
+
+Now let's try a triple one with the Scyphozoa species ? 
+What we want is 1:1:1
+```{r}
+
+```
+
+#Nematostella to Scyphozoa cleanups
+
+Nematostella genes are deduplicated so its only a matter of repeating what we already did for the Scyphozoa
+
+NV2xKostya
+
+```{r}
+OMA.NvAc = read.table(file="../../data/OMA/nv2-kostya.txt",header = F,fill = T)
+names(OMA.NvAc)=c('IDn.Nv','IDn.Ac','Gene.Nv','Gene.Ac','pairing','OMA.all')
+OMA.NvAc=OMA.NvAc[,c(-1,-2)]
+OMA.NvAc$Gene.Ac   <- gsub("\\.t[0-9]+$", "", OMA.NvAc$Gene.Ac ) 
+
+OMA.NvAc <- OMA.NvAc %>%
+  distinct(Gene.Nv, Gene.Ac, .keep_all = TRUE)
+OMA.NvAc_renamed <- OMA.NvAc %>%
+  add_count(Gene.Nv, name = "n_col1") %>%
+  add_count(Gene.Ac, name = "n_col2") %>%
+  mutate(
+    pairing = 
+      ifelse(n_col1 == 1 & n_col2 == 1, "1:1",
+      ifelse(n_col1 == 1 & n_col2 > 1,  "many:1",
+      ifelse(n_col1 > 1  & n_col2 == 1, "1:many",
+      pairing)))
+  ) %>%
+  select(-n_col1, -n_col2)
+OMA.NvAc_renamed <- OMA.NvAc_renamed %>% 
+  relocate(Gene.Ac, .after = pairing)
+
+write.table(OMA.NvAc_renamed, file = "../../data/OMA/nv2-kostya_repaired.tsv", sep = "\t", 
+            row.names = FALSE, quote = FALSE)
+
+```
+
+Nv2xSa 
+
+```{r}
+OMA.NvSa = read.table(file="../../data/OMA/nv2-sa.txt",header = F,fill = T)
+names(OMA.NvSa)=c('IDn.Nv','IDn.Sa','Gene.Nv','Transcript.Sa','pairing','OMA.all')
+OMA.NvSa=OMA.NvSa[,c(-1,-2)]
+
+OMA.NvSa <- OMA.NvSa %>%
+  left_join(gene_table.sa, by =c('Transcript.Sa'='transcript_id'))
+names(OMA.NvSa)[names(OMA.NvSa)=="gene_id"] <- "Gene.Sa"
+names(OMA.NvSa)[names(OMA.NvSa)=="protein_id"] <- "Protein.Sa"
+
+OMA.NvSa <- OMA.NvSa %>%
+  distinct(Gene.Nv, Gene.Sa, .keep_all = TRUE)
+
+OMA.NvSa_renamed <- OMA.NvSa %>%
+  add_count(Gene.Nv, name = "n_col1") %>%
+  add_count(Gene.Sa, name = "n_col2") %>%
+  mutate(
+    pairing = 
+      ifelse(n_col1 == 1 & n_col2 == 1, "1:1",
+      ifelse(n_col1 == 1 & n_col2 > 1,  "many:1",
+      ifelse(n_col1 > 1  & n_col2 == 1, "1:many",
+      pairing)))
+  ) %>%
+  select(-n_col1, -n_col2)
+OMA.NvSa_renamed <- OMA.NvSa_renamed %>% 
+  relocate(Gene.Nv, .before = pairing)
+OMA.NvSa_renamed <- OMA.NvSa_renamed %>% 
+  relocate(Gene.Sa, .after = pairing)
+
+OMA.NvSa_renamed=OMA.NvSa_renamed[,c(-1,-6)]
+
+write.table(OMA.NvSa_renamed, file = "../../data/OMA/nv2-sa_repaired.tsv", sep = "\t", 
+            row.names = FALSE, quote = FALSE)
+
+```
+
+Nv2xRhopilema 
+
+```{r}
+
+OMA.NvRe = read.table(file="../../data/OMA/nv2-re2_clean.txt",header = F,fill = T)
+names(OMA.NvRe)=c('IDn.Nv','IDn.Re','Gene.Nv','Protein.Re','pairing','OMA.all')
+OMA.NvRe=OMA.NvRe[,c(-1,-2)]
+
+names(gene_table.rh)[names(gene_table.rh)=="V1"] <- "protein_id"
+names(gene_table.rh)[names(gene_table.rh)=="V2"] <- "gene_id"
+
+OMA.NvRe <- OMA.NvRe %>%
+  left_join(gene_table.rh, by =c('Protein.Re'='protein_id'))
+names(OMA.NvRe)[names(OMA.NvRe)=="gene_id"] <- "Gene.Re"
+
+OMA.NvRe <- OMA.NvRe %>%
+  distinct(Gene.Nv, Gene.Re, .keep_all = TRUE)
+
+OMA.NvRe_renamed <- OMA.NvRe %>%
+  add_count(Gene.Nv, name = "n_col1") %>%
+  add_count(Gene.Re, name = "n_col2") %>%
+  mutate(
+    pairing = 
+      ifelse(n_col1 == 1 & n_col2 == 1, "1:1",
+      ifelse(n_col1 == 1 & n_col2 > 1,  "many:1",
+      ifelse(n_col1 > 1  & n_col2 == 1, "1:many",
+      pairing)))
+  ) %>%
+  select(-n_col1, -n_col2)
+OMA.NvRe_renamed <- OMA.NvRe_renamed %>% 
+  relocate(Gene.Nv, .before = pairing)
+OMA.NvRe_renamed <- OMA.NvRe_renamed %>% 
+  relocate(Gene.Re, .after = pairing)
+
+OMA.NvRe_renamed=OMA.NvRe_renamed[,c(-1)]
+
+write.table(OMA.NvRe_renamed, file = "../../data/OMA/nv2-re2_repaired.tsv", sep = "\t", 
+            row.names = FALSE, quote = FALSE)
+```
+Hydractinia quickly for synteny figure 
+
+```{r}
+OMA.HsAc = read.table(file="../../data/OMA/hsym-kostya_clean.txt",header = F,fill = T)
+names(OMA.HsAc)=c('IDn.Hs','IDn.Ac','Protein.Hs','Gene.Ac','pairing','OMA.all')
+OMA.HsAc=OMA.HsAc[,c(-1,-2)]
+
+gene_table.hs <- read.table(file="../../data/seqs/genomes/HydSy/HydSy_all_protein_gene_table.tsv", header=F)
+names(gene_table.hs)[names(gene_table.hs)=="V1"] <- "protein_id"
+names(gene_table.hs)[names(gene_table.hs)=="V2"] <- "gene_id"
+
+
+OMA.HsAc <- OMA.HsAc %>%
+  left_join(gene_table.hs, by =c('Protein.Hs'='protein_id'))
+names(OMA.HsAc)[names(OMA.HsAc)=="gene_id"] <- "Gene.Hs"
+
+OMA.HsAc$Gene.Ac   <- gsub("\\.t[0-9]+$", "", OMA.HsAc$Gene.Ac ) 
+
+OMA.HsAc <- OMA.HsAc %>%
+  distinct(Gene.Hs, Gene.Ac, .keep_all = TRUE)
+
+OMA.HsAc_renamed <- OMA.HsAc %>%
+  add_count(Gene.Hs, name = "n_col1") %>%
+  add_count(Gene.Ac, name = "n_col2") %>%
+  mutate(
+    pairing = 
+      ifelse(n_col1 == 1 & n_col2 == 1, "1:1",
+      ifelse(n_col1 == 1 & n_col2 > 1,  "many:1",
+      ifelse(n_col1 > 1  & n_col2 == 1, "1:many",
+      pairing)))
+  ) %>%
+  select(-n_col1, -n_col2)
+
+OMA.HsAc_renamed <- OMA.HsAc_renamed %>% 
+  relocate(Gene.Hs, .before = pairing)
+OMA.HsAc_renamed <- OMA.HsAc_renamed %>% 
+  relocate(Gene.Ac, .after = pairing)
+
+OMA.HsAc_renamed=OMA.HsAc_renamed[,c(-1)]
+
+write.table(OMA.HsAc_renamed, file = "../../data/OMA/hsym-kostya_repaired.tsv", sep = "\t", 
+            row.names = FALSE, quote = FALSE)
+
+```
+
+Hsym+Clytia
+
+```{r}
+OMA.HsCh = read.table(file="../../data/OMA/hsym-ch_clean.txt",header = F,fill = T)
+names(OMA.HsCh)=c('IDn.Hs','IDn.Ch','Protein.Hs','Transcript.Ch','pairing','OMA.all')
+OMA.HsCh=OMA.HsCh[,c(-1,-2)]
+
+OMA.HsCh <- OMA.HsCh %>%
+  left_join(gene_table.hs, by =c('Protein.Hs'='protein_id'))
+names(OMA.HsCh)[names(OMA.HsCh)=="gene_id"] <- "Gene.Hs"
+
+TCONS_to_XLOC <- read.table(file='../../data/OMA/Clytia_tcons_xloc_table.tsv',header=F)
+OMA.HsCh$Transcript.Ch <- sub("-protein$","",OMA.HsCh$Transcript.Ch)
+
+OMA.HsCh <- OMA.HsCh %>%
+  left_join(TCONS_to_XLOC, by=c("Transcript.Ch"="V1"))
+names(OMA.HsCh)[names(OMA.HsCh)=="V2"] <- "Gene.Ch"
+
+OMA.HsCh <- OMA.HsCh %>%
+  distinct(Gene.Hs, Gene.Ch, .keep_all = TRUE)
+
+OMA.HsCh_renamed <- OMA.HsCh %>%
+  add_count(Gene.Hs, name = "n_col1") %>%
+  add_count(Gene.Ch, name = "n_col2") %>%
+  mutate(
+    pairing = 
+      ifelse(n_col1 == 1 & n_col2 == 1, "1:1",
+      ifelse(n_col1 == 1 & n_col2 > 1,  "many:1",
+      ifelse(n_col1 > 1  & n_col2 == 1, "1:many",
+      pairing)))
+  ) %>%
+  select(-n_col1, -n_col2)
+
+OMA.HsCh_renamed <- OMA.HsCh_renamed %>% 
+  relocate(Gene.Hs, .before = pairing)
+OMA.HsCh_renamed <- OMA.HsCh_renamed %>% 
+  relocate(Gene.Ch, .after = pairing)
+
+OMA.HsCh_renamed=OMA.HsCh_renamed[,c(-1,-2)]
+
+write.table(OMA.HsCh_renamed, file = "../../data/OMA/hsym-ch_repaired.tsv", sep = "\t", 
+            row.names = FALSE, quote = FALSE)
+
+```
+
+
+
+
+## Identification of the Clytia orthologs of "Bilaterian tfs"
+
+It didn't pan out that well, hence the clytia_ortho_search script
+```{r}
+#Loading the bilat tfs table
+
+bilat_tf_table <-  read.csv(file="../../data/seqs/bilat_tfs/bilat_muscle_tf.csv",header = T,fill = T)
+
+#Filling up the Rhopilema columns where either protein ids and gene ids were missing for some genes
+gene_lookup.rh <- gene_table.rh %>%
+  select(gene_id, protein_id) %>%   # subset first — avoids touching the problem column entirely
+  distinct(gene_id, .keep_all = TRUE)
+
+bilat_tf_table <- bilat_tf_table %>%
+  left_join(
+    gene_lookup.rh %>%
+      select(gene_id, protein_id),
+    by = c("Rhopilema_gene" = "gene_id")
+  ) %>%
+  mutate(
+    Rhopilema_protein = if_else(Rhopilema_protein == "" | is.na(Rhopilema_protein), protein_id, Rhopilema_protein)
+  ) %>%
+  select(-protein_id)
+
+bilat_tf_table <- bilat_tf_table %>%
+  left_join(
+    gene_table.rh,
+    by = c("Rhopilema_protein" = "protein_id")
+  ) %>%
+  mutate(
+    Rhopilema_gene = if_else(Rhopilema_gene == "" | is.na(Rhopilema_gene), gene_id, Rhopilema_gene)
+  ) %>%
+  select(-gene_id)
+
+
+
+bilat_tf_table_ch <- bilat_tf_table %>%
+  select(gene, Aurelia_gene, Sanderia_gene,Rhopilema_gene, Pelagia_gene)
+
+bilat_tf_table_ch <- bilat_tf_table_ch %>%
+  left_join(OMA.ChAc_renamed %>% select(Ch.XLOC,pairing,Gene.Ac), by = (c("Aurelia_gene"="Gene.Ac")))
+names(bilat_tf_table_ch)[names(bilat_tf_table_ch)=="pairing"] <- "ChAc.pairing"
+
+bilat_tf_table_ch <- bilat_tf_table_ch %>%
+  left_join(OMA.ChSa_renamed %>% select(Ch.XLOC,pairing,Gene.Sa), by = (c("Sanderia_gene"="Gene.Sa")))
+names(bilat_tf_table_ch)[names(bilat_tf_table_ch)=="pairing"] <- "ChSa.pairing"
+
+bilat_tf_table_ch <- bilat_tf_table_ch %>%
+  left_join(OMA.ReCh_renamed %>% select(Gene.Re,pairing,Ch.XLOC), by = (c("Rhopilema_gene"="Gene.Re")))
+names(bilat_tf_table_ch)[names(bilat_tf_table_ch)=="pairing"] <- "ReCh.pairing"
+
+#There is a very low number of orthologs detected through the OMA maps, let's check
+#for overall TFs in these OMA maps
+
+Ch_TF_list$Gene_name <- gsub("-", "_", Ch_TF_list$Gene_name)
+tf_ch_count_ChAc <- length (Ch_TF_list$Gene_name[ Ch_TF_list$Gene_name %in% OMA.ChAc_renamed$Ch.XLOC== T])
+print(tf_ch_count_ChAc)
+
+tf_re_count_ReCh <- length (Rh_TF_table$gene_id[Rh_TF_table$gene_id %in% OMA.ReCh_renamed$Gene.Re== T])
+print(tf_re_count_ReCh)
+
+#Ok so only about 10%of the TFs are in the OMA tables
+
+#Let's add the identified Clytia IDs for the gene where some were identified
+#Since all Scyphozoan genes should be 1:1 orthologs; and all picked up Clytia ortholgies
+#in OMA maps here are 1:1, even if it is only detected for one species, we consider it as
+#ortholog for all of them
+
+#CAREFUL THE TBX4.5 LOOKS SUPER WEIRD, IT IS NOT THE ACTUAL ORTHOLOG
+
+bilat_tf_table_ch <- bilat_tf_table_ch %>%
+  mutate (Clytia_gene_OMA = coalesce(Ch.XLOC.x,Ch.XLOC.y, Ch.XLOC))
+bilat_tf_table_ch <- bilat_tf_table_ch %>%
+  relocate(Clytia_gene_OMA, .after = Pelagia_gene)
+
+```
+
+
+Now let's do a similar clean up of the table with the one obtained from the Clytia Ortho Search
+
+```{r}
+
+bilat_tf_table <-  read.csv(file="../../data/seqs/bilat_tfs/bilat_tf_orthology_table.csv",header = T,fill = T)
+
+#Filling up the Rhopilema columns where either protein ids and gene ids were missing for some genes
+gene_lookup.rh <- gene_table.rh %>%
+  select(gene_id, protein_id) %>%   # subset first — avoids touching the problem column entirely
+  distinct(gene_id, .keep_all = TRUE)
+
+bilat_tf_table <- bilat_tf_table %>%
+  left_join(
+    gene_lookup.rh %>%
+      select(gene_id, protein_id),
+    by = c("Rhopilema_gene" = "gene_id")
+  ) %>%
+  mutate(
+    Rhopilema_protein = if_else(Rhopilema_protein == "" | is.na(Rhopilema_protein), protein_id, Rhopilema_protein)
+  ) %>%
+  select(-protein_id)
+
+bilat_tf_table <- bilat_tf_table %>%
+  left_join(
+    gene_table.rh,
+    by = c("Rhopilema_protein" = "protein_id")
+  ) %>%
+  mutate(
+    Rhopilema_gene = if_else(Rhopilema_gene == "" | is.na(Rhopilema_gene), gene_id, Rhopilema_gene)
+  ) %>%
+  select(-gene_id)
+
+bilat_tf_table <- bilat_tf_table %>% 
+  left_join(genes.Ac %>% select (geneID, oldGene) , by = c('Aurelia_gene' = "oldGene"))
+
+bilat_tf_table <- bilat_tf_table %>% 
+  relocate(geneID, .after = Aurelia_gene)
+
+bilat_tf_table[bilat_tf_table == ""] <- NA
+
+names(bilat_tf_table)[names(bilat_tf_table)=="geneID"] <- "Aurelia_new_ID"
+
+
+bilat_tf_table <- bilat_tf_table %>% 
+  relocate(Sanderia_protein, .after = Clytia_gene_2021)
+
+bilat_tf_table <- bilat_tf_table %>% 
+  left_join(gene_table.sa %>% select (gene_id, protein_id) , by = c('Sanderia_protein' = "protein_id"))
+
+names(bilat_tf_table)[names(bilat_tf_table)=="gene_id"] <- "Sanderia_gene"
+
+bilat_tf_table <- bilat_tf_table %>% 
+  relocate(Sanderia_gene, .before = Sanderia_protein)
+
+write.table(bilat_tf_table, file = "../../data/seqs/bilat_tfs/bilat_tf_orthology_table.tsv", sep = "\t", 
+            row.names = FALSE, quote = FALSE)
+
+```
+
+Yay !
+
+Let's actually check something : all genes are indeed conserved, no loss of information
+```{r}
+OMA.NvAc = read.table(file="../../data/OMA/nv2-kostya.txt",header = F,fill = T)
+names(OMA.NvAc)=c('IDn.Nv','IDn.Ac','Gene.Nv','Gene.Ac','pairing','OMA.all')
+OMA.NvAc_rp = read.table(file="../../data/OMA/nv2-kostya_repaired.tsv",header = T,fill = T)
+
+OMA.NvAc_dd = read.table(file="../../data/OMA/from_dedup/nv2-kostya.txt",header = F,fill = T)
+names(OMA.NvAc_dd)=c('IDn.Nv','IDn.Ac','Gene.Nv','Gene.Ac','pairing','OMA.all')
+
+NvAc.11 <- OMA.NvAc %>%
+  subset(pairing=="1:1")
+NvAc_rp.11 <- OMA.NvAc_rp %>%
+  subset(pairing=="1:1")
+NvAc_dd.11 <- OMA.NvAc_dd %>%
+  subset(pairing=="1:1")
+
+setdiff(NvAc_rp.11$Gene.Nv,NvAc_dd.11$Gene.Nv)
+
+setdiff(NvAc_dd.11$Gene.Nv,NvAc_rp.11$Gene.Nv)
+
+
+
+```
+

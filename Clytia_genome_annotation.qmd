@@ -1,0 +1,224 @@
+---
+title: "Clytia_genome_annotation"
+format: html
+---
+
+
+Loading the different outputs
+```{r}
+library(readr)
+library(dplyr)
+
+ch.interpro = read_tsv(file="../../clytia/clytia_annotations/interpro/c_hem_nr_interpro_parsed.tsv",quote = "")
+
+#Filtering the output file which has comments at the top and bottom
+lines <- readLines("../../clytia/clytia_annotations/eggnog/clytia.emapper.annotations")
+
+# header is the line starting with "#query"
+header_idx <- which(grepl("^#query", lines))
+header <- strsplit(sub("^#", "", lines[header_idx]), "\t")[[1]]
+
+# data lines are everything that doesn't start with "#"
+data_lines <- lines[!grepl("^#", lines)]
+
+ch.eggnog <- read_tsv(paste(data_lines, collapse = "\n"), col_names = header)
+
+#Now doing a similar thing with the signal P output
+
+sp.lines <- readLines("../../clytia/clytia_annotations/signalP/clytia_signalP_positives_output.txt")
+
+# the real header is the line starting with "# ID"
+sp.header_line <- sp.lines[grepl("^# ID", sp.lines)]
+sp.header <- strsplit(sub("^# ", "", sp.header_line), "\t")[[1]]
+
+# data lines: skip anything starting with "#"
+sp.data_lines <- sp.lines[!grepl("^#", sp.lines)]
+
+ch.signalP <- read_tsv(paste(sp.data_lines, collapse = "\n"), col_names = sp.header)
+
+ch.TFs <- read_tsv(file="../../clytia/clytia_annotations/TF_list/ClyHe_TF_list_dedup_proteome.tsv",quote = "")
+
+library(ggvenn)
+ggvenn(list(eggNOG = ch.eggnog$query, InterProScan = ch.interpro$trancriptID))
+
+copley.name <- read.table(file="../../data/seqs/genomes/ClyHe/Copley/clytia_names.txt", header=F, fill=T)
+copley.human <- read.table(file="../../data/seqs/genomes/ClyHe/Copley/clytia_human.txt", header=F, fill=T)
+copley.pfam <- read.table(file="../../data/seqs/genomes/ClyHe/Copley/clytia_pfam.txt", header=F, fill=T)
+
+
+
+ggvenn(list(eggNOG = ch.eggnog$query, InterProScan = ch.interpro$trancriptID,copley_name= copley.name$V1, copley_human=copley.human$V1, copley_pfam = copley.pfam$V1))
+
+setdiff(ch.interpro$trancriptID, ch.eggnog$query)
+setdiff(ch.eggnog$query,ch.interpro$trancriptID)
+
+ch.bilat_tf <- read_tsv(file = "../../data/seqs/bilat_tfs/bilat_tf_orthology_table.tsv", quote= "")
+ch.bilat_tf <- ch.bilat_tf %>%
+  select(gene, Clytia_gene_new, Clytia_gene_2021)
+
+names(ch.bilat_tf) <- c('bilat_gene','geneID','old_geneID')
+
+names(copley.name) = c('gene','copley_name')
+names(copley.human) = c('gene','copley_best_human_hit')
+names(copley.pfam) = c('gene','copley_pfam')
+
+copley.name <- copley.name %>%
+  distinct(gene, .keep_all = T)
+
+ch.annotations <- full_join(ch.eggnog, ch.interpro, by = c('query'='trancriptID'))
+
+ch.annotations <- ch.annotations %>% 
+  full_join(copley.name, by = c('query'='gene'))
+
+ch.annotations <- ch.annotations %>% 
+  full_join(copley.human, by = c('query'='gene'))
+
+ch.annotations <- ch.annotations %>% 
+  full_join(copley.pfam, by = c('query'='gene'))
+
+ch.annotations <- ch.annotations %>% 
+  left_join(ch.bilat_tf %>% select(bilat_gene, geneID), by = c('query'='geneID'))
+
+
+#Now that we merged everything we wanted together, let's merge the GO columns from the two different outputs
+
+combine_go <- function(go_eggnog, go_ips) {
+  # split each on commas (handle NA/"-"/empty as no GO terms)
+  split_clean <- function(x) {
+    if (is.na(x) || x == "-" || x == "") return(character(0))
+    terms <- strsplit(x, ",")[[1]]
+    # strip anything in parentheses, e.g. "GO:0005737(PANTHER)" -> "GO:0005737"
+    terms <- gsub("\\(.*\\)", "", terms)
+    # trim any stray whitespace just in case
+    trimws(terms)
+  }
+  
+  eggnog_terms <- split_clean(go_eggnog)
+  ips_terms <- split_clean(go_ips)
+  
+  combined <- union(eggnog_terms, ips_terms)
+  
+  if (length(combined) == 0) return(NA_character_)
+  paste(combined, collapse = ",")
+}
+
+ch.annotations$GO_combined <- mapply(combine_go, ch.annotations$GOs, ch.annotations$GO)
+
+ch.annotations <- ch.annotations%>%
+  relocate(GO, .after = GOs)
+ch.annotations <- ch.annotations%>%
+  relocate(GO_combined, .after = GO)
+
+head(ch.annotations[,10:12])
+
+names(ch.annotations)[names(ch.annotations)=="query"] <- "gene"
+
+ch.annotations <- ch.annotations %>%
+  full_join(ch.TFs %>% select(Gene, TFFam, num_of_dom), by = c('gene'='Gene'))
+
+ch.annotations <- ch.annotations %>%
+  full_join(ch.signalP, by = c("gene" = "ID"))
+
+names(ch.annotations)[names(ch.annotations)=="Prediction"] <- "SP-prediction"
+
+#Now let's filter to only keep the most useful columns
+ch.annotations_light <- ch.annotations %>%
+  select(gene,eggNOG_OGs,Description,Preferred_name,GO_combined,KEGG_ko,KEGG_Pathway,PFAMs,SUPERFAMILY_IPS_Desc,Pfam_IPS_Desc,copley_name,copley_best_human_hit,copley_pfam,bilat_gene,TFFam,`SP-prediction`)
+
+
+
+new_fasta <- readLines("../../data/seqs/proteomes/c_hem_nr.fasta")
+all_new_ids <- new_fasta[grepl("^>", new_fasta)] %>%
+  sub("^>", "", .) %>%
+  sub(" .*", "", .)
+
+all_new_ids_df <- tibble(gene = all_new_ids)
+
+ch.annotations_light <- all_new_ids_df %>%
+  left_join(ch.annotations_light, by = c('gene'='gene'))
+
+
+ch.annotations_light <- ch.annotations_light %>%
+  mutate(
+    name = coalesce(
+      na_if(copley_name, "-"),
+      na_if(bilat_gene, "-"),
+      na_if(Preferred_name, "-"),
+      na_if(gene, "-")
+    )
+  )
+
+ch.annotations_light <- ch.annotations_light  %>% 
+  relocate(name, .after = gene)
+ch.annotations_light <- ch.annotations_light  %>% 
+  relocate(Preferred_name, .after = name)
+ch.annotations_light <- ch.annotations_light  %>% 
+  relocate(copley_name, .after = name)
+ch.annotations_light <- ch.annotations_light  %>% 
+  relocate(bilat_gene, .after = copley_name)
+
+
+ch.annotations_light[!is.na(ch.annotations_light$bilat_gene),]
+
+ch.annotations_light <- ch.annotations_light %>%
+  select(-bilat_gene,-Preferred_name)
+
+write.table(ch.annotations_light, file = "../../clytia/clytia_annotations/c_hem_nr_func_annotations.tsv", sep = "\t", 
+            row.names = FALSE, quote = FALSE)
+
+```
+
+
+The whole old v new fun thing
+```{r}
+ch.ovn <- read_tsv("../../clytia/clytia_annotations/new_v_old/ch_old_vs_new.tsv", 
+                  col_names = c("old_id", "new_id", "pident", "length", 
+                                "qcovhsp", "scovhsp", "evalue", "bitscore"))
+
+old_fasta <- readLines("../../data/seqs/proteomes/Clytia_hemisphaerica_Proteome.fasta")
+all_old_ids <- old_fasta[grepl("^>", old_fasta)] %>%
+  sub("^>", "", .) %>%
+  sub(" .*", "", .)
+
+
+
+all_old_ids <- old_fasta[grepl("^>", old_fasta)] %>%
+  sub("^>", "", .) %>%
+  sub(" .*", "", .)   # keep only first token, same as your earlier cleanup
+
+all_old_ids_df <- tibble(old_id = all_old_ids)
+
+
+best_hits <- ch.ovn %>%
+  filter(pident >= 99, qcovhsp >= 90, scovhsp >= 80) %>%
+  group_by(old_id) %>%
+  slice_max(bitscore, n = 1, with_ties = FALSE) %>%
+  ungroup() %>%
+  select(old_id, new_id)
+
+# Left join onto the FULL list of old IDs, so unmatched ones show up as NA
+old_to_new <- all_old_ids_df %>%
+  left_join(best_hits, by = "old_id")
+
+# Check: how many old sequences disappeared?
+sum(is.na(old_to_new$new_id))
+
+old_to_new$old_id <- gsub("^Chem[-_]", "", old_to_new$old_id)
+
+ch.mapping_ovn <- old_to_new %>%
+  filter(!is.na(new_id)) %>%
+  group_by(new_id) %>%
+  summarise(old_ids = paste(old_id, collapse = ","))
+
+
+
+```
+
+
+
+```{r}
+
+
+```
+
+

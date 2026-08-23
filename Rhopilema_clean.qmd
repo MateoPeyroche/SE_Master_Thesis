@@ -1,0 +1,670 @@
+---
+title: "Rhopilema single-cell analysis"
+author: "Matéo Peyroche"
+format: html
+---
+
+#DATA ANLYSIS OF THE UPDATED RHOPILEMA DATASET
+
+##Importing libraries, dataset and relevant objects
+
+Libraries
+```{r}
+#| echo: false
+set.seed(213)
+library(Seurat,quietly=T)
+library(SeuratObject,quietly=T)
+library(RColorBrewer,quietly=T)
+library(Matrix,quietly=T)
+library(ggplot2,quietly=T)
+library(Polychrome,quietly=T)
+library(dplyr,quietly=T)
+library(presto,quietly=T)
+library(rtracklayer,quietly=T)
+library(stringr,quietly=T)
+library(tidyverse,quietly=T)
+library(colorspace,quietly=T)
+library(patchwork,quietly=T)
+library(scCustomize,quietly=T)
+
+
+```
+
+Loading the dataset and the gene annotations
+```{r}
+load (file= "../../data/scyphozoa/RhAllData.RData")
+gene_table.rh <- read.table(file="../../data/seqs/genomes/RhoEs_GCF_013076305.1/RhoEs_all_protein_gene_table.tsv", header=F)
+names(gene_table.rh)[names(gene_table.rh)=="V1"] <- "protein_id"
+names(gene_table.rh)[names(gene_table.rh)=="V2"] <- "gene_id"
+
+data.rh <- Rh.alldata
+data.rh <- JoinLayers(data.rh)
+rh.ephyra <- subset(data.rh, subset = orig.ident == "Rh.ephyra")
+
+out_dir <- '../../screenshots/R/Rh/final/' #output directory for figures
+
+```
+
+#Visualization of the dataset
+
+```{r}
+
+#set IDs to idents
+Idents(data.rh) <- data.rh$IDs
+
+#match the idents with the colors of the palette
+coarse_cluster_levels <- levels(Idents(data.rh))
+
+
+coarse_pal <- createPalette(
+  seedcolors = c("#EE7733", "#009988", "#EE3377"),
+  N = length(coarse_cluster_levels),
+  range = c(20,90)
+)
+
+names(coarse_pal) <- coarse_cluster_levels
+coarse_pal <- sortByHue(coarse_pal)
+
+#print umap
+rh_dimplot_coarse <- DimPlot(
+  data.rh,
+  reduction = "umap",
+  cols = coarse_pal,
+  pt.size = 0.5
+)
+
+DimPlot(
+  data.rh,
+  reduction = "umap",
+  group.by = "IDs",     # what determines the color
+  split.by = "orig.ident",       # what determines the panel split
+  cols = coarse_pal,
+  pt.size = 0.5
+)
+
+
+Idents(data.rh) <- data.rh$ID.separate
+Idents(rh.ephyra) <- rh.ephyra$ID.separate
+
+
+#match the idents with the colors of the palette
+fine_cluster_levels <- levels(Idents(data.rh))
+fine_pal <- character(length(fine_cluster_levels))
+names(fine_pal) <- fine_cluster_levels
+
+tab <- table(fine = data.rh@meta.data$ID.separate, coarse = data.rh@meta.data$IDs)
+
+# for each fine cluster (row), pick the coarse cluster (column) with the most cells =
+#pair fine clusters to the coarse cluster they are derived from
+fine_to_coarse <- apply(tab, 1, function(x) names(which.max(x)))
+
+#Derive fine cluster color from the coarse one
+
+for (coarse_id in names(coarse_pal)) {
+  children <- names(fine_to_coarse)[fine_to_coarse == coarse_id]
+  n_children <- length(children)
+  base_col <- coarse_pal[coarse_id]
+
+  if (n_children == 1) {
+    # no subclustering -> keep the coarse color exactly as-is
+    fine_pal[children] <- base_col
+  } else {
+    # spread shades from darker to lighter around the base color
+    shades <- sapply(seq(-0.4, 0.4, length.out = n_children), function(amt) {
+      if (amt < 0) darken(base_col, abs(amt)) else lighten(base_col, amt)
+    })
+    fine_pal[children] <- shades
+  }
+}
+
+rh_dimplot_fine <-DimPlot(
+  data.rh,
+  reduction = "umap",
+  cols = fine_pal,
+  pt.size = 0.5
+)+ guides(color = guide_legend(ncol = 1, override.aes = list(size = 3)))
+
+rh_dimplot_fine_p_v_e <- DimPlot(
+  data.rh,
+  reduction = "umap",
+  group.by = "ID.separate",     # what determines the color
+  split.by = "orig.ident",       # what determines the panel split
+  cols = fine_pal,
+  pt.size = 0.5
+)+ guides(color = guide_legend(ncol = 1, override.aes = list(size = 3)))
+
+ggsave(
+  filename = file.path(out_dir, "rh_dimplot_fine_p_v_e2.png"),
+  plot = rh_dimplot_fine_p_v_e,
+  width = 12,
+  height = 6,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "rh_dimplot_fine2.png"),
+  plot = rh_dimplot_fine,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "rh_dimplot_coarse2.png"),
+  plot = rh_dimplot_coarse,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+
+```
+
+
+Highlighting the muscle cluster in the all and ephyra datasets 
+```{r}
+
+rh_highlight_plot_ST_all <- Cluster_Highlight_Plot(
+  seurat_object = data.rh,
+  reduction = "umap",
+  cluster_name = "20_12.muscle.ST",
+  highlight_color = "gold",
+  background_color = "lightgray"
+)
+
+rh_highlight_plot_ST_eph <- Cluster_Highlight_Plot(
+  seurat_object = rh.ephyra,
+  reduction = "umap",
+  cluster_name = "20_12.muscle.ST",
+  highlight_color = "gold",
+  background_color = "lightgray"
+)
+
+rh_highlight_plot_ST_all
+rh_highlight_plot_ST_eph
+
+ggsave(
+  filename = file.path(out_dir, "rh_highlight_plot_ST_all.png"),
+  plot = rh_highlight_plot_ST_all,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "rh_highlight_plot_ST_eph.png"),
+  plot = rh_highlight_plot_ST_eph,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+```
+
+
+Creating gene labels for dotplots by transferring Aurelia names from the OMA repaired table, or the NCBI annotations. 
+```{r}
+OMA.ReAc <- read_tsv(file = "../../data/OMA/re2-kostya_repaired.tsv")
+load (file= "../../data/scyphozoa_AGC/ACOE.genes.RData")
+ac_to_rh.names <- OMA.ReAc %>%
+  left_join(genes.ac %>% select(ACO, gene_short_name, cellranger), by = c('Gene.Ac'='cellranger'))
+
+#Transferring names from Aurelia based on the OMA map 
+#When 1:1, or many:1 the Aurelia name is directly passed, in 1:many, Aurelia names are fused
+#This is done on anything that is not an ACOE name. 
+ac_to_rh.names <- ac_to_rh.names %>%
+  filter(pairing %in% c('1:1','many:1','1:many'))
+pattern <- "^[A-Z]+[0-9]+G[0-9]+$"
+ac_to_rh.names <- ac_to_rh.names %>%
+  filter(!grepl(pattern, gene_short_name))
+ac_to_rh.names <- ac_to_rh.names %>%
+  group_by(Gene.Re) %>%
+  summarise(
+    gene_short_name = paste(gene_short_name, collapse = "_")
+  ) %>%
+  ungroup()
+
+ac_to_rh.names<- genes.Rh %>%
+  left_join(ac_to_rh.names, by = c('gene_id'='Gene.Re'))
+
+ac_to_rh.names$product <- gsub("uncharacterized ","", ac_to_rh.names$product)
+
+ac_to_rh.names <- ac_to_rh.names %>%
+  mutate(
+    name = coalesce(
+      na_if(gene_short_name, "-"),
+      na_if(product, "-"),
+      na_if(gene_id, "-")
+    )
+  )
+
+gene_labels <- ac_to_rh.names %>%
+  group_by(gene_id) %>%
+  summarise(label = dplyr::first(name), .groups = "drop") %>%
+  mutate(label = ifelse(nchar(label) > 20, paste0(substr(label, 1, 20), "..."), label)) %>%
+  tibble::deframe()
+
+```
+
+
+Plotting of orthologs of Aurelia striated muscle specific genes
+```{r}
+#Plotting stmyhc1 and 4 and the "calm-like-37" orthologs
+rh_dotplot_stm_struct_genes.e <- DotPlot(rh.ephyra, features = c('LOC135691812','LOC135691803','LOC135688481')) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis() +
+ scale_x_discrete(labels = gene_labels[c('LOC135691812','LOC135691803','LOC135688481')])
+
+rh_featplot_stm_stmyhc.e <- FeaturePlot(rh.ephyra, features = c('LOC135691812','LOC135691803','LOC135688481'),reduction = "umap")&
+  scale_color_gradientn(colors = c("lightgrey", "#FDBB84", "#B30000"))
+
+rh_dotplot_stm_struct_genes.e
+rh_featplot_stm_stmyhc.e
+
+rh_dotplot_stm_struct_genes.all <- DotPlot(data.rh, features = c('LOC135691812','LOC135691803','LOC135688481')) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis() +
+ scale_x_discrete(labels = gene_labels[c('LOC135691812','LOC135691803','LOC135688481')])
+
+rh_featplot_stm_stmyhc.all <- FeaturePlot(data.rh, features = c('LOC135691812','LOC135691803','LOC135688481'),reduction = "umap")&
+  scale_color_gradientn(colors = c("lightgrey", "#FDBB84", "#B30000"))
+
+rh_dotplot_stmyhc4_p_v_e <- DotPlot(data.rh, features = c('LOC135691803'), split.by = "orig.ident", cols = c('#2166AC','#B30000'))+  scale_x_discrete(labels = gene_labels[c('LOC135691803')])
+
+rh_dotplot_stm_struct_genes.all
+rh_featplot_stm_stmyhc.all
+rh_dotplot_stmyhc4_p_v_e
+
+ggsave(
+  filename = file.path(out_dir, "rh_dotplot_stm_struct_genes_e.png"),
+  plot = rh_dotplot_stm_struct_genes.e,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "rh_featplot_stm_stmyhc_e.png"),
+  plot = rh_featplot_stm_stmyhc.e,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "rh_dotplot_stm_struct_genes_all.png"),
+  plot = rh_dotplot_stm_struct_genes.all,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "rh_featplot_stm_stmyhc_all.png"),
+  plot = rh_featplot_stm_stmyhc.all,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "rh_dotplot_stmyhc4_p_v_e.png"),
+  plot = rh_dotplot_stmyhc4_p_v_e,
+  width = 8,
+  height = 8,
+  dpi = 300
+)
+
+
+```
+
+#Unbiased approach
+
+##Ephyra Differentially expressed genes (DEG)
+
+As we are interested in the striated muscles, we will work on the ephyra. This is especially relevant here as the STmuscle cluster seems to also include polyp contractile cells, but the Aurelia ST-muscle specific genes from Aurelia seem to only be expressed in the subcluster kept in the ephyra subset. 
+Getting DEGs for both clustering and for the TF genes subset 
+```{r}
+#Getting the transcription factor list from the AnimalTFDB4.0 TF Predict output
+
+Rh_TF_table <- read.csv(file = '../../data/seqs/TF_lists/RhoEs_TF_list.csv')
+Rh_TF_table <- Rh_TF_table %>%
+  left_join(gene_table.rh, 
+             by = c('TF'='protein_id'))
+Rh_TF_table <- Rh_TF_table %>%
+  distinct(gene_id, .keep_all = T)
+Rh_TF_list <- Rh_TF_table$gene_id
+ 
+#First for the coarse clustering
+
+Idents(rh.ephyra) <- rh.ephyra$IDs
+
+rh.all.markers_coarse.e <- FindAllMarkers(
+  rh.ephyra,
+  assay = "RNA",
+  logfc.threshold = 0.25,
+  return.thresh   = 0.001,
+  min.pct         = 0.2,
+  only.pos        = TRUE
+)
+
+rh.tf.markers_coarse.e <- FindAllMarkers(
+  rh.ephyra,
+  features= intersect(Rh_TF_list,rownames(rh.ephyra)),
+  assay = "RNA",
+  logfc.threshold = 0.25,
+  return.thresh   = 0.001,
+  min.pct         = 0.06,
+  only.pos        = TRUE
+)
+
+
+#For the fine clustering
+Idents(rh.ephyra) <- rh.ephyra$ID.separate
+
+rh.all.markers_fine.e <- FindAllMarkers(
+  rh.ephyra,
+  assay = "RNA",
+  logfc.threshold = 0.25,
+  return.thresh   = 0.001,
+  min.pct         = 0.2,
+  only.pos        = TRUE
+)
+
+rh.tf.markers_fine.e <- FindAllMarkers(
+  rh.ephyra,
+  features= intersect(Rh_TF_list,rownames(rh.ephyra)),
+  assay = "RNA",
+  logfc.threshold = 0.25,
+  return.thresh   = 0.001,
+  min.pct         = 0.06,
+  only.pos        = TRUE
+)
+```
+
+##Striated muscle cluster
+Extracting the gene markers for the striated muscle
+```{r}
+rh.muscleST_markers.e <- rh.all.markers_coarse.e %>%
+  filter(cluster == "12.muscle.ST") %>%
+  arrange(p_val_adj,desc(avg_log2FC))
+
+rh.tf.muscleST_markers.e <- rh.tf.markers_coarse.e %>%
+  filter(cluster == "12.muscle.ST") %>%
+  arrange(p_val_adj,desc(avg_log2FC))
+
+rh.muscleST_markers.e_fine <- rh.all.markers_fine.e %>%
+  filter(cluster == "20_12.muscle.ST") %>%
+  arrange(p_val_adj,desc(avg_log2FC))
+
+rh.tf.muscleST_markers.e_fine <- rh.tf.markers_fine.e %>%
+  filter(cluster == "20_12.muscle.ST") %>%
+  arrange(p_val_adj,desc(avg_log2FC))
+
+#It is virtually exactly the same
+
+```
+
+
+Plotting the differentially expressed transcription factors.
+```{r}
+rh_dotplot_STm_tf_markers_all <- DotPlot(rh.ephyra, features = rh.tf.muscleST_markers.e$gene) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis() +
+ scale_x_discrete(labels = gene_labels[rh.tf.muscleST_markers.e$gene])+labs(title = "Differentially expressed transcription factors of the striated muscles of Rhopilema",size = 20, face = "bold")+
+  theme(plot.title = element_text(hjust = 0.5))
+
+print(rh_dotplot_STm_tf_markers_all)
+
+ggsave(
+  filename = file.path(out_dir, "rh_dotplot_STm_tf_markers_all.png"),
+  plot = rh_dotplot_STm_tf_markers_all,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+#Removing the widely expressed genes 
+rh_dotplot_STm_tf_markers_filtered <- DotPlot(rh.ephyra, features = rh.tf.muscleST_markers.e$gene[-c(4,6,9)]) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis() +
+ scale_x_discrete(labels = gene_labels[rh.tf.muscleST_markers.e$gene[-c(4,6,9)]])+
+ scale_x_discrete(labels = gene_labels[rh.tf.muscleST_markers.e$gene])+labs(title = "Top differentially expressed transcription factors of the striated muscles of Rhopilema",size = 20, face = "bold")+
+  theme(plot.title = element_text(hjust = 0.5))+
+     theme(axis.line = element_blank(),axis.ticks = element_blank(),axis.title = element_blank(),axis.text.x =element_text(size=15, face="bold" ))
+
+
+#Getting the stMuscle subset to show TF pattern expression
+rh.ST <- subset(rh.ephyra, idents = "20_12.muscle.ST")
+
+rh_dotplot_STm_tf_markers_filtered
+
+rh_featplot_STmcluster_TFmarkers <- FeaturePlot(rh.ST, features = rh.tf.muscleST_markers.e$gene[-c(4,6,9)],reduction = "umap")&scale_color_gradientn(colors = c("lightgrey", "#FDBB84", "#B30000"))
+
+ggsave(
+  filename = file.path(out_dir, "rh_dotplot_STm_tf_markers_filtered.png"),
+  plot = rh_dotplot_STm_tf_markers_filtered,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "rh_featplot_STmcluster_TFmarkers.png"),
+  plot = rh_featplot_STmcluster_TFmarkers,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+```
+
+
+###Individual look at genes of interest
+
+```{r}
+#Otx genes 
+#Importing the orthology table from the tree. It includes the uncharacterized homeobox that sits in the cluster
+full_otx_ortho_table <- read_tsv("../../synteny/ortho_table_otx_synteny.tsv")
+rh.otx_genes <- full_otx_ortho_table %>%
+  select(orthogroup,Rhopilema_esculentum)%>%
+  filter (!is.na(Rhopilema_esculentum))
+rh.otx_genes$orthogroup[6] <- "unch_homeo"
+rh.otx_only_genes <- rh.otx_genes[-6,]
+rh.unch_home_gene <- rh.otx_genes[6,]
+
+rh_dotplot_otx_cluster.e <- DotPlot(rh.ephyra, features =rh.otx_genes$Rhopilema_esculentum ) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis() +
+ scale_x_discrete(labels = rh.otx_genes$orthogroup)+
+     theme(axis.line = element_blank(),axis.ticks = element_blank(),axis.title = element_blank(),axis.text.x =element_text(size=15, face="bold" ))
+
+rh_dotplot_otx_only.e <- DotPlot(rh.ephyra, features =rh.otx_only_genes$Rhopilema_esculentum ) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis() +
+ scale_x_discrete(labels = rh.otx_only_genes$orthogroup)+
+     theme(axis.line = element_blank(),axis.ticks = element_blank(),axis.title = element_blank(),axis.text.x =element_text(size=15, face="bold" ))
+
+
+rh_dotplot_unch_homeo.e <-DotPlot(rh.ephyra, features =rh.unch_home_gene$Rhopilema_esculentum ) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis() +
+ scale_x_discrete(labels = rh.unch_home_gene$orthogroup)+
+     theme(axis.line = element_blank(),axis.ticks = element_blank(),axis.title = element_blank(),axis.text.x =element_text(size=15, face="bold" ))
+
+rh_dotplot_otx_cluster.e
+rh_dotplot_otx_only.e
+rh_dotplot_unch_homeo.e
+
+ggsave(
+  filename = file.path(out_dir, "rh_dotplot_otx_cluster.png"),
+  plot = rh_dotplot_otx_cluster.e,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "rh_dotplot_otx_only.png"),
+  plot = rh_dotplot_otx_only.e,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "rh_dotplot_unch_homeo.png"),
+  plot = rh_dotplot_unch_homeo.e,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+
+```
+
+
+```{r}
+#CPATH
+rh_dotplot_cpath.e <-DotPlot(rh.ephyra, features ="LOC135682280" ) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis() +
+ scale_x_discrete(labels = gene_labels["LOC135682280"])
+
+rh_dotplot_cpath.e
+
+ggsave(
+  filename = file.path(out_dir, "rh_dotplot_cpath.png"),
+  plot = rh_dotplot_cpath.e,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+```
+
+```{r}
+#Hox1
+rh_dotplot_hox1.e <-DotPlot(rh.ephyra, features ="LOC135682134")+
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis()+scale_x_discrete(labels = gene_labels["LOC135682134"])
+
+rh_dotplot_hox1.e
+
+ggsave(
+  filename = file.path(out_dir, "rh_dotplot_hox1.png"),
+  plot = rh_dotplot_hox1.e,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+```
+
+```{r}
+foxb_genes <- c( 'LOC135691975', 'LOC135692080')
+
+rh_dotplot_foxb.e <-DotPlot(rh.ephyra, features =foxb_genes)+
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis()+scale_x_discrete(labels = c('foxB1 chimera','foxB2'))
+
+rh_dotplot_foxb.e
+
+ggsave(
+  filename = file.path(out_dir, "rh_dotplot_foxb.png"),
+  plot = rh_dotplot_foxb.e,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+
+```
+
+```{r}
+#btbd2
+rh_dotplot_btb <- DotPlot(rh.ephyra, features =c("LOC135684936")) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis()+scale_x_discrete(labels = c('btbd2-like-11'))
+
+rh_dotplot_btb
+
+ggsave(
+  filename = file.path(out_dir, "rh_dotplot_btb.png"),
+  plot = rh_dotplot_btb,
+  width = 12,
+  height = 14,
+  dpi = 300
+)
+
+```
+
+Showing that these candidates are not expressed in the polyp
+```{r}
+rh_dotplot_tf_candi_lifehistory <- DotPlot(data.rh, features = c("LOC135682280", "LOC135681476","LOC135682134","LOC135684936"), group.by = "orig.ident")+
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis()+scale_x_discrete(labels = gene_labels[c("LOC135682280", "LOC135681476","LOC135682134","LOC135684936")])+
+     theme(axis.ticks = element_blank(),axis.title = element_blank(),axis.text.x =element_text(size=15, face="bold" ), axis.text.y =element_text(size=15, face="bold" ))
+
+
+rh_dotplot_tf_candi_lifehistory
+
+ggsave(
+  filename = file.path(out_dir, "rh_dotplot_tf_candi_lifehistory.png"),
+  plot = rh_dotplot_tf_candi_lifehistory,
+  width = 8,
+  height = 6,
+  dpi = 300
+)
+```
+
+#Biased approach
+
+Plotting the biased approach transcription factors by importing the built orthology table
+```{r}
+#Importing the table based on the OMA table and OrthoSearch script 
+bilat_tf_table <- read.table(file = "../../data/seqs/bilat_tfs/bilat_tf_orthology_table.tsv",header = T,fill = T)
+
+#removing hlxb9 since it is not hlxB9 (not present in medusozoan)+all genes for which 
+#no litterature could be found
+filter_out <- c('hlxb9','HOX1','FEZF1','OTP','RAX','EMX')
+
+bilat_tf_table <- bilat_tf_table[!(bilat_tf_table$gene %in% filter_out),] 
+bilat_tf_rh <- bilat_tf_table$Rhopilema_gene
+
+
+# Build the named vector: names = original, values = display labels
+bilat_tf_rh_label <- setNames(bilat_tf_table$gene, bilat_tf_table$Rhopilema_gene)
+
+
+bilat_tf_rh_plot <- DotPlot(
+  rh.ephyra,
+  features = bilat_tf_rh
+) +
+  RotatedAxis() +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  scale_x_discrete(labels = bilat_tf_rh_label)+
+     theme(axis.line = element_blank(),axis.ticks = element_blank(),axis.title = element_blank(),axis.text.x =element_text(angle = 90, vjust = 0.5, hjust = 1))
+bilat_tf_rh_plot
+
+ggsave(
+  filename = file.path(out_dir, "rh_bilat_tfs_updated_dotplot.png"),
+  plot = bilat_tf_rh_plot,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+```
+
+Saving the marker genes tables as objects and tsv
+```{r}
+
+write.table(rh.tf.muscleST_markers.e, file = "../../results/R/expressed_tfs_lists/rh_ST_expressed_tf.tsv", sep = "\t",  row.names = FALSE, quote = FALSE)
+write.table(rh.tf.markers_fine.e, file = "../../results/R/expressed_tfs_lists/rh_tf_markers_fine_clusters.tsv", sep = "\t",  row.names = FALSE, quote = FALSE)
+write.table(rh.all.markers_fine.e, file = "../../results/R/expressed_tfs_lists/rh_all_markers_fine_clusters.tsv", sep = "\t",  row.names = FALSE, quote = FALSE)
+
+save(rh.all.markers_coarse.e, rh.all.markers_fine.e, rh.tf.markers_coarse.e, rh.tf.markers_fine.e, file ="../../data/scyphozoa/rh_markers.RData")
+
+```
+
+

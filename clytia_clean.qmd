@@ -1,0 +1,394 @@
+---
+title: "Clytia single-cell analysis"
+author: "Matéo Peyroche"
+format: html
+---
+
+#DATA ANALYSIS OF THE CLYTIA MEDUSA CAZET DATASET
+
+##Importing libraries, dataset and relevant objects
+
+Libraries
+```{r}
+#| echo: false
+set.seed(213)
+library(Seurat,quietly=T)
+library(SeuratObject,quietly=T)
+library(RColorBrewer,quietly=T)
+library(Matrix,quietly=T)
+library(ggplot2,quietly=T)
+library(Polychrome,quietly=T)
+library(dplyr,quietly=T)
+library(presto,quietly=T)
+library(rtracklayer,quietly=T)
+library(stringr,quietly=T)
+library(tidyverse,quietly=T)
+library(colorspace,quietly=T)
+library(patchwork,quietly=T)
+library(scCustomize,quietly=T)
+```
+
+Loading the dataset and the gene annotations
+```{r}
+load (file= "../../data/scyphozoa_AGC/clytia.cazet.RData")
+load (file= "../../data/scyphozoa_AGC/cazet.genes.annot.RData")
+annots.ch <- read_tsv(file = "../../clytia/clytia_annotations/c_hem_nr_func_annotations.tsv")
+
+#Getting the annotations from the latest gene set, smaller than the one used in the Chari et al. paper
+#This is only to get names, we import the TF list for this set and not the newest one
+genes.Ch <- genes.Ch[,-2]
+annots.ch$gene <- gsub ('_','-', annots.ch$gene)
+genes.Ch <- genes.Ch %>%
+  left_join(annots.ch %>% select(gene, name),by=(c('gene'='gene')))
+
+#Getting the gene column in the table and reformatting it to feat the gene names in the dataset
+Ch_TF_table <- read.csv(file = '../../data/seqs/TF_lists/ClyHe_TF_List.csv')
+Ch_TF_list <- Ch_TF_table [,c(1,2)]
+
+Ch_TF_list$Gene_name <- gsub("^Chem[-_]", "", Ch_TF_list$Gene_name)
+Ch_TF_list$Gene_name <- gsub("_", "-", Ch_TF_list$Gene_name)
+Ch_TF_list <- unique(Ch_TF_list$Gene_name)
+
+genes.Ch$gene <- sub("\\.mrna1$", "", genes.Ch$gene)
+genes.Ch$gene <- sub("\\.mrna2$", "", genes.Ch$gene)
+
+ch.medusa <- data1
+out_dir <- '../../screenshots/R/Ch/final/' 
+
+```
+
+#Visualization of the dataset
+
+```{r}
+Idents(ch.medusa) <- ch.medusa$annosSub
+cluster_levels <- levels(Idents(ch.medusa))
+pal <- createPalette(
+  seedcolors = c("#EE7733", "#009988", "#EE3377"),
+  N = length(cluster_levels),
+  range = c(20,90)
+)
+names(pal) <- cluster_levels
+
+ch_dimplot <- DimPlot(
+  ch.medusa,
+  reduction = "umap",
+  cols = pal,
+  pt.size = 0.5
+)
+
+ch_dimplot
+
+ch_highlight_plot_ST <- Cluster_Highlight_Plot(
+  seurat_object = ch.medusa,
+  reduction = "umap",
+  cluster_name = c("Striated Muscle of Subumbrella", "Striated Muscle of Velum"),
+  highlight_color = c("#E69F00","#0072B2"),
+  background_color = "lightgray"
+)
+
+ch_highlight_plot_ST
+
+ggsave(
+  filename = file.path(out_dir, "ch_dimplot.png"),
+  plot = ch_dimplot,
+  width = 14,
+  height = 9,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "cch_highlight_plot_ST.png"),
+  plot = ch_highlight_plot_ST,
+  width = 14,
+  height = 9,
+  dpi = 300
+)
+
+```
+
+
+Creating gene labels for dotplots by importing names from the annotation file
+```{r}
+gene_labels <- genes.Ch %>%
+  group_by(gene) %>%
+  summarise(label = dplyr::first(name), .groups = "drop") %>%
+  mutate(label = ifelse(nchar(label) > 20, paste0(substr(label, 1, 20), "..."), label)) %>%
+  tibble::deframe()
+```
+
+
+Plotting of orthologs of Aurelia striated muscle specific genes
+
+```{r}
+oma.ChAc <- read_tsv(file = "../../data/OMA/ch-kostya_repaired.tsv")
+load (file= "../../data/scyphozoa_AGC/ACOE.genes.RData")
+
+ch_dotplot_stm_struct_genes <- DotPlot(ch.medusa, features = c("XLOC-029205","XLOC-038183","XLOC-041322")) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis() +
+ scale_x_discrete(labels = c("st-myhc1.1","st-myhc1.2","st-myhc5"))
+
+ch_featplot_stm_stmyhc <- FeaturePlot(ch.medusa, features = c("XLOC-029205","XLOC-038183","XLOC-041322"),reduction = "umap")&
+  scale_color_gradientn(colors = c("lightgrey", "#FDBB84", "#B30000"))
+
+ch_dotplot_stm_struct_genes
+ch_featplot_stm_stmyhc
+
+ggsave(
+  filename = file.path(out_dir, "ch_dotplot_stm_struct_genes.png"),
+  plot = ch_dotplot_stm_struct_genes,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "ch_featplot_stm_stmyhc.png"),
+  plot = ch_featplot_stm_stmyhc,
+  width = 14,
+  height = 9,
+  dpi = 300
+)
+```
+
+
+#Unbiased approach
+
+##Clytia medusa differentially expressed genes (DEG)
+
+Getting the markers for both the whole set and the TFS
+
+```{r}
+#We need to resolve dodgy Trinity names
+# Check current problematic names first
+head(grep("\\.mrna", rownames(ch.medusa), value = TRUE))
+
+new_names <- sub("\\.mrna\\d+$", "", rownames(ch.medusa))
+
+# check for uniqueness before renaming
+sum(duplicated(new_names))
+
+#Now changing the rownames
+counts_matrix <- GetAssayData(ch.medusa, assay = "RNA", layer = "counts")
+rownames(counts_matrix) <- sub("\\.mrna\\d+$", "", rownames(counts_matrix))
+
+data_matrix <- GetAssayData(ch.medusa, assay = "RNA", layer = "data")
+rownames(data_matrix) <- sub("\\.mrna\\d+$", "", rownames(data_matrix))
+
+# Rebuild the assay (Seurat v5 approach)
+ch.medusa[["RNA"]] <- CreateAssay5Object(counts = counts_matrix, data = data_matrix)
+ch.medusa <- JoinLayers(ch.medusa)
+
+ch.all.markers <- FindAllMarkers(
+  ch.medusa,
+  assay = "RNA",
+  logfc.threshold = 0.25,
+  return.thresh   = 0.001,
+  min.pct         = 0.2,
+  only.pos        = TRUE
+)
+
+ch.tf.markers <- FindAllMarkers(
+  ch.medusa,
+  features= intersect(Ch_TF_list,rownames(ch.medusa)),
+  assay = "RNA",
+  logfc.threshold = 0.25,
+  return.thresh   = 0.001,
+  min.pct         = 0.06,
+  only.pos        = TRUE
+)
+
+```
+##Striated muscle clusters
+Extracting the gene markers for the striated muscle
+```{r}
+ch.umbrellaST_tf_markers <- ch.tf.markers %>%
+  filter(cluster == "Striated Muscle of Subumbrella") %>%
+  arrange(p_val_adj,desc(avg_log2FC))
+
+ch.velumST_tf_markers <- ch.tf.markers %>%
+  filter(cluster == "Striated Muscle of Velum") %>%
+  arrange(p_val_adj,desc(avg_log2FC))
+
+ch.radialSM_tf_markers <- ch.tf.markers %>%
+  filter(cluster == "Radial Smooth Muscles") %>%
+  arrange(p_val_adj,desc(avg_log2FC))
+
+```
+
+
+```{r}
+ch_dotplot_subumbrellaST_tfs <- DotPlot(ch.medusa, features = ch.umbrellaST_tf_markers$gene) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis() +
+ scale_x_discrete(labels = gene_labels[ch.umbrellaST_tf_markers$gene])+labs(title = "Differentially expressed transcription factors of the striated subumbrella muscles",size = 20, face = "bold")+
+  theme(plot.title = element_text(hjust = 0.5))+
+     theme(axis.line = element_blank(),axis.ticks = element_blank(),axis.title = element_blank(),axis.text.x =element_text(size=15, face="bold" ))
+
+ch_dotplot_subumbrellaST_tfs
+
+ch_dotplot_subumbrellaST_tfs_top4 <- DotPlot(ch.medusa, features = ch.umbrellaST_tf_markers$gene[1:4]) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis() +
+ scale_x_discrete(labels = gene_labels[ch.umbrellaST_tf_markers$gene[1:4]])+labs(title = "Differentially expressed transcription factors of the striated subumbrella muscles",size = 20, face = "bold")+
+  theme(plot.title = element_text(hjust = 0.5))+
+     theme(axis.line = element_blank(),axis.ticks = element_blank(),axis.title = element_blank(),axis.text.x =element_text(size=15, face="bold" ))
+
+ch_dotplot_subumbrellaST_tfs_top4
+
+ch_dotplot_velumST_tfs <- DotPlot(ch.medusa, features = ch.velumST_tf_markers$gene) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis() +
+ scale_x_discrete(labels = gene_labels[ch.velumST_tf_markers$gene])+labs(title = "Differentially expressed transcription factors of the striated velum muscles",size = 20, face = "bold")+
+  theme(plot.title = element_text(hjust = 0.5))+
+     theme(axis.line = element_blank(),axis.ticks = element_blank(),axis.title = element_blank(),axis.text.x =element_text(size=15, face="bold" ))
+
+ch_dotplot_velumST_tfs
+
+ch_dotplot_radialSM_tfs <- DotPlot(ch.medusa, features = ch.radialSM_tf_markers$gene) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis() +
+ scale_x_discrete(labels = gene_labels[ch.radialSM_tf_markers$gene])+labs(title = "Differentially expressed transcription factors of the radial smooth muscles",size = 20, face = "bold")+
+  theme(plot.title = element_text(hjust = 0.5))+
+     theme(axis.line = element_blank(),axis.ticks = element_blank(),axis.title = element_blank(),axis.text.x =element_text(size=15, face="bold" ))
+
+ch_dotplot_radialSM_tfs
+
+
+ggsave(
+  filename = file.path(out_dir, "ch_dotplot_subumbrellaST_tfs.png"),
+  plot = ch_dotplot_subumbrellaST_tfs,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "ch_dotplot_subumbrellaST_tfs_top4.png"),
+  plot = ch_dotplot_subumbrellaST_tfs_top4,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "ch_dotplot_velumST_tfs.png"),
+  plot = ch_dotplot_velumST_tfs,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+ggsave(
+  filename = file.path(out_dir, "ch_dotplot_radialSM_tfs.png"),
+  plot = ch_dotplot_radialSM_tfs,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+
+```
+
+
+###Individual look at genes of interest
+
+```{r}
+#otx genes
+ch.otx_genes <- c('XLOC-039817','XLOC-000267','XLOC-040405')
+
+ch_dotplot_otx <- DotPlot(ch.medusa, features =ch.otx_genes ) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis() +
+ scale_x_discrete(labels = c('otxA','otxC','otxE'))+labs(title = "Clytia otx genes expression pattern",size = 20, face = "bold")+
+  theme(plot.title = element_text(hjust = 0.5))+
+     theme(axis.line = element_blank(),axis.ticks = element_blank(),axis.title = element_blank(),axis.text.x =element_text(size=15, face="bold" ))
+
+ch_dotplot_otx
+
+ggsave(
+  filename = file.path(out_dir, "ch_dotplot_otx.png"),
+  plot = ch_dotplot_otx,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
+```
+
+
+```{r}
+#cPath
+ch_dotplot_cpath <- DotPlot(ch.medusa, features ='XLOC-001472' ) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis() +
+ scale_x_discrete(labels = c('cPath'))+labs(title = "Clytia cPath expression pattern",size = 20, face = "bold")+
+  theme(plot.title = element_text(hjust = 0.5))
+
+ch_dotplot_cpath
+
+ggsave(
+  filename = file.path(out_dir, "ch_dotplot_cpath.png"),
+  plot = ch_dotplot_cpath,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+```
+
+```{r}
+#Hox1
+ch_dotplot_hox1 <- DotPlot(ch.medusa, features ='XLOC-038841' ) +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  RotatedAxis() +
+ scale_x_discrete(labels = c('hox1'))+labs(title = "Clytia hox1 expression pattern",size = 20, face = "bold")+
+  theme(plot.title = element_text(hjust = 0.5))
+
+ch_dotplot_hox1
+
+ggsave(
+  filename = file.path(out_dir, "ch_dotplot_hox1.png"),
+  plot = ch_dotplot_hox1,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+```
+
+#Biased approach
+
+Plotting the biased approach transcription factors by importing the built orthology table
+```{r}
+#Importing the table based on the OMA table and OrthoSearch script 
+bilat_tf_table <- read.table(file = "../../data/seqs/bilat_tfs/bilat_tf_orthology_table.tsv",header = T,fill = T)
+
+#removing hlxb9 since it is not hlxB9 (not present in medusozoan)+all genes for which 
+#no litterature could be found
+filter_out <- c('hlxb9','HOX1','FEZF1','OTP','RAX','EMX')
+
+bilat_tf_table <- bilat_tf_table[!(bilat_tf_table$gene %in% filter_out),] 
+bilat_tf_table$Clytia_gene_2021 <- gsub('_','-',bilat_tf_table$Clytia_gene_2021)
+bilat_tf_ch <- bilat_tf_table$Clytia_gene_2021
+
+# Build the named vector: names = original, values = display labels
+bilat_tf_ch_label <- setNames(bilat_tf_table$gene, bilat_tf_table$Clytia_gene_2021)
+
+bilat_tf_ch_plot <- DotPlot(
+  ch.medusa,
+  features = bilat_tf_ch
+) +
+  RotatedAxis() +
+  scale_color_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0)+
+  scale_x_discrete(labels = bilat_tf_ch_label)+
+     theme(axis.line = element_blank(),axis.ticks = element_blank(),axis.title = element_blank(),axis.text.x =element_text(angle = 90, vjust = 0.5, hjust = 1))
+bilat_tf_ch_plot
+
+ggsave(
+  filename = file.path(out_dir, "bilat_tf_ch_plot.png"),
+  plot = bilat_tf_ch_plot,
+  width = 14,
+  height = 9,
+  dpi = 300
+)
+
+```
