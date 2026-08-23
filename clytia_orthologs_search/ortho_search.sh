@@ -13,8 +13,6 @@ export LD_PRELOAD="${LD_PRELOAD:-}"
 export MANPATH="${MANPATH:-}"
 export MODULEPATH="${MODULEPATH:-}"
 
-# Run module commands with nounset temporarily disabled (the `module`
-# function references unset vars internally on this cluster).
 with_modules_off_u () {
     set +u
     "$@"
