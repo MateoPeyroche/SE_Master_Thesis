@@ -1,0 +1,180 @@
+#NEXUS
+begin taxa;
+	dimensions ntax=78;
+	taxlabels
+	Aur_foxB1_best_hit[&!color=#ff0000]
+	'Aurco_scaffold13.g642.t1'[&!color=#ff0000]
+	'Aurco_scaffold16.g749.t1'
+	'Aurco_scaffold6.g58.t1'
+	'Aurco_scaffold8.g352.t1'[&!color=#ff0000]
+	'Brafl_XP_035666163.1'
+	'Brafl_XP_035667310.1'
+	'Brafl_XP_035679441.1'
+	'Brafl_XP_035683186.1'
+	'Brafl_XP_035684564.1'
+	Casxa_jgi_Casxa1_18156[&!color=#ff0000]
+	Casxa_jgi_Casxa1_23848
+	Casxa_jgi_Casxa1_3372
+	Clyhe_Chem_XLOC_001095
+	Clyhe_Chem_XLOC_018078[&!color=#00cc66]
+	Clyhe_Chem_XLOC_042605[&!color=#00cc66]
+	Clyhe_Chem_XLOC_044586
+	'Dapma_XP_032776812.2'
+	'Dapma_XP_032779745.2'
+	'Dapma_XP_032799237.1'
+	'Exada_XP_020893103.1'
+	'Exada_XP_020902419.1'
+	'Exada_XP_020904840.1'
+	'Exada_XP_020904925.1'
+	'FoxB1_NW_027019762.1'[&!color=#ff0000]
+	'Hydsy_XP_057291876.1'
+	'Hydsy_XP_057304130.1'
+	'Hydsy_XP_057315801.1'[&!color=#00cc66]
+	'Hydsy_XP_057315802.1'[&!color=#00cc66]
+	'Hydvu_HVAEP12.G022887'[&!color=#00cc66]
+	'Hydvu_HVAEP15.G027359'
+	'Hydvu_HVAEP6.G011613'
+	'Lytva_XP_041454579.1'
+	'Lytva_XP_041464485.1'
+	'Lytva_XP_041465359.1'
+	'Lytva_XP_041469659.1'
+	'Maggi_XP_011413445.1'
+	'Maggi_XP_011417585.2'
+	'Maggi_XP_011441298.1'
+	'Maggi_XP_011445364.3'
+	'Nemve_NV2.11441.1'
+	'Nemve_NV2.23888.1'
+	'Nemve_NV2.25999.1'
+	'Nemve_NV2.30002.1'
+	O43638_FOXS1_HUMAN
+	'Owefu_CAH1779694.1'
+	'Owefu_CAH1792690.1'
+	'Owefu_CAH1796923.1'
+	'Owefu_CAH1797111.1'
+	'Owefu_CAH1797164.1'
+	P55317_FOXA1_HUMAN
+	P55318_FOXA3_HUMAN
+	PnocFOXA
+	PnocFOXB1[&!color=#ff0000]
+	PnocFOXB2[&!color=#ff0000]
+	PnocFOXC
+	Q12948_FOXC1_HUMAN
+	Q5VYV0_FOXB2_HUMAN
+	Q99853_FOXB1_HUMAN
+	Q99958_FOXC2_HUMAN
+	Q9Y261_FOXA2_HUMAN
+	'Rhoes_XP_065052199.1'
+	'Rhoes_XP_065065228.1'
+	'Rhoes_XP_065066175.1'[&!color=#ff0000]
+	'Sanma_ENSXQXP00000011504.1_ENSXQXG00000008379.1'[&!color=#ff0000]
+	'Sanma_ENSXQXP00000012300.1_ENSXQXG00000008891.1'[&!color=#ff0000]
+	'Sanma_ENSXQXP00000015714.1_ENSXQXG00000011219.1'[&!color=#ff0000]
+	'Sanma_ENSXQXP00000024501.1_ENSXQXG00000017190.1'
+	'Sanma_ENSXQXP00000029581.1_ENSXQXG00000020522.1'
+	'Stypi_XP_022780413.1'
+	'Stypi_XP_022780476.1'
+	'Stypi_XP_022789920.1'
+	'Stypi_XP_022799810.1'
+	Triad_B3RSE6_B3RSE6_TRIAD
+	Triad_B3S1K8_B3S1K8_TRIAD
+	Triad_B3S7D8_B3S7D8_TRIAD
+	'Tripe_ENA_GHAQ01132272_GHAQ01132272.1'
+	'Tripe_ENA_GHAQ01133162_GHAQ01133162.1'[&!color=#ff9933]
+;
+end;
+
+begin trees;
+	tree tree_1 = [&R] ('Brafl_XP_035666163.1':0.130619,(((((('Exada_XP_020904925.1':0.021075,'Nemve_NV2.25999.1':0.010647)[&label="0/51"]:3.0E-6,'Stypi_XP_022780413.1':0.04799)[&label="94.9/97"]:0.114425,((((((((('Brafl_XP_035683186.1'[&!color=#0000ff,!name="FOX A"]:0.035171,(((Casxa_jgi_Casxa1_23848[&!color=#0000ff,!name="FOX A"]:0.010471,('Rhoes_XP_065052199.1'[&!color=#0000ff,!name="FOX A"]:1.0E-6,'Aurco_scaffold16.g749.t1'[&!color=#0000ff,!name="FOX A"]:1.0E-6)[&label="80.1/99",!color=#0000ff,!name="FOX A"]:0.010441)[&label="77.7/92",!color=#0000ff,!name="FOX A"]:0.01011,('Sanma_ENSXQXP00000024501.1_ENSXQXG00000017190.1'[&!color=#0000ff,!name="FOX A"]:1.0E-6,('Tripe_ENA_GHAQ01132272_GHAQ01132272.1'[&!color=#0000ff,!name="FOX A"]:2.0E-6,((Clyhe_Chem_XLOC_044586[&!color=#0000ff,!name="FOX A"]:0.011759,'Hydvu_HVAEP6.G011613'[&!color=#0000ff,!name="FOX A"]:0.05338)[&label="85.7/100",!color=#0000ff,!name="FOX A"]:0.019246,'Hydsy_XP_057304130.1'[&!color=#0000ff,!name="FOX A"]:3.0E-6)[&label="98.9/100",!color=#0000ff,!name="FOX A"]:0.072836)[&label="82.8/97",!color=#0000ff,!name="FOX A"]:0.010232)[&label="0/54",!color=#0000ff,!name="FOX A"]:2.0E-6)[&label="32.4/77",!color=#0000ff,!name="FOX A"]:0.010972,PnocFOXA[&!color=#0000ff,!name="FOX A"]:0.009679)[&label="99.9/100",!color=#0000ff,!name="FOX A"]:0.149404)[&label="84.7/59",!color=#0000ff,!name="FOX A"]:0.028797,'Brafl_XP_035684564.1'[&!color=#0000ff,!name="FOX A"]:0.087539)[&label="74.8/57",!color=#0000ff,!name="FOX A"]:0.012998,'Lytva_XP_041469659.1'[&!color=#0000ff,!name="FOX A"]:0.042669)[&label="76.9/57",!color=#0000ff,!name="FOX A"]:0.013441,('Maggi_XP_011413445.1'[&!color=#0000ff,!name="FOX A"]:0.015976,'Owefu_CAH1792690.1'[&!color=#0000ff,!name="FOX A"]:0.015899)[&label="90.3/100",!color=#0000ff,!name="FOX A"]:0.031617)[&label="79.8/55",!color=#0000ff,!name="FOX A"]:0.018473,((Triad_B3S1K8_B3S1K8_TRIAD[&!color=#0000ff,!name="FOX A"]:0.102793,(Q9Y261_FOXA2_HUMAN[&!color=#0000ff,!name="FOX A"]:0.021749,(P55317_FOXA1_HUMAN[&!color=#0000ff,!name="FOX A"]:0.028559,P55318_FOXA3_HUMAN[&!color=#0000ff,!name="FOX A"]:0.145986)[&label="89.8/98",!color=#0000ff,!name="FOX A"]:0.05076)[&label="80.6/97",!color=#0000ff,!name="FOX A"]:0.0204)[&label="0/73",!color=#0000ff,!name="FOX A"]:3.0E-6,'Dapma_XP_032799237.1'[&!color=#0000ff,!name="FOX A"]:0.100779)[&label="14.6/70",!color=#0000ff,!name="FOX A"]:0.010573)[&label="95.9/89",!color=#0000ff,!name="FOX A"]:0.055071,'Stypi_XP_022789920.1'[&!color=#0000ff,!name="FOX A"]:0.017138)[&label="80.2/68",!color=#0000ff,!name="FOX A"]:0.015151,('Exada_XP_020893103.1'[&!color=#0000ff,!name="FOX A"]:1.0E-6,'Nemve_NV2.11441.1'[&!color=#0000ff,!name="FOX A"]:1.0E-6)[&label="0/65",!color=#0000ff,!name="FOX A"]:2.0E-6)[&label="97.9/99",!collapse={"collapsed",0.8279995558999997},!color=#0000ff,!name="FOX A"]:0.23022,((((((('Brafl_XP_035679441.1'[&!color=#666600]:0.062877,'Owefu_CAH1779694.1'[&!color=#666600]:0.137784)[&label="63.7/53",!color=#666600]:0.022923,('Maggi_XP_011417585.2'[&!color=#666600]:0.030955,'Lytva_XP_041454579.1'[&!color=#666600]:0.160679)[&label="83.9/75",!color=#666600]:0.04566)[&label="76.8/52",!color=#666600]:0.020758,(Q12948_FOXC1_HUMAN[&!color=#666600]:0.024104,Q99958_FOXC2_HUMAN[&!color=#666600]:0.100844)[&label="91.1/97",!color=#666600]:0.071897)[&label="74.7/67",!color=#666600]:0.051365,'Dapma_XP_032776812.2'[&!color=#666600]:0.057516)[&label="77.8/72",!collapse={"collapsed",1.1561283898999999},!name="Bilat-FOX C",!color=#666600]:0.045217,(('Exada_XP_020902419.1'[&!color=#666600]:0.038836,('Nemve_NV2.30002.1'[&!color=#666600]:0.024805,'Stypi_XP_022799810.1'[&!color=#666600]:0.1743)[&label="51.5/59",!color=#666600]:0.038515)[&label="87/97",!color=#666600]:0.064814,((('Hydvu_HVAEP15.G027359'[&!color=#666600]:0.108129,Clyhe_Chem_XLOC_001095[&!color=#666600]:0.078922)[&label="74.3/95",!color=#666600]:0.022011,'Hydsy_XP_057291876.1'[&!color=#666600]:0.048861)[&label="95.6/97",!color=#666600]:0.107917,(((PnocFOXC[&!color=#666600]:0.017968,('Aurco_scaffold6.g58.t1'[&!color=#666600]:0.049886,('Rhoes_XP_065065228.1'[&!color=#666600]:0.035047,Casxa_jgi_Casxa1_3372[&!color=#666600]:0.139653)[&label="55.7/98",!color=#666600]:0.053172)[&label="95.8/100",!color=#666600]:0.092387)[&label="85.9/85",!color=#666600]:0.039754,'Sanma_ENSXQXP00000029581.1_ENSXQXG00000020522.1'[&!color=#666600]:0.046762)[&label="85.8/96",!color=#666600]:0.049779,O43638_FOXS1_HUMAN[&!color=#666600]:0.610514)[&label="12.8/54",!color=#666600]:0.018775)[&label="96/57",!color=#666600]:0.144496)[&label="84.5/59",!collapse={"collapsed",0.6304681526999998},!name="Cni-FOX C",!color=#666600]:0.075554)[&label="86.8/93",!color=#666600]:0.158189,Triad_B3S7D8_B3S7D8_TRIAD:0.303939)[&label="99.6/100"]:0.441461,(('Lytva_XP_041464485.1':0.166223,((('Maggi_XP_011441298.1':0.071183,'Owefu_CAH1797111.1':0.224882)[&label="75/96"]:0.01682,'Owefu_CAH1797164.1':0.042403)[&label="62.6/97"]:0.049209,'Brafl_XP_035667310.1':1.100489)[&label="20.8/70"]:0.046113)[&label="78.1/94"]:0.100002,(('Exada_XP_020904840.1':0.09098,'Nemve_NV2.23888.1':0.047582)[&label="80.5/96"]:0.093075,'Stypi_XP_022780476.1':0.147423)[&label="99.7/100"]:0.463815)[&label="93.7/98",!collapse={"collapsed",0.17021351029999998},!color=#009933,!name="FOX A/B"]:0.221179)[&label="85.5/94"]:0.119775)[&label="86.3/96",!rotate=false]:0.100804,((((Clyhe_Chem_XLOC_042605:0.21254,'Hydsy_XP_057315801.1':0.106953)[&label="89.8/90"]:0.096359,((Clyhe_Chem_XLOC_018078:3.0E-6,'Hydsy_XP_057315802.1':0.074578)[&label="73.2/99"]:0.022911,'Hydvu_HVAEP12.G022887':0.39484)[&label="0/33"]:0.021688)[&label="87.1/97",!hilight={5,0.3877751601999999,#ccffcc}]:0.089844,(((('Sanma_ENSXQXP00000011504.1_ENSXQXG00000008379.1'[&!rotate=true]:0.015559,PnocFOXB1[&!rotate=true]:0.02759)[&label="90.1/100",!rotate=true]:0.031303,Aur_foxB1_best_hit[&!rotate=true]:2.0E-6)[&label="80.7/91",!rotate=true]:0.018231,('FoxB1_NW_027019762.1'[&!rotate=true]:2.0E-6,(('Sanma_ENSXQXP00000012300.1_ENSXQXG00000008891.1'[&!rotate=true]:0.145973,PnocFOXB2[&!rotate=true]:0.086725)[&label="96.7/100",!rotate=true]:0.200388,((Casxa_jgi_Casxa1_18156[&!rotate=true]:0.07574,'Rhoes_XP_065066175.1'[&!rotate=true]:0.124572)[&label="94.2/100",!rotate=true]:0.093797,'Aurco_scaffold13.g642.t1'[&!rotate=true]:0.068921)[&label="91.8/100",!rotate=true]:0.150129)[&label="99.9/100",!rotate=true,!hilight={5,0.0,#ffcccc}]:0.403168)[&label="84.4/96",!rotate=true]:0.013028)[&label="85.9/77",!rotate=true,!hilight={9,0.0,#ccccff}]:0.054522,'Tripe_ENA_GHAQ01133162_GHAQ01133162.1'[&!rotate=true]:0.113144)[&label="71.4/70",!rotate=true]:0.05493)[&label="91.5/88"]:0.235375,('Aurco_scaffold8.g352.t1':0.459359,'Sanma_ENSXQXP00000015714.1_ENSXQXG00000011219.1':0.555426)[&label="98/99"]:0.408228)[&label="94.1/99"]:0.287895)[&label="85.6/89"]:0.107354)[&label="94.4/83"]:0.116274,Q99853_FOXB1_HUMAN:0.03966)[&label="66.9/52"]:0.013503,Triad_B3RSE6_B3RSE6_TRIAD:0.640991)[&label="0/51"]:0.004167,Q5VYV0_FOXB2_HUMAN:0.069456)[&label="87.8/80"]:0.060186,('Owefu_CAH1796923.1':0.025532,(('Dapma_XP_032779745.2':0.424112,'Lytva_XP_041465359.1':0.122696)[&label="74.2/81"]:0.049981,'Maggi_XP_011445364.3':0.074894)[&label="83/83"]:0.042581)[&label="41.7/72"]:0.040224);
+end;
+
+begin figtree;
+	set appearance.backgroundColorAttribute="Default";
+	set appearance.backgroundColour=#ffffff;
+	set appearance.branchColorAttribute="User selection";
+	set appearance.branchColorGradient=false;
+	set appearance.branchLineWidth=2.0;
+	set appearance.branchMinLineWidth=0.0;
+	set appearance.branchWidthAttribute="Fixed";
+	set appearance.foregroundColour=#000000;
+	set appearance.hilightingGradient=false;
+	set appearance.selectionColour=#2d3680;
+	set branchLabels.colorAttribute="User selection";
+	set branchLabels.displayAttribute="Branch times";
+	set branchLabels.fontName="sansserif";
+	set branchLabels.fontSize=8;
+	set branchLabels.fontStyle=0;
+	set branchLabels.isShown=false;
+	set branchLabels.significantDigits=4;
+	set layout.expansion=376;
+	set layout.layoutType="RECTILINEAR";
+	set layout.zoom=208;
+	set legend.attribute="label";
+	set legend.fontSize=10.0;
+	set legend.isShown=false;
+	set legend.significantDigits=4;
+	set nodeBars.barWidth=4.0;
+	set nodeBars.displayAttribute=null;
+	set nodeBars.isShown=false;
+	set nodeLabels.colorAttribute="User selection";
+	set nodeLabels.displayAttribute="label";
+	set nodeLabels.fontName="sansserif";
+	set nodeLabels.fontSize=9;
+	set nodeLabels.fontStyle=0;
+	set nodeLabels.isShown=true;
+	set nodeLabels.significantDigits=4;
+	set nodeShapeExternal.colourAttribute="User selection";
+	set nodeShapeExternal.isShown=false;
+	set nodeShapeExternal.minSize=10.0;
+	set nodeShapeExternal.scaleType=Width;
+	set nodeShapeExternal.shapeType=Circle;
+	set nodeShapeExternal.size=4.0;
+	set nodeShapeExternal.sizeAttribute="Fixed";
+	set nodeShapeInternal.colourAttribute="User selection";
+	set nodeShapeInternal.isShown=false;
+	set nodeShapeInternal.minSize=10.0;
+	set nodeShapeInternal.scaleType=Width;
+	set nodeShapeInternal.shapeType=Circle;
+	set nodeShapeInternal.size=4.0;
+	set nodeShapeInternal.sizeAttribute="Fixed";
+	set polarLayout.alignTipLabels=false;
+	set polarLayout.angularRange=0;
+	set polarLayout.rootAngle=0;
+	set polarLayout.rootLength=100;
+	set polarLayout.showRoot=true;
+	set radialLayout.spread=0.0;
+	set rectilinearLayout.alignTipLabels=false;
+	set rectilinearLayout.curvature=1341;
+	set rectilinearLayout.rootLength=100;
+	set scale.offsetAge=0.0;
+	set scale.rootAge=1.0;
+	set scale.scaleFactor=1.0;
+	set scale.scaleRoot=false;
+	set scaleAxis.automaticScale=true;
+	set scaleAxis.fontSize=8.0;
+	set scaleAxis.isShown=false;
+	set scaleAxis.lineWidth=1.0;
+	set scaleAxis.majorTicks=1.0;
+	set scaleAxis.minorTicks=0.5;
+	set scaleAxis.origin=0.0;
+	set scaleAxis.reverseAxis=false;
+	set scaleAxis.showGrid=true;
+	set scaleBar.automaticScale=true;
+	set scaleBar.fontSize=10.0;
+	set scaleBar.isShown=true;
+	set scaleBar.lineWidth=1.0;
+	set scaleBar.scaleRange=0.0;
+	set tipLabels.colorAttribute="User selection";
+	set tipLabels.displayAttribute="Names";
+	set tipLabels.fontName="sansserif";
+	set tipLabels.fontSize=12;
+	set tipLabels.fontStyle=0;
+	set tipLabels.isShown=true;
+	set tipLabels.significantDigits=4;
+	set trees.order=false;
+	set trees.orderType="increasing";
+	set trees.rooting=true;
+	set trees.rootingType="User Selection";
+	set trees.transform=false;
+	set trees.transformType="cladogram";
+end;
+

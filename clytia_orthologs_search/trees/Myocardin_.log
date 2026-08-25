@@ -1,0 +1,401 @@
+IQ-TREE version 3.0.1 for Linux x86 64-bit built May  5 2025
+Developed by Bui Quang Minh, Thomas Wong, Nhan Ly-Trong, Huaiyan Ren
+Contributed by Lam-Tung Nguyen, Dominik Schrempf, Chris Bielow,
+Olga Chernomor, Michael Woodhams, Diep Thi Hoang, Heiko Schmidt
+
+Host:    node-c03.lisc (AVX512, FMA3, 754 GB RAM)
+Command: /lisc/opt/sw/software/IQ-TREE/3.0.1/bin/iqtree3_intel -s /lisc/data/scratch/molevo/peyroche/clytia_ortho_search/results/trimmed/Myocardin_.trim.fasta -m MFP -B 1000 -T AUTO --prefix /lisc/data/scratch/molevo/peyroche/clytia_ortho_search/results/trees/Myocardin_ -redo
+Seed:    896307 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Mon Jun 29 15:52:29 2026
+Kernel:  AVX+FMA - auto-detect threads (2 CPU cores detected)
+
+Reading alignment file /lisc/data/scratch/molevo/peyroche/clytia_ortho_search/results/trimmed/Myocardin_.trim.fasta ... Fasta format detected
+Reading fasta file: done in 0.000236722 secs using 54.92% CPU
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.000928449 secs using 130.9% CPU
+Alignment has 18 sequences with 531 columns, 503 distinct patterns
+405 parsimony-informative, 60 singleton sites, 66 constant sites
+                                 Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 2.7824e-05 secs using 93.44% CPU
+   1  jgi_Casxa1_18735                   3.95%    passed     94.51%
+   2  Chem_XLOC_013888                   7.53%    passed     95.58%
+   3  Exada_XP_020916425.1               7.16%    passed     99.06%
+   4  Exada_XP_020916828.1              34.46%    passed     46.22%
+   5  HVAEP8.G014611                    11.68%    passed      7.15%
+   6  HydsyXP_057310928.1                5.65%    passed     56.20%
+   7  scaffold13.g387                   80.98%    failed      1.93%
+   8  scaffold13.g391                   28.06%    passed     24.57%
+   9  NV2.7304.3                         6.97%    passed     86.98%
+  10  MSTRG.14469                        5.84%    passed     98.94%
+  11  Rhoes_XP_065065581.1               3.20%    passed     92.78%
+  12  Sanma_ENSXQXP00000014117           5.46%    passed     36.68%
+  13  Stypi_XP_022780259.1               9.60%    passed     71.21%
+  14  ENA_GHAQ01083429_GHAQ01083429.1    5.27%    passed     92.08%
+  15  ENA_GHAQ01083430_GHAQ01083430.1   40.87%    passed      8.42%
+  16  ENA_GHAQ01083431_GHAQ01083431.1   40.87%    passed      8.42%
+  17  ENA_GHAQ01083432_GHAQ01083432.1   40.87%    passed      8.42%
+  18  ENA_GHAQ01083433_GHAQ01083433.1    2.45%    passed     97.03%
+WARNING: 1 sequences contain more than 50% gaps/ambiguity
+****  TOTAL                             18.94%  1 sequences failed composition chi2 test (p-value<5%; df=19)
+NOTE: ENA_GHAQ01083431_GHAQ01083431.1 is identical to ENA_GHAQ01083430_GHAQ01083430.1 but kept for subsequent analysis
+Checking for duplicate sequences: done in 9.3681e-05 secs using 98.21% CPU
+Identifying sites to remove: done in 0.000456336 secs using 299.8% CPU
+NOTE: 1 identical sequences (see below) will be ignored for subsequent analysis
+NOTE: ENA_GHAQ01083432_GHAQ01083432.1 (identical to ENA_GHAQ01083430_GHAQ01083430.1) is ignored but added at the end
+Alignment was printed to /lisc/data/scratch/molevo/peyroche/clytia_ortho_search/results/trees/Myocardin_.uniqueseq.phy
+
+For your convenience alignment with unique sequences printed to /lisc/data/scratch/molevo/peyroche/clytia_ortho_search/results/trees/Myocardin_.uniqueseq.phy
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.004 seconds
+Measuring multi-threading efficiency up to 2 CPU cores
+Increase to 10 rounds for branch lengths
+9 trees examined
+Threads: 1 / Time: 2.119 sec / Speedup: 1.000 / Efficiency: 100% / LogL: -13211
+Threads: 2 / Time: 1.932 sec / Speedup: 1.096 / Efficiency: 55% / LogL: -13211
+Determining AUTO threadcount: done in 4.0514 secs using 146.7% CPU
+BEST NUMBER OF THREADS: 2
+
+Perform fast likelihood tree search using LG+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Optimizing NNI: done in 0.318584 secs using 198.8% CPU
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -10456.606
+Optimal log-likelihood: -10456.590
+Proportion of invariable sites: 0.063
+Gamma shape alpha: 2.119
+Parameters optimization took 1 rounds (0.088 sec)
+Time for fast ML tree search: 0.674 seconds
+
+NOTE: ModelFinder requires 15 MB RAM!
+ModelFinder will test up to 1232 protein models (sample size: 531 epsilon: 0.100) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+  1  LG            10640.953    31  21343.907    21347.883    21476.424
+  2  LG+I          10543.926    32  21151.852    21156.093    21288.645
+  3  LG+G4         10463.659    32  20991.318    20995.559    21128.110
+  4  LG+I+G4       10456.593    33  20979.185    20983.700    21120.252
+  5  LG+R2         10469.723    33  21005.446    21009.961    21146.513
+  6  LG+R3         10458.744    35  20987.489    20992.580    21137.105
+  7  LG+R4         10458.225    37  20990.451    20996.155    21148.617
+ 14  LG+I+R2       10460.039    34  20988.078    20992.877    21133.420
+ 15  LG+I+R3       10456.148    36  20984.297    20989.689    21138.188
+ 25  LG+F+G4       10289.795    51  20681.590    20692.663    20899.603
+ 26  LG+F+I+G4     10284.338    52  20672.675    20684.207    20894.963
+ 47  WAG+G4        10495.970    32  21055.941    21060.181    21192.733
+ 48  WAG+I+G4      10488.940    33  21043.881    21048.396    21184.948
+ 69  WAG+F+G4      10346.393    51  20794.786    20805.859    21012.799
+ 70  WAG+F+I+G4    10340.452    52  20784.903    20796.435    21007.191
+ 91  JTT+G4        10471.576    32  21007.152    21011.393    21143.944
+ 92  JTT+I+G4      10464.206    33  20994.413    20998.928    21135.480
+113  JTT+F+G4      10318.793    51  20739.587    20750.660    20957.599
+114  JTT+F+I+G4    10311.822    52  20727.644    20739.175    20949.931
+135  Q.PFAM+G4     10454.203    32  20972.406    20976.646    21109.198
+136  Q.PFAM+I+G4   10446.308    33  20958.616    20963.131    21099.683
+157  Q.PFAM+F+G4   10288.403    51  20678.806    20689.879    20896.819
+158  Q.PFAM+F+I+G4 10281.788    52  20667.576    20679.107    20889.863
+179  Q.BIRD+G4     10586.857    32  21237.714    21241.955    21374.506
+180  Q.BIRD+I+G4   10579.622    33  21225.244    21229.759    21366.311
+201  Q.BIRD+F+G4   10452.617    51  21007.234    21018.307    21225.246
+202  Q.BIRD+F+I+G4 10445.302    52  20994.603    21006.135    21216.891
+223  Q.MAMMAL+G4   10497.772    32  21059.544    21063.785    21196.336
+224  Q.MAMMAL+I+G4 10491.121    33  21048.241    21052.756    21189.308
+245  Q.MAMMAL+F+G4 10385.685    51  20873.371    20884.444    21091.384
+246  Q.MAMMAL+F+I+G4 10378.717    52  20861.434    20872.966    21083.722
+267  Q.INSECT+G4   10375.019    32  20814.038    20818.279    20950.830
+268  Q.INSECT+I+G4 10367.320    33  20800.640    20805.155    20941.707
+289  Q.INSECT+F+G4 10242.813    51  20587.626    20598.699    20805.639
+290  Q.INSECT+F+I+G4 10236.191    52  20576.382    20587.914    20798.670
+311  Q.PLANT+G4    10479.494    32  21022.987    21027.228    21159.780
+312  Q.PLANT+I+G4  10472.380    33  21010.760    21015.275    21151.827
+333  Q.PLANT+F+G4  10319.817    51  20741.635    20752.708    20959.648
+334  Q.PLANT+F+I+G4 10313.079    52  20730.157    20741.689    20952.445
+355  Q.YEAST+G4    10376.563    32  20817.126    20821.367    20953.919
+356  Q.YEAST+I+G4  10368.603    33  20803.207    20807.722    20944.274
+377  Q.YEAST+F+G4  10251.418    51  20604.836    20615.909    20822.849
+378  Q.YEAST+F+I+G4 10244.853    52  20593.705    20605.237    20815.993
+399  JTTDCMUT+G4   10473.434    32  21010.867    21015.108    21147.660
+400  JTTDCMUT+I+G4 10466.164    33  20998.328    21002.843    21139.396
+421  JTTDCMUT+F+G4 10320.556    51  20743.111    20754.184    20961.124
+422  JTTDCMUT+F+I+G4 10313.803    52  20731.607    20743.138    20953.894
+443  DCMUT+G4      10526.431    32  21116.863    21121.104    21253.655
+444  DCMUT+I+G4    10521.709    33  21109.418    21113.933    21250.485
+465  DCMUT+F+G4    10346.163    51  20794.326    20805.399    21012.339
+466  DCMUT+F+I+G4  10341.285    52  20786.570    20798.101    21008.857
+487  VT+G4         10462.715    32  20989.430    20993.671    21126.223
+488  VT+I+G4       10453.577    33  20973.155    20977.670    21114.222
+509  VT+F+G4       10337.786    51  20777.572    20788.645    20995.585
+510  VT+F+I+G4     10330.098    52  20764.195    20775.727    20986.483
+531  PMB+G4        10602.749    32  21269.499    21273.740    21406.291
+532  PMB+I+G4      10593.448    33  21252.897    21257.412    21393.964
+553  PMB+F+G4      10426.664    51  20955.327    20966.400    21173.340
+554  PMB+F+I+G4    10420.014    52  20944.027    20955.559    21166.315
+575  BLOSUM62+G4   10615.012    32  21294.023    21298.264    21430.816
+576  BLOSUM62+I+G4 10606.245    33  21278.489    21283.005    21419.557
+597  BLOSUM62+F+G4 10418.529    51  20939.058    20950.131    21157.071
+598  BLOSUM62+F+I+G4 10412.673    52  20929.346    20940.878    21151.634
+619  DAYHOFF+G4    10526.594    32  21117.188    21121.429    21253.980
+620  DAYHOFF+I+G4  10521.897    33  21109.793    21114.308    21250.860
+641  DAYHOFF+F+G4  10346.238    51  20794.476    20805.549    21012.489
+642  DAYHOFF+F+I+G4 10341.390    52  20786.779    20798.311    21009.067
+663  MTREV+G4      10908.921    32  21881.842    21886.083    22018.634
+664  MTREV+I+G4    10903.216    33  21872.432    21876.947    22013.499
+685  MTREV+F+G4    10437.673    51  20977.346    20988.419    21195.359
+686  MTREV+F+I+G4  10433.494    52  20970.987    20982.519    21193.275
+707  MTART+G4      11003.706    32  22071.411    22075.652    22208.204
+708  MTART+I+G4    10996.705    33  22059.410    22063.925    22200.477
+729  MTART+F+G4    10456.539    51  21015.078    21026.151    21233.090
+730  MTART+F+I+G4  10454.259    52  21012.519    21024.050    21234.806
+751  MTZOA+G4      10857.199    32  21778.398    21782.639    21915.190
+752  MTZOA+I+G4    10851.589    33  21769.178    21773.693    21910.245
+773  MTZOA+F+G4    10383.619    51  20869.237    20880.310    21087.250
+774  MTZOA+F+I+G4  10381.003    52  20866.006    20877.538    21088.294
+795  MTMET+G4      10923.015    32  21910.029    21914.270    22046.821
+796  MTMET+I+G4    10916.363    33  21898.726    21903.241    22039.793
+817  MTMET+F+G4    10395.765    51  20893.530    20904.603    21111.543
+818  MTMET+F+I+G4  10391.298    52  20886.596    20898.127    21108.883
+839  MTVER+G4      11015.700    32  22095.401    22099.642    22232.193
+840  MTVER+I+G4    11010.279    33  22086.558    22091.073    22227.625
+861  MTVER+F+G4    10516.490    51  21134.981    21146.054    21352.993
+862  MTVER+F+I+G4  10512.110    52  21128.220    21139.752    21350.508
+883  MTINV+G4      10976.551    32  22017.101    22021.342    22153.894
+884  MTINV+I+G4    10968.381    33  22002.762    22007.278    22143.830
+905  MTINV+F+G4    10339.563    51  20781.125    20792.198    20999.138
+906  MTINV+F+I+G4  10334.700    52  20773.400    20784.931    20995.687
+927  MTMAM+G4      11151.648    32  22367.296    22371.537    22504.088
+928  MTMAM+I+G4    11144.925    33  22355.851    22360.366    22496.918
+949  MTMAM+F+G4    10579.151    51  21260.303    21271.376    21478.315
+950  MTMAM+F+I+G4  10574.973    52  21253.947    21265.478    21476.235
+971  FLAVI+G4      10888.612    32  21841.224    21845.465    21978.016
+972  FLAVI+I+G4    10882.270    33  21830.540    21835.055    21971.607
+993  FLAVI+F+G4    10578.295    51  21258.590    21269.663    21476.603
+994  FLAVI+F+I+G4  10572.568    52  21249.136    21260.667    21471.423
+1015  HIVB+G4       10745.874    32  21555.748    21559.989    21692.540
+1016  HIVB+I+G4     10738.069    33  21542.138    21546.653    21683.205
+1037  HIVB+F+G4     10477.625    51  21057.251    21068.324    21275.263
+1038  HIVB+F+I+G4   10471.049    52  21046.098    21057.630    21268.386
+1059  HIVW+G4       11101.412    32  22266.824    22271.065    22403.616
+1060  HIVW+I+G4     11093.741    33  22253.482    22257.998    22394.550
+1081  HIVW+F+G4     10721.690    51  21545.380    21556.453    21763.393
+1082  HIVW+F+I+G4   10714.165    52  21532.330    21543.861    21754.618
+1103  FLU+G4        10620.043    32  21304.085    21308.326    21440.878
+1104  FLU+I+G4      10614.124    33  21294.248    21298.763    21435.315
+1125  FLU+F+G4      10433.702    51  20969.403    20980.476    21187.416
+1126  FLU+F+I+G4    10427.666    52  20959.331    20970.863    21181.619
+1147  RTREV+G4      10482.821    32  21029.641    21033.882    21166.434
+1148  RTREV+I+G4    10476.301    33  21018.601    21023.116    21159.668
+1169  RTREV+F+G4    10311.565    51  20725.131    20736.204    20943.144
+1170  RTREV+F+I+G4  10306.418    52  20716.835    20728.367    20939.123
+1191  CPREV+G4      10611.999    32  21287.998    21292.239    21424.791
+1192  CPREV+I+G4    10606.727    33  21279.454    21283.969    21420.521
+1213  CPREV+F+G4    10427.857    51  20957.715    20968.788    21175.727
+1214  CPREV+F+I+G4  10424.364    52  20952.728    20964.260    21175.016
+Akaike Information Criterion:           Q.INSECT+F+I+G4
+Corrected Akaike Information Criterion: Q.INSECT+F+I+G4
+Bayesian Information Criterion:         Q.INSECT+F+I+G4
+Best-fit model: Q.INSECT+F+I+G4 chosen according to BIC
+
+All model information printed to /lisc/data/scratch/molevo/peyroche/clytia_ortho_search/results/trees/Myocardin_.model.gz
+CPU time for ModelFinder: 81.994 seconds (0h:1m:21s)
+Wall-clock time for ModelFinder: 42.337 seconds (0h:0m:42s)
+Generating 1000 samples for ultrafast bootstrap (seed: 896307)...
+
+NOTE: 7 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+Thoroughly optimizing +I+G parameters from 10 start values...
+Init pinv, alpha: 0.000, 1.519 / Estimate: 0.000, 1.385 / LogL: -10242.813
+Init pinv, alpha: 0.014, 1.519 / Estimate: 0.060, 1.930 / LogL: -10236.241
+Init pinv, alpha: 0.028, 1.519 / Estimate: 0.059, 1.928 / LogL: -10236.245
+Init pinv, alpha: 0.041, 1.519 / Estimate: 0.060, 1.934 / LogL: -10236.234
+Init pinv, alpha: 0.055, 1.519 / Estimate: 0.063, 1.964 / LogL: -10236.197
+Init pinv, alpha: 0.069, 1.519 / Estimate: 0.066, 2.001 / LogL: -10236.191
+Init pinv, alpha: 0.083, 1.519 / Estimate: 0.068, 2.027 / LogL: -10236.209
+Init pinv, alpha: 0.097, 1.519 / Estimate: 0.067, 2.021 / LogL: -10236.203
+Init pinv, alpha: 0.110, 1.519 / Estimate: 0.068, 2.028 / LogL: -10236.209
+Init pinv, alpha: 0.124, 1.519 / Estimate: 0.068, 2.032 / LogL: -10236.214
+Optimal pinv,alpha: 0.066, 2.001 / LogL: -10236.191
+
+Parameters optimization took 5.289 sec
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 0.0378184 secs using 196.8% CPU
+Computing ML distances took 0.037932 sec (of wall-clock time) 0.074562 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 7.5652e-05 secs using 138.8% CPU
+Constructing RapidNJ tree: done in 0.00020823 secs using 40.34% CPU
+Computing RapidNJ tree took 0.000368 sec (of wall-clock time) 0.000283 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -10259.904
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 0.254 second
+Computing log-likelihood of 98 initial trees ... 2.597 seconds
+Current best score: -10236.191
+
+Do NNI search on 20 best initial trees
+Optimizing NNI: done in 0.13431 secs using 198% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -10236.190
+Optimizing NNI: done in 0.362721 secs using 198.2% CPU
+UPDATE BEST LOG-LIKELIHOOD: -10236.189
+Optimizing NNI: done in 0.347594 secs using 197.6% CPU
+Optimizing NNI: done in 0.297255 secs using 198.8% CPU
+Optimizing NNI: done in 0.345012 secs using 197.8% CPU
+Optimizing NNI: done in 0.364261 secs using 198.9% CPU
+Optimizing NNI: done in 0.375664 secs using 198.8% CPU
+Optimizing NNI: done in 0.365453 secs using 196.9% CPU
+Optimizing NNI: done in 0.432859 secs using 198.1% CPU
+Optimizing NNI: done in 0.443551 secs using 197% CPU
+Iteration 10 / LogL: -10236.189 / Time: 0h:0m:54s
+Optimizing NNI: done in 0.467064 secs using 197.4% CPU
+Optimizing NNI: done in 0.466819 secs using 198.1% CPU
+Optimizing NNI: done in 0.332297 secs using 197.6% CPU
+Optimizing NNI: done in 0.499269 secs using 198.5% CPU
+UPDATE BEST LOG-LIKELIHOOD: -10236.188
+Optimizing NNI: done in 0.498972 secs using 198.6% CPU
+Optimizing NNI: done in 0.460045 secs using 198.3% CPU
+Optimizing NNI: done in 0.481596 secs using 198% CPU
+Optimizing NNI: done in 0.392755 secs using 198.8% CPU
+Optimizing NNI: done in 0.456882 secs using 198.3% CPU
+Optimizing NNI: done in 0.458645 secs using 198.2% CPU
+Iteration 20 / LogL: -10236.189 / Time: 0h:0m:58s
+Finish initializing candidate tree set (2)
+Current best tree score: -10236.188 / CPU time: 11.061
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Optimizing NNI: done in 0.782267 secs using 197.8% CPU
+Optimizing NNI: done in 0.465633 secs using 197.5% CPU
+UPDATE BEST LOG-LIKELIHOOD: -10236.188
+Optimizing NNI: done in 0.66187 secs using 197.9% CPU
+Optimizing NNI: done in 0.959523 secs using 198.1% CPU
+Optimizing NNI: done in 0.486256 secs using 197.5% CPU
+Optimizing NNI: done in 0.602265 secs using 197.8% CPU
+Optimizing NNI: done in 0.674436 secs using 198.5% CPU
+Optimizing NNI: done in 0.752638 secs using 198.1% CPU
+Optimizing NNI: done in 0.81714 secs using 198.2% CPU
+Optimizing NNI: done in 0.527818 secs using 198.1% CPU
+Iteration 30 / LogL: -10236.189 / Time: 0h:1m:5s (0h:0m:57s left)
+Optimizing NNI: done in 0.713162 secs using 197.4% CPU
+Optimizing NNI: done in 0.411988 secs using 198% CPU
+Optimizing NNI: done in 0.887025 secs using 198.6% CPU
+Optimizing NNI: done in 0.663935 secs using 198.7% CPU
+Optimizing NNI: done in 0.833436 secs using 198.1% CPU
+Optimizing NNI: done in 1.08613 secs using 198.2% CPU
+Optimizing NNI: done in 0.278868 secs using 198.7% CPU
+Optimizing NNI: done in 0.611028 secs using 198% CPU
+Optimizing NNI: done in 0.460107 secs using 198.1% CPU
+Optimizing NNI: done in 0.93238 secs using 198% CPU
+Iteration 40 / LogL: -10236.189 / Time: 0h:1m:12s (0h:0m:47s left)
+Optimizing NNI: done in 0.845405 secs using 198% CPU
+Optimizing NNI: done in 0.881321 secs using 198.5% CPU
+Optimizing NNI: done in 0.567238 secs using 198.1% CPU
+Optimizing NNI: done in 0.578751 secs using 198.5% CPU
+Optimizing NNI: done in 1.12624 secs using 198.2% CPU
+Optimizing NNI: done in 0.977423 secs using 198.5% CPU
+Optimizing NNI: done in 0.606991 secs using 198.3% CPU
+Optimizing NNI: done in 0.733053 secs using 198.5% CPU
+Optimizing NNI: done in 0.444625 secs using 198.8% CPU
+Optimizing NNI: done in 0.948619 secs using 198.7% CPU
+Iteration 50 / LogL: -10237.678 / Time: 0h:1m:20s (0h:0m:39s left)
+Log-likelihood cutoff on original alignment: -10256.381
+Optimizing NNI: done in 0.570691 secs using 198.1% CPU
+Optimizing NNI: done in 0.753297 secs using 198.3% CPU
+Optimizing NNI: done in 0.883762 secs using 197.9% CPU
+Optimizing NNI: done in 0.751629 secs using 198.2% CPU
+Optimizing NNI: done in 0.542946 secs using 198.2% CPU
+Optimizing NNI: done in 0.558283 secs using 197.8% CPU
+Optimizing NNI: done in 0.543153 secs using 198% CPU
+Optimizing NNI: done in 0.635593 secs using 197.9% CPU
+Optimizing NNI: done in 0.628022 secs using 198.8% CPU
+Optimizing NNI: done in 0.560124 secs using 198.6% CPU
+Iteration 60 / LogL: -10236.188 / Time: 0h:1m:27s (0h:0m:31s left)
+Optimizing NNI: done in 0.921641 secs using 198% CPU
+Optimizing NNI: done in 0.35876 secs using 198.5% CPU
+Optimizing NNI: done in 0.465226 secs using 198.7% CPU
+Optimizing NNI: done in 0.71729 secs using 197.9% CPU
+Optimizing NNI: done in 0.806498 secs using 198% CPU
+Optimizing NNI: done in 0.869956 secs using 198.6% CPU
+Optimizing NNI: done in 0.828326 secs using 198.3% CPU
+Optimizing NNI: done in 0.752516 secs using 198.2% CPU
+Optimizing NNI: done in 0.520259 secs using 198.2% CPU
+Optimizing NNI: done in 0.647034 secs using 198.4% CPU
+Iteration 70 / LogL: -10236.188 / Time: 0h:1m:34s (0h:0m:23s left)
+Optimizing NNI: done in 0.615136 secs using 198.5% CPU
+Optimizing NNI: done in 0.667153 secs using 197.6% CPU
+Optimizing NNI: done in 0.554711 secs using 198.4% CPU
+Optimizing NNI: done in 0.5573 secs using 198.1% CPU
+Optimizing NNI: done in 0.598884 secs using 198.1% CPU
+Optimizing NNI: done in 0.42009 secs using 198.4% CPU
+Optimizing NNI: done in 0.758519 secs using 198.3% CPU
+Optimizing NNI: done in 0.4256 secs using 198.1% CPU
+Optimizing NNI: done in 0.650417 secs using 198.6% CPU
+Optimizing NNI: done in 0.814049 secs using 198.6% CPU
+Iteration 80 / LogL: -10236.188 / Time: 0h:1m:40s (0h:0m:15s left)
+Optimizing NNI: done in 0.596914 secs using 198.8% CPU
+Optimizing NNI: done in 0.483822 secs using 198% CPU
+Optimizing NNI: done in 0.560096 secs using 198.6% CPU
+Optimizing NNI: done in 0.710056 secs using 198.5% CPU
+Optimizing NNI: done in 0.576866 secs using 198.3% CPU
+Optimizing NNI: done in 0.598308 secs using 198.4% CPU
+Optimizing NNI: done in 0.553501 secs using 198.1% CPU
+Optimizing NNI: done in 1.30942 secs using 198.5% CPU
+Optimizing NNI: done in 0.685122 secs using 197.9% CPU
+Optimizing NNI: done in 0.589574 secs using 198.5% CPU
+Iteration 90 / LogL: -10236.189 / Time: 0h:1m:47s (0h:0m:8s left)
+Optimizing NNI: done in 0.632045 secs using 197.7% CPU
+Optimizing NNI: done in 0.505932 secs using 198.3% CPU
+Optimizing NNI: done in 0.398635 secs using 198% CPU
+Optimizing NNI: done in 0.874019 secs using 197.7% CPU
+Optimizing NNI: done in 0.849811 secs using 198.5% CPU
+Optimizing NNI: done in 0.570547 secs using 197.4% CPU
+Optimizing NNI: done in 0.705511 secs using 197.7% CPU
+Optimizing NNI: done in 0.697108 secs using 197.9% CPU
+Optimizing NNI: done in 0.815733 secs using 197.6% CPU
+Optimizing NNI: done in 0.478762 secs using 197.9% CPU
+Iteration 100 / LogL: -10237.412 / Time: 0h:1m:53s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -10256.265
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.999
+Optimizing NNI: done in 0.553283 secs using 198.3% CPU
+Optimizing NNI: done in 0.489039 secs using 198.1% CPU
+TREE SEARCH COMPLETED AFTER 102 ITERATIONS / Time: 0h:1m:54s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -10236.188
+Optimal log-likelihood: -10236.188
+Proportion of invariable sites: 0.065
+Gamma shape alpha: 1.995
+Parameters optimization took 1 rounds (0.086 sec)
+BEST SCORE FOUND : -10236.188
+Creating bootstrap support values...
+Split supports printed to NEXUS file /lisc/data/scratch/molevo/peyroche/clytia_ortho_search/results/trees/Myocardin_.splits.nex
+Total tree length: 6.969
+
+Total number of iterations: 102
+CPU time used for tree search: 132.420 sec (0h:2m:12s)
+Wall-clock time used for tree search: 66.971 sec (0h:1m:6s)
+Total CPU time used: 225.607 sec (0h:3m:45s)
+Total wall-clock time used: 114.957 sec (0h:1m:54s)
+
+Computing bootstrap consensus tree...
+Reading input file /lisc/data/scratch/molevo/peyroche/clytia_ortho_search/results/trees/Myocardin_.splits.nex...
+17 taxa and 59 splits.
+Consensus tree written to /lisc/data/scratch/molevo/peyroche/clytia_ortho_search/results/trees/Myocardin_.contree
+Reading input trees file /lisc/data/scratch/molevo/peyroche/clytia_ortho_search/results/trees/Myocardin_.contree
+Log-likelihood of consensus tree: -10236.191
+
+Analysis results written to: 
+  IQ-TREE report:                /lisc/data/scratch/molevo/peyroche/clytia_ortho_search/results/trees/Myocardin_.iqtree
+  Maximum-likelihood tree:       /lisc/data/scratch/molevo/peyroche/clytia_ortho_search/results/trees/Myocardin_.treefile
+  Likelihood distances:          /lisc/data/scratch/molevo/peyroche/clytia_ortho_search/results/trees/Myocardin_.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          /lisc/data/scratch/molevo/peyroche/clytia_ortho_search/results/trees/Myocardin_.splits.nex
+  Consensus tree:                /lisc/data/scratch/molevo/peyroche/clytia_ortho_search/results/trees/Myocardin_.contree
+  Screen log file:               /lisc/data/scratch/molevo/peyroche/clytia_ortho_search/results/trees/Myocardin_.log
+
+Date and Time: Mon Jun 29 15:54:25 2026

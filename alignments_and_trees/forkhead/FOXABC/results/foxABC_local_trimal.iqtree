@@ -1,0 +1,549 @@
+IQ-TREE 3.0.1 built May  5 2025
+
+Input file name: /lisc/data/scratch/molevo/peyroche/forkhead/FOXABC/alignment/FOXABC_prots_all_mafft_local_trimal.fasta
+Type of analysis: ModelFinder + tree reconstruction + ultrafast bootstrap (10000 replicates)
+Random seed number: 676996
+
+REFERENCES
+----------
+
+To cite IQ-TREE 3 please use:
+
+Thomas K.F. Wong, Nhan Ly-Trong, Huaiyan Ren, Hector Banos, Andrew J. Roger,
+Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W. Hahn,
+Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025)
+IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
+Submitted.
+
+Please also cite the following paper(s) for the feature(s) that you used:
+
+To cite ModelFinder please use: 
+
+Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler,
+and Lars S Jermiin (2017) ModelFinder: Fast model selection for
+accurate phylogenetic estimates. Nature Methods, 14:587–589.
+https://doi.org/10.1038/nmeth.4285
+
+Since you used ultrafast bootstrap (UFBoot) please also cite: 
+
+Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh,
+and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap
+approximation. Mol. Biol. Evol., 35:518–522.
+https://doi.org/10.1093/molbev/msx281
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 78 sequences with 120 amino-acid sites
+Number of constant sites: 29 (= 24.1667% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 29 (= 24.1667% of all sites)
+Number of parsimony informative sites: 86
+Number of distinct site patterns: 106
+
+ModelFinder
+-----------
+
+Best-fit model according to BIC: Q.INSECT+I+G4
+
+List of models sorted by BIC scores: 
+
+Model                  LogL         AIC      w-AIC        AICc     w-AICc         BIC      w-BIC
+Q.INSECT+I+G4     -5355.072   11020.144 +        1   59380.144 - 9.62e-116   11452.206 +        1
+Q.YEAST+I+G4      -5369.197   11048.393 - 7.34e-07   59408.393 - 7.07e-122   11480.454 - 7.34e-07
+LG+I+G4           -5390.867   11091.734 - 2.85e-16   59451.734 - 2.74e-131   11523.796 - 2.85e-16
+Q.PLANT+I+G4      -5395.021   11100.043 - 4.47e-18   59460.043 - 4.3e-133   11532.104 - 4.47e-18
+Q.PFAM+I+G4       -5397.008   11104.016 - 6.13e-19   59464.016 - 5.9e-134   11536.077 - 6.13e-19
+LG+G4             -5401.236   11110.473 - 2.43e-20   58850.473 +        1   11539.746 - 9.79e-20
+JTTDCMUT+I+G4     -5399.905   11109.809 - 3.38e-20   59469.809 - 3.26e-135   11541.871 - 3.38e-20
+LG+I+R4           -5388.299   11096.597 -  2.5e-17   62616.597 -        0   11542.596 - 2.36e-20
+LG+R4             -5390.838   11099.676 - 5.37e-18   61979.676 -        0   11542.887 - 2.04e-20
+JTT+I+G4          -5401.003   11112.005 - 1.13e-20   59472.005 - 1.09e-135   11544.067 - 1.13e-20
+LG+R5             -5386.946   11095.891 - 3.56e-17   63259.891 -        0   11544.677 - 8.32e-21
+LG+I+R5           -5386.604   11097.207 - 1.85e-17   63909.207 -        0   11548.781 - 1.07e-21
+LG+I+R3           -5400.414   11116.829 - 1.01e-21   61360.829 -        0   11557.253 - 1.55e-23
+DAYHOFF+I+G4      -5419.603   11149.207 - 9.43e-29   59509.207 - 9.07e-144   11581.268 - 9.43e-29
+DCMUT+I+G4        -5420.021   11150.041 - 6.21e-29   59510.041 - 5.98e-144   11582.102 - 6.21e-29
+LG+R3             -5420.043   11154.085 - 8.23e-30   60766.085 -        0   11591.721 - 5.06e-31
+WAG+I+G4          -5431.859   11173.718 - 4.49e-34   59533.718 - 4.32e-149   11605.779 - 4.49e-34
+Q.INSECT+F+I+G4   -5399.668   11147.335 -  2.4e-28   72047.335 -        0   11632.359 - 7.59e-40
+VT+I+G4           -5448.901   11207.802 - 1.78e-41   59567.802 - 1.71e-156   11639.863 - 1.78e-41
+Q.YEAST+F+I+G4    -5403.988   11155.977 - 3.19e-30   72055.977 -        0   11641.000 - 1.01e-41
+RTREV+I+G4        -5455.124   11220.248 - 3.53e-44   59580.248 - 3.4e-159   11652.309 - 3.53e-44
+LG+I+R2           -5454.233   11220.467 - 3.17e-44   60204.467 - 9.64e-295   11655.315 - 7.86e-45
+Q.MAMMAL+I+G4     -5467.658   11245.316 - 1.27e-49   59605.316 - 1.22e-164   11677.378 - 1.27e-49
+LG+F+I+G4         -5434.994   11217.987 - 1.09e-43   72117.987 -        0   11703.011 - 3.45e-55
+Q.PFAM+F+I+G4     -5441.652   11231.305 -  1.4e-46   72131.305 -        0   11716.328 - 4.43e-58
+JTTDCMUT+F+I+G4   -5449.784   11247.568 - 4.13e-50   72147.568 -        0   11732.591 -  1.3e-61
+JTT+F+I+G4        -5450.268   11248.536 - 2.54e-50   72148.536 -        0   11733.559 - 8.03e-62
+Q.PLANT+F+I+G4    -5454.384   11256.768 - 4.15e-52   72156.768 -        0   11741.792 - 1.31e-63
+MTZOA+F+I+G4      -5455.441   11258.883 - 1.44e-52   72158.883 -        0   11743.907 - 4.55e-64
+MTINV+F+I+G4      -5456.962   11261.924 - 3.15e-53   72161.924 -        0   11746.947 - 9.95e-65
+DAYHOFF+F+I+G4    -5461.162   11270.324 - 4.72e-55   72170.324 -        0   11755.348 - 1.49e-66
+DCMUT+F+I+G4      -5461.484   11270.967 - 3.42e-55   72170.967 -        0   11755.991 - 1.08e-66
+Q.BIRD+I+G4       -5509.664   11329.327 - 7.27e-68   59689.327 -   7e-183   11761.389 - 7.27e-68
+CPREV+I+G4        -5510.542   11331.083 - 3.02e-68   59691.083 - 2.91e-183   11763.145 - 3.02e-68
+LG+R2             -5512.207   11334.415 - 5.72e-69   59694.415 - 5.5e-184   11766.476 - 5.72e-69
+RTREV+F+I+G4      -5469.166   11286.332 - 1.58e-58   72186.332 -        0   11771.356 - 4.98e-70
+PMB+I+G4          -5528.295   11366.590 - 5.89e-76   59726.590 - 5.67e-191   11798.651 - 5.89e-76
+MTMET+F+I+G4      -5483.838   11315.675 -  6.7e-65   72215.675 -        0   11800.699 - 2.12e-76
+BLOSUM62+I+G4     -5534.580   11379.159 -  1.1e-78   59739.159 - 1.06e-193   11811.221 -  1.1e-78
+WAG+F+I+G4        -5491.669   11331.337 - 2.66e-68   72231.337 -        0   11816.361 - 8.41e-80
+VT+F+I+G4         -5498.257   11344.514 - 3.66e-71   72244.514 -        0   11829.538 - 1.16e-82
+FLU+I+G4          -5568.213   11446.426 - 2.72e-93   59806.426 - 2.61e-208   11878.487 - 2.72e-93
+Q.MAMMAL+F+I+G4   -5525.855   11399.709 - 3.79e-83   72299.709 -        0   11884.733 -  1.2e-94
+HIVB+I+G4         -5587.513   11485.025 - 1.13e-101   59845.025 - 1.09e-216   11917.087 - 1.13e-101
+MTART+F+I+G4      -5544.233   11436.467 - 3.95e-91   72336.467 -        0   11921.490 - 1.25e-102
+MTZOA+I+G4        -5593.847   11497.695 -   2e-104   59857.695 - 1.93e-219   11929.756 -   2e-104
+CPREV+F+I+G4      -5558.740   11465.481 - 1.98e-97   72365.481 -        0   11950.504 - 6.25e-109
+Q.BIRD+F+I+G4     -5559.063   11466.126 - 1.43e-97   72366.126 -        0   11951.149 - 4.53e-109
+MTREV+F+I+G4      -5560.527   11469.055 - 3.31e-98   72369.055 -        0   11954.078 - 1.05e-109
+BLOSUM62+F+I+G4   -5573.041   11494.082 - 1.22e-103   72394.082 -        0   11979.105 - 3.85e-115
+PMB+F+I+G4        -5577.317   11502.635 - 1.69e-105   72402.635 -        0   11987.658 - 5.35e-117
+MTVER+F+I+G4      -5589.967   11527.935 - 5.43e-111   72427.935 -        0   12012.958 - 1.71e-122
+FLAVI+I+G4        -5657.643   11625.285 - 3.94e-132   59985.285 - 3.79e-247   12057.346 - 3.94e-132
+MTMET+I+G4        -5659.580   11629.159 - 5.68e-133   59989.159 - 5.46e-248   12061.221 - 5.68e-133
+FLU+F+I+G4        -5614.629   11577.258 - 1.06e-121   72477.258 -        0   12062.281 - 3.34e-133
+HIVB+F+I+G4       -5623.564   11595.128 - 1.39e-125   72495.128 -        0   12080.152 - 4.4e-137
+LG+I              -5686.669   11681.338 - 2.65e-144   59421.338 - 1.09e-124   12110.611 - 1.07e-143
+MTINV+I+G4        -5684.417   11678.834 - 9.28e-144   60038.834 - 8.92e-259   12110.895 - 9.28e-144
+MTMAM+F+I+G4      -5649.359   11646.718 - 8.74e-137   72546.718 -        0   12131.741 - 2.76e-148
+MTREV+I+G4        -5716.514   11743.029 - 1.07e-157   60103.029 - 1.03e-272   12175.090 - 1.07e-157
+MTART+I+G4        -5736.725   11783.450 - 1.78e-166   60143.450 - 1.71e-281   12215.511 - 1.78e-166
+FLAVI+F+I+G4      -5701.106   11750.212 - 2.94e-159   72650.212 -        0   12235.236 - 9.27e-171
+MTVER+I+G4        -5747.654   11805.308 - 3.19e-171   60165.308 - 3.07e-286   12237.370 - 3.19e-171
+MTMAM+I+G4        -5824.641   11959.281 - 1.17e-204   60319.281 - 1.13e-319   12391.342 - 1.17e-204
+HIVW+I+G4         -5890.004   12090.008 - 4.81e-233   60450.008 -        0   12522.069 - 4.81e-233
+HIVW+F+I+G4       -5845.417   12038.833 - 6.23e-222   72938.833 -        0   12523.857 - 1.97e-233
+LG                -5914.417   12134.833 - 8.88e-243   59258.833 - 2.12e-89   12561.320 - 1.44e-241
+
+AIC, w-AIC   : Akaike information criterion scores and weights.
+AICc, w-AICc : Corrected AIC scores and weights.
+BIC, w-BIC   : Bayesian information criterion scores and weights.
+
+Plus signs denote the 95% confidence sets.
+Minus signs denote significant exclusion.
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: Q.INSECT+I+G4
+
+State frequencies: (model)
+
+Model of rate heterogeneity: Invar+Gamma with 4 categories
+Proportion of invariable sites: 0.1639
+Gamma shape alpha: 0.7177
+
+ Category  Relative_rate  Proportion
+  0         0              0.1639
+  1         0.0933         0.2090
+  2         0.4446         0.2090
+  3         1.1138         0.2090
+  4         3.1323         0.2090
+Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -5341.8166 (s.e. 429.2336)
+Unconstrained log-likelihood (without tree): -550.4088
+Number of free parameters (#branches + #model parameters): 155
+Akaike information criterion (AIC) score: 10993.6333
+Corrected Akaike information criterion (AICc) score: 59353.6333
+Bayesian information criterion (BIC) score: 11425.6945
+
+**************************** WARNING ****************************
+Number of parameters (K, model parameters and branch lengths): 155
+Sample size (n, alignment length): 120
+
+Given that K>=n, the parameter estimates might be inaccurate.
+Thus, phylogenetic estimates should be interpreted with caution.
+
+Ideally, it is desirable that n >> K. When selecting optimal models,
+1. use AIC or BIC if n > 40K;
+2. use AICc or BIC if 40K >= n > K;
+3. be extremely cautious if n <= K
+
+To improve the situation (3), consider the following options:
+  1. Increase the sample size (n)
+  2. Decrease the number of parameters (K) to be estimated. If
+     possible:
+     a. Remove the least important sequences from the alignment
+     b. Specify some of the parameter values for the substitution
+        model (e.g., the nucleotide or amino acid frequencies)
+     c. Specify some of the parameter values for the rates-across-
+        sites model (e.g., the shape parameter for the discrete
+        Gamma distribution, the proportion of invariable sites, or
+        the rates of change for different rate categories under
+        the FreeRate model)
+
+Reference:
+Burnham KR, Anderson DR (2002). Model Selection and Multimodel
+Inference: A Practical Information-Theoretic Approach. Springer,
+New York.
+************************ END OF WARNING ***********************
+
+Total tree length (sum of branch lengths): 15.1922
+Sum of internal branch lengths: 6.2674 (41.2539% of tree length)
+
+WARNING: 5 near-zero internal branches (<0.0083) should be treated with caution
+         Such branches are denoted by '**' in the figure below
+
+NOTE: Tree is UNROOTED although outgroup taxon 'Brafl_XP_035666163.1' is drawn at root
+Numbers in parentheses are SH-aLRT support (%) / ultrafast bootstrap support (%)
+
++--Brafl_XP_035666163.1
+|
+|                 +--Exada_XP_020904925.1
+|              +**| (0/56)
+|              |  +--Nemve_NV2.25999.1
+|           +--| (94.8/99)
+|           |  +--Stypi_XP_022780413.1
+|        +--| (94.4/76)
+|        |  |                             +--Brafl_XP_035683186.1
+|        |  |                          +--| (84.5/53)
+|        |  |                          |  |         +--Casxa_jgi_Casxa1_23848
+|        |  |                          |  |      +--| (78.2/92)
+|        |  |                          |  |      |  |  +**Rhoes_XP_065052199.1
+|        |  |                          |  |      |  +--| (79.2/99)
+|        |  |                          |  |      |     +**Aurco_scaffold16.g749.t1
+|        |  |                          |  |   +--| (32.9/71)
+|        |  |                          |  |   |  |  +**Sanma_ENSXQXP00000024501.1_ENSXQXG00000017190.1
+|        |  |                          |  |   |  +**| (0/51)
+|        |  |                          |  |   |     |  +**Tripe_ENA_GHAQ01132272_GHAQ01132272.1
+|        |  |                          |  |   |     +--| (82.3/95)
+|        |  |                          |  |   |        |     +--Clyhe_Chem_XLOC_044586
+|        |  |                          |  |   |        |  +--| (84.9/100)
+|        |  |                          |  |   |        |  |  +--Hydvu_HVAEP6.G011613
+|        |  |                          |  |   |        +--| (98.9/100)
+|        |  |                          |  |   |           +**Hydsy_XP_057304130.1
+|        |  |                          |  +---| (99.9/100)
+|        |  |                          |      +--PnocFOXA
+|        |  |                       +--| (74.5/50)
+|        |  |                       |  +--Brafl_XP_035684564.1
+|        |  |                    +--| (76.7/50)
+|        |  |                    |  +--Lytva_XP_041469659.1
+|        |  |                 +--| (79.2/50)
+|        |  |                 |  |  +--Maggi_XP_011413445.1
+|        |  |                 |  +--| (90.4/100)
+|        |  |                 |     +--Owefu_CAH1792690.1
+|        |  |              +--| (96.2/59)
+|        |  |              |  |     +--Triad_B3S1K8_B3S1K8_TRIAD
+|        |  |              |  |  +**| (0/81)
+|        |  |              |  |  |  |  +--Q9Y261_FOXA2_HUMAN
+|        |  |              |  |  |  +--| (80.9/97)
+|        |  |              |  |  |     |  +--P55317_FOXA1_HUMAN
+|        |  |              |  |  |     +--| (89.3/98)
+|        |  |              |  |  |        +---P55318_FOXA3_HUMAN
+|        |  |              |  +--| (14.7/70)
+|        |  |              |     +--Dapma_XP_032799237.1
+|        |  |           +--| (79.4/60)
+|        |  |           |  +--Stypi_XP_022789920.1
+|        |  |     +-----| (98/99)
+|        |  |     |     |  +**Exada_XP_020893103.1
+|        |  |     |     +**| (0/68)
+|        |  |     |        +**Nemve_NV2.11441.1
+|        |  |  +--| (86.3/97)
+|        |  |  |  |                               +--Brafl_XP_035679441.1
+|        |  |  |  |                            +--| (64.7/56)
+|        |  |  |  |                            |  +---Owefu_CAH1779694.1
+|        |  |  |  |                         +--| (76.8/55)
+|        |  |  |  |                         |  |  +--Maggi_XP_011417585.2
+|        |  |  |  |                         |  +--| (83.9/77)
+|        |  |  |  |                         |     +---Lytva_XP_041454579.1
+|        |  |  |  |                      +--| (73.9/76)
+|        |  |  |  |                      |  |  +--Q12948_FOXC1_HUMAN
+|        |  |  |  |                      |  +--| (90.5/97)
+|        |  |  |  |                      |     +--Q99958_FOXC2_HUMAN
+|        |  |  |  |                   +--| (77.4/78)
+|        |  |  |  |                   |  +--Dapma_XP_032776812.2
+|        |  |  |  |               +---| (86.8/91)
+|        |  |  |  |               |   |     +--Exada_XP_020902419.1
+|        |  |  |  |               |   |  +--| (87/97)
+|        |  |  |  |               |   |  |  |  +--Nemve_NV2.30002.1
+|        |  |  |  |               |   |  |  +--| (51.1/67)
+|        |  |  |  |               |   |  |     +----Stypi_XP_022799810.1
+|        |  |  |  |               |   +--| (84.5/60)
+|        |  |  |  |               |      |         +--Hydvu_HVAEP15.G027359
+|        |  |  |  |               |      |      +--| (74/96)
+|        |  |  |  |               |      |      |  +--Clyhe_Chem_XLOC_001095
+|        |  |  |  |               |      |   +--| (95.2/97)
+|        |  |  |  |               |      |   |  +--Hydsy_XP_057291876.1
+|        |  |  |  |               |      +---| (95.7/61)
+|        |  |  |  |               |          |        +--PnocFOXC
+|        |  |  |  |               |          |     +--| (86.4/95)
+|        |  |  |  |               |          |     |  |  +--Aurco_scaffold6.g58.t1
+|        |  |  |  |               |          |     |  +--| (95.6/99)
+|        |  |  |  |               |          |     |     |  +--Rhoes_XP_065065228.1
+|        |  |  |  |               |          |     |     +--| (55.7/96)
+|        |  |  |  |               |          |     |        +---Casxa_jgi_Casxa1_3372
+|        |  |  |  |               |          |  +--| (85.7/99)
+|        |  |  |  |               |          |  |  +--Sanma_ENSXQXP00000029581.1_ENSXQXG00000020522.1
+|        |  |  |  |               |          +--| (13.4/60)
+|        |  |  |  |               |             +-----------------O43638_FOXS1_HUMAN
+|        |  |  |  |  +------------| (99.5/100)
+|        |  |  |  |  |            +--------Triad_B3S7D8_B3S7D8_TRIAD
+|        |  |  |  +--| (85.2/93)
+|        |  |  |     |        +----Lytva_XP_041464485.1
+|        |  |  |     |     +--| (78.6/84)
+|        |  |  |     |     |  |        +--Maggi_XP_011441298.1
+|        |  |  |     |     |  |     +--| (75.5/98)
+|        |  |  |     |     |  |     |  +-----Owefu_CAH1797111.1
+|        |  |  |     |     |  |  +--| (62.7/98)
+|        |  |  |     |     |  |  |  +--Owefu_CAH1797164.1
+|        |  |  |     |     |  +--| (20.8/68)
+|        |  |  |     |     |     +--------------------------------Brafl_XP_035667310.1
+|        |  |  |     +-----| (93.4/94)
+|        |  |  |           |               +--Exada_XP_020904840.1
+|        |  |  |           |            +--| (79.5/97)
+|        |  |  |           |            |  +--Nemve_NV2.23888.1
+|        |  |  |           +------------| (99.6/100)
+|        |  |  |                        +---Stypi_XP_022780476.1
+|        |  +--| (85.8/87)
+|        |     |                    +-----Clyhe_Chem_XLOC_042605
+|        |     |                 +--| (90.3/93)
+|        |     |                 |  +--Hydsy_XP_057315801.1
+|        |     |              +--| (87/97)
+|        |     |              |  |     +**Clyhe_Chem_XLOC_018078
+|        |     |              |  |  +--| (73.1/99)
+|        |     |              |  |  |  +--Hydsy_XP_057315802.1
+|        |     |              |  +--| (0/32)
+|        |     |              |     +----------Hydvu_HVAEP12.G022887
+|        |     |       +------| (91.6/84)
+|        |     |       |      |           +--Sanma_ENSXQXP00000011504.1_ENSXQXG00000008379.1
+|        |     |       |      |        +--| (89.6/100)
+|        |     |       |      |        |  +--PnocFOXB1
+|        |     |       |      |     +--| (81.1/88)
+|        |     |       |      |     |  +**Aur_foxB1_best_hit
+|        |     |       |      |  +--| (85.1/78)
+|        |     |       |      |  |  |  +**FoxB1_NW_027019762.1
+|        |     |       |      |  |  +--| (84.1/92)
+|        |     |       |      |  |     |                 +---Sanma_ENSXQXP00000012300.1_ENSXQXG00000008891.1
+|        |     |       |      |  |     |           +-----| (96.8/100)
+|        |     |       |      |  |     |           |     +--PnocFOXB2
+|        |     |       |      |  |     +-----------| (100/100)
+|        |     |       |      |  |                 |      +--Casxa_jgi_Casxa1_18156
+|        |     |       |      |  |                 |   +--| (94/100)
+|        |     |       |      |  |                 |   |  +--Rhoes_XP_065066175.1
+|        |     |       |      |  |                 +---| (92/100)
+|        |     |       |      |  |                     +--Aurco_scaffold13.g642.t1
+|        |     |       |      +--| (71.5/71)
+|        |     |       |         +--Tripe_ENA_GHAQ01133162_GHAQ01133162.1
+|        |     +-------| (93.9/99)
+|        |             |           +------------Aurco_scaffold8.g352.t1
+|        |             +-----------| (97.9/100)
+|        |                         +---------------Sanma_ENSXQXP00000015714.1_ENSXQXG00000011219.1
+|     +--| (66.4/43)
+|     |  +--Q99853_FOXB1_HUMAN
+|  +**| (0/45)
+|  |  +------------------Triad_B3RSE6_B3RSE6_TRIAD
++--| (87.7/75)
+|  +--Q5VYV0_FOXB2_HUMAN
+|
+|  +--Owefu_CAH1796923.1
++--| (41/68)
+   |     +-----------Dapma_XP_032779745.2
+   |  +--| (75.5/82)
+   |  |  +--Lytva_XP_041465359.1
+   +--| (83.6/82)
+      +--Maggi_XP_011445364.3
+
+Tree in newick format:
+
+(Brafl_XP_035666163.1:0.1306433864,((((((Exada_XP_020904925.1:0.0210781222,Nemve_NV2.25999.1:0.0106484927)0/56:0.0000026602,Stypi_XP_022780413.1:0.0479977151)94.8/99:0.1144457103,(((((((((Brafl_XP_035683186.1:0.0351768124,(((Casxa_jgi_Casxa1_23848:0.0104729175,(Rhoes_XP_065052199.1:0.0000010012,Aurco_scaffold16.g749.t1:0.0000010012)79.2/99:0.0104424657)78.2/92:0.0101116213,(Sanma_ENSXQXP00000024501.1_ENSXQXG00000017190.1:0.0000020168,(Tripe_ENA_GHAQ01132272_GHAQ01132272.1:0.0000022367,((Clyhe_Chem_XLOC_044586:0.0117613373,Hydvu_HVAEP6.G011613:0.0533877337)84.9/100:0.0192482283,Hydsy_XP_057304130.1:0.0000021196)98.9/100:0.0728468535)82.3/95:0.0102331875)0/51:0.0000024006)32.9/71:0.0109735658,PnocFOXA:0.0096809852)99.9/100:0.1494268751)84.5/53:0.0288012278,Brafl_XP_035684564.1:0.0875519149)74.5/50:0.0129996041,Lytva_XP_041469659.1:0.0426753568)76.7/50:0.0134434569,(Maggi_XP_011413445.1:0.0159784087,Owefu_CAH1792690.1:0.0159013414)90.4/100:0.0316220110)79.2/50:0.0184755119,((Triad_B3S1K8_B3S1K8_TRIAD:0.1028085770,(Q9Y261_FOXA2_HUMAN:0.0217526339,(P55317_FOXA1_HUMAN:0.0285634027,P55318_FOXA3_HUMAN:0.1460089824)89.3/98:0.0507669060)80.9/97:0.0204024218)0/81:0.0000026973,Dapma_XP_032799237.1:0.1007944622)14.7/70:0.0105741941)96.2/59:0.0550785227,Stypi_XP_022789920.1:0.0171406788)79.4/60:0.0151530188,(Exada_XP_020893103.1:0.0000010012,Nemve_NV2.11441.1:0.0000028855)0/68:0.0000022304)98/99:0.2302635277,(((((((Brafl_XP_035679441.1:0.0628888460,Owefu_CAH1779694.1:0.1378067130)64.7/56:0.0229244881,(Maggi_XP_011417585.2:0.0309596020,Lytva_XP_041454579.1:0.1607073629)83.9/77:0.0456702244)76.8/55:0.0207641386,(Q12948_FOXC1_HUMAN:0.0241064262,Q99958_FOXC2_HUMAN:0.1008634299)90.5/97:0.0719108687)73.9/76:0.0513711545,Dapma_XP_032776812.2:0.0575341855)77.4/78:0.0452177659,((Exada_XP_020902419.1:0.0388429504,(Nemve_NV2.30002.1:0.0248095057,Stypi_XP_022799810.1:0.1743311395)51.1/67:0.0385218724)87/97:0.0648280300,(((Hydvu_HVAEP15.G027359:0.1081484447,Clyhe_Chem_XLOC_001095:0.0789351024)74/96:0.0220151743,Hydsy_XP_057291876.1:0.0488702318)95.2/97:0.1079368235,(((PnocFOXC:0.0179708624,(Aurco_scaffold6.g58.t1:0.0498961682,(Rhoes_XP_065065228.1:0.0350532715,Casxa_jgi_Casxa1_3372:0.1396780262)55.7/96:0.0531811492)95.6/99:0.0924052506)86.4/95:0.0397618080,Sanma_ENSXQXP00000029581.1_ENSXQXG00000020522.1:0.0467707020)85.7/99:0.0497869006,O43638_FOXS1_HUMAN:0.6106406583)13.4/60:0.0187809338)95.7/61:0.1445213296)84.5/60:0.0755712030)86.8/91:0.1582195374,Triad_B3S7D8_B3S7D8_TRIAD:0.3040046239)99.5/100:0.4415523998,((Lytva_XP_041464485.1:0.1662642985,(((Maggi_XP_011441298.1:0.0711933448,Owefu_CAH1797111.1:0.2249242494)75.5/98:0.0168238109,Owefu_CAH1797164.1:0.0424100018)62.7/98:0.0492198423,Brafl_XP_035667310.1:1.1007421231)20.8/68:0.0461133634)78.6/84:0.1000223132,((Exada_XP_020904840.1:0.0909908298,Nemve_NV2.23888.1:0.0475928299)79.5/97:0.0930866695,Stypi_XP_022780476.1:0.1474564187)99.6/100:0.4638983381)93.4/94:0.2212305719)85.2/93:0.1197925553)86.3/97:0.1008187148,((((Clyhe_Chem_XLOC_042605:0.2125741601,Hydsy_XP_057315801.1:0.1069701441)90.3/93:0.0963866961,((Clyhe_Chem_XLOC_018078:0.0000020927,Hydsy_XP_057315802.1:0.0745894780)73.1/99:0.0229147244,Hydvu_HVAEP12.G022887:0.3949095288)0/32:0.0216842468)87/97:0.0898726465,((((Sanma_ENSXQXP00000011504.1_ENSXQXG00000008379.1:0.0155618947,PnocFOXB1:0.0275946503)89.6/100:0.0313083754,Aur_foxB1_best_hit:0.0000028471)81.1/88:0.0182334681,(FoxB1_NW_027019762.1:0.0000020403,((Sanma_ENSXQXP00000012300.1_ENSXQXG00000008891.1:0.1460009603,PnocFOXB2:0.0867371734)96.8/100:0.2004226104,((Casxa_jgi_Casxa1_18156:0.0757534663,Rhoes_XP_065066175.1:0.1245914799)94/100:0.0938124086,Aurco_scaffold13.g642.t1:0.0689322160)92/100:0.1501583941)100/100:0.4032387258)84.1/92:0.0130299651)85.1/78:0.0545243724,Tripe_ENA_GHAQ01133162_GHAQ01133162.1:0.1131704558)71.5/71:0.0549380051)91.6/84:0.2354373678,(Aurco_scaffold8.g352.t1:0.4594341835,Sanma_ENSXQXP00000015714.1_ENSXQXG00000011219.1:0.5555362661)97.9/100:0.4083220410)93.9/99:0.2879148879)85.8/87:0.1073762489)94.4/76:0.1162917522,Q99853_FOXB1_HUMAN:0.0396625314)66.4/43:0.0135157372,Triad_B3RSE6_B3RSE6_TRIAD:0.6411053027)0/45:0.0041567153,Q5VYV0_FOXB2_HUMAN:0.0694725663)87.7/75:0.0601944930,(Owefu_CAH1796923.1:0.0255410646,((Dapma_XP_032779745.2:0.4241858504,Lytva_XP_041465359.1:0.1227100018)75.5/82:0.0499988021,Maggi_XP_011445364.3:0.0749038197)83.6/82:0.0425851081)41/68:0.0402300174);
+
+CONSENSUS TREE
+--------------
+
+Consensus tree is constructed from 10000 bootstrap trees
+Log-likelihood of consensus tree: -5341.922605
+Robinson-Foulds distance between ML tree and consensus tree: 6
+
+Branches with support >0.000000% are kept (extended consensus)
+Branch lengths are optimized by maximum likelihood on original alignment
+Numbers in parentheses are bootstrap supports (%)
+
++--Brafl_XP_035666163.1
+|
+|           +--Exada_XP_020904925.1
+|        +--| (56)
+|        |  +--Nemve_NV2.25999.1
+|     +--| (99)
+|     |  +--Stypi_XP_022780413.1
+|  +--| (76)
+|  |  |                             +--Brafl_XP_035683186.1
+|  |  |                          +--| (53)
+|  |  |                          |  |         +--Casxa_jgi_Casxa1_23848
+|  |  |                          |  |      +--| (92)
+|  |  |                          |  |      |  |  +--Rhoes_XP_065052199.1
+|  |  |                          |  |      |  +--| (99)
+|  |  |                          |  |      |     +--Aurco_scaffold16.g749.t1
+|  |  |                          |  |   +--| (71)
+|  |  |                          |  |   |  |  +--Sanma_ENSXQXP00000024501.1_ENSXQXG00000017190.1
+|  |  |                          |  |   |  +--| (51)
+|  |  |                          |  |   |     |  +--Tripe_ENA_GHAQ01132272_GHAQ01132272.1
+|  |  |                          |  |   |     +--| (95)
+|  |  |                          |  |   |        |     +--Clyhe_Chem_XLOC_044586
+|  |  |                          |  |   |        |  +--| (100)
+|  |  |                          |  |   |        |  |  +--Hydvu_HVAEP6.G011613
+|  |  |                          |  |   |        +--| (100)
+|  |  |                          |  |   |           +--Hydsy_XP_057304130.1
+|  |  |                          |  +---| (100)
+|  |  |                          |      +--PnocFOXA
+|  |  |                       +--| (50)
+|  |  |                       |  +--Brafl_XP_035684564.1
+|  |  |                    +--| (50)
+|  |  |                    |  +--Lytva_XP_041469659.1
+|  |  |                 +--| (50)
+|  |  |                 |  |  +--Maggi_XP_011413445.1
+|  |  |                 |  +--| (100)
+|  |  |                 |     +--Owefu_CAH1792690.1
+|  |  |              +--| (59)
+|  |  |              |  |     +--Triad_B3S1K8_B3S1K8_TRIAD
+|  |  |              |  |  +--| (81)
+|  |  |              |  |  |  |  +--Q9Y261_FOXA2_HUMAN
+|  |  |              |  |  |  +--| (97)
+|  |  |              |  |  |     |  +--P55317_FOXA1_HUMAN
+|  |  |              |  |  |     +--| (98)
+|  |  |              |  |  |        +---P55318_FOXA3_HUMAN
+|  |  |              |  +--| (70)
+|  |  |              |     +--Dapma_XP_032799237.1
+|  |  |           +--| (60)
+|  |  |           |  +--Stypi_XP_022789920.1
+|  |  |     +-----| (99)
+|  |  |     |     |  +--Exada_XP_020893103.1
+|  |  |     |     +--| (68)
+|  |  |     |        +--Nemve_NV2.11441.1
+|  |  |  +--| (97)
+|  |  |  |  |                               +--Brafl_XP_035679441.1
+|  |  |  |  |                            +--| (56)
+|  |  |  |  |                            |  +---Owefu_CAH1779694.1
+|  |  |  |  |                         +--| (55)
+|  |  |  |  |                         |  |  +--Maggi_XP_011417585.2
+|  |  |  |  |                         |  +--| (77)
+|  |  |  |  |                         |     +---Lytva_XP_041454579.1
+|  |  |  |  |                      +--| (76)
+|  |  |  |  |                      |  |  +--Q12948_FOXC1_HUMAN
+|  |  |  |  |                      |  +--| (97)
+|  |  |  |  |                      |     +--Q99958_FOXC2_HUMAN
+|  |  |  |  |                   +--| (78)
+|  |  |  |  |                   |  +--Dapma_XP_032776812.2
+|  |  |  |  |               +---| (91)
+|  |  |  |  |               |   |     +--Exada_XP_020902419.1
+|  |  |  |  |               |   |  +--| (97)
+|  |  |  |  |               |   |  |  |  +--Nemve_NV2.30002.1
+|  |  |  |  |               |   |  |  +--| (67)
+|  |  |  |  |               |   |  |     +----Stypi_XP_022799810.1
+|  |  |  |  |               |   +--| (60)
+|  |  |  |  |               |      |         +--Hydvu_HVAEP15.G027359
+|  |  |  |  |               |      |      +--| (96)
+|  |  |  |  |               |      |      |  +--Clyhe_Chem_XLOC_001095
+|  |  |  |  |               |      |   +--| (97)
+|  |  |  |  |               |      |   |  +--Hydsy_XP_057291876.1
+|  |  |  |  |               |      +---| (61)
+|  |  |  |  |               |          |        +--PnocFOXC
+|  |  |  |  |               |          |     +--| (95)
+|  |  |  |  |               |          |     |  |  +--Aurco_scaffold6.g58.t1
+|  |  |  |  |               |          |     |  +--| (99)
+|  |  |  |  |               |          |     |     |  +--Rhoes_XP_065065228.1
+|  |  |  |  |               |          |     |     +--| (96)
+|  |  |  |  |               |          |     |        +---Casxa_jgi_Casxa1_3372
+|  |  |  |  |               |          |  +--| (99)
+|  |  |  |  |               |          |  |  +--Sanma_ENSXQXP00000029581.1_ENSXQXG00000020522.1
+|  |  |  |  |               |          +--| (60)
+|  |  |  |  |               |             +-----------------O43638_FOXS1_HUMAN
+|  |  |  |  |  +------------| (100)
+|  |  |  |  |  |            +--------Triad_B3S7D8_B3S7D8_TRIAD
+|  |  |  |  +--| (93)
+|  |  |  |     |        +----Lytva_XP_041464485.1
+|  |  |  |     |     +--| (84)
+|  |  |  |     |     |  |        +--Maggi_XP_011441298.1
+|  |  |  |     |     |  |     +--| (98)
+|  |  |  |     |     |  |     |  +-----Owefu_CAH1797111.1
+|  |  |  |     |     |  |  +--| (98)
+|  |  |  |     |     |  |  |  +--Owefu_CAH1797164.1
+|  |  |  |     |     |  +--| (68)
+|  |  |  |     |     |     +--------------------------------Brafl_XP_035667310.1
+|  |  |  |     +-----| (94)
+|  |  |  |           |               +--Exada_XP_020904840.1
+|  |  |  |           |            +--| (97)
+|  |  |  |           |            |  +--Nemve_NV2.23888.1
+|  |  |  |           +------------| (100)
+|  |  |  |                        +---Stypi_XP_022780476.1
+|  |  +--| (87)
+|  |     |                       +-----Clyhe_Chem_XLOC_042605
+|  |     |                    +--| (93)
+|  |     |                    |  +--Hydsy_XP_057315801.1
+|  |     |                 +--| (65)
+|  |     |                 |  +----------Hydvu_HVAEP12.G022887
+|  |     |              +--| (97)
+|  |     |              |  |  +--Clyhe_Chem_XLOC_018078
+|  |     |              |  +--| (99)
+|  |     |              |     +--Hydsy_XP_057315802.1
+|  |     |       +------| (84)
+|  |     |       |      |           +--Sanma_ENSXQXP00000011504.1_ENSXQXG00000008379.1
+|  |     |       |      |        +--| (100)
+|  |     |       |      |        |  +--PnocFOXB1
+|  |     |       |      |     +--| (88)
+|  |     |       |      |     |  +--Aur_foxB1_best_hit
+|  |     |       |      |  +--| (78)
+|  |     |       |      |  |  |  +--FoxB1_NW_027019762.1
+|  |     |       |      |  |  +--| (92)
+|  |     |       |      |  |     |                 +---Sanma_ENSXQXP00000012300.1_ENSXQXG00000008891.1
+|  |     |       |      |  |     |           +-----| (100)
+|  |     |       |      |  |     |           |     +--PnocFOXB2
+|  |     |       |      |  |     +-----------| (100)
+|  |     |       |      |  |                 |      +--Casxa_jgi_Casxa1_18156
+|  |     |       |      |  |                 |   +--| (100)
+|  |     |       |      |  |                 |   |  +--Rhoes_XP_065066175.1
+|  |     |       |      |  |                 +---| (100)
+|  |     |       |      |  |                     +--Aurco_scaffold13.g642.t1
+|  |     |       |      +--| (71)
+|  |     |       |         +--Tripe_ENA_GHAQ01133162_GHAQ01133162.1
+|  |     +-------| (99)
+|  |             |           +-------------Aurco_scaffold8.g352.t1
+|  |             +-----------| (100)
+|  |                         +---------------Sanma_ENSXQXP00000015714.1_ENSXQXG00000011219.1
++--| (75)
+|  |  +------------------Triad_B3RSE6_B3RSE6_TRIAD
+|  +--| (47)
+|     |  +--Q99853_FOXB1_HUMAN
+|     +--| (22)
+|        +--Q5VYV0_FOXB2_HUMAN
+|
+|  +--Owefu_CAH1796923.1
++--| (68)
+   |     +-----------Dapma_XP_032779745.2
+   |  +--| (82)
+   |  |  +--Lytva_XP_041465359.1
+   +--| (82)
+      +--Maggi_XP_011445364.3
+
+
+Consensus tree in newick format: 
+
+(Brafl_XP_035666163.1:0.1325702513,((((Exada_XP_020904925.1:0.0211493351,Nemve_NV2.25999.1:0.0105621921)56:0.0000020393,Stypi_XP_022780413.1:0.0480183382)99:0.0937443092,(((((((((Brafl_XP_035683186.1:0.0352185956,(((Casxa_jgi_Casxa1_23848:0.0104892348,(Rhoes_XP_065052199.1:0.0000020281,Aurco_scaffold16.g749.t1:0.0000020281)99:0.0104588757)92:0.0101266698,(Sanma_ENSXQXP00000024501.1_ENSXQXG00000017190.1:0.0000020281,(Tripe_ENA_GHAQ01132272_GHAQ01132272.1:0.0000020281,((Clyhe_Chem_XLOC_044586:0.0117778260,Hydvu_HVAEP6.G011613:0.0534700919)100:0.0192777553,Hydsy_XP_057304130.1:0.0000020281)100:0.0729714336)95:0.0102489024)51:0.0000020281)71:0.0109810880,PnocFOXA:0.0097046755)100:0.1496584747)53:0.0288585095,Brafl_XP_035684564.1:0.0876897387)50:0.0130184708,Lytva_XP_041469659.1:0.0427421435)50:0.0134641033,(Maggi_XP_011413445.1:0.0159982392,Owefu_CAH1792690.1:0.0159276684)100:0.0316740961)50:0.0185040208,((Triad_B3S1K8_B3S1K8_TRIAD:0.1029993630,(Q9Y261_FOXA2_HUMAN:0.0217860817,(P55317_FOXA1_HUMAN:0.0285923731,P55318_FOXA3_HUMAN:0.1462332658)98:0.0508507015)97:0.0204313841)81:0.0000023150,Dapma_XP_032799237.1:0.1009593097)70:0.0105905882)59:0.0551629837,Stypi_XP_022789920.1:0.0171648100)60:0.0151801739,(Exada_XP_020893103.1:0.0000020281,Nemve_NV2.11441.1:0.0000020281)68:0.0000024578)99:0.2281097924,(((((((Brafl_XP_035679441.1:0.0629842726,Owefu_CAH1779694.1:0.1380274558)56:0.0229700194,(Maggi_XP_011417585.2:0.0310261631,Lytva_XP_041454579.1:0.1609609052)77:0.0457103568)55:0.0207523305,(Q12948_FOXC1_HUMAN:0.0241484617,Q99958_FOXC2_HUMAN:0.1010180283)97:0.0720055858)76:0.0515375285,Dapma_XP_032776812.2:0.0574766785)78:0.0456710046,((Exada_XP_020902419.1:0.0389093265,(Nemve_NV2.30002.1:0.0248445284,Stypi_XP_022799810.1:0.1746471378)67:0.0385712456)97:0.0649753221,(((Hydvu_HVAEP15.G027359:0.1083090975,Clyhe_Chem_XLOC_001095:0.0790709959)96:0.0220472279,Hydsy_XP_057291876.1:0.0489379422)97:0.1081121489,(((PnocFOXC:0.0179990489,(Aurco_scaffold6.g58.t1:0.0499725880,(Rhoes_XP_065065228.1:0.0351120126,Casxa_jgi_Casxa1_3372:0.1399211473)96:0.0532481196)99:0.0925427209)95:0.0398326883,Sanma_ENSXQXP00000029581.1_ENSXQXG00000020522.1:0.0468286402)99:0.0498868224,O43638_FOXS1_HUMAN:0.6117657877)60:0.0188104003)61:0.1445906132)60:0.0753265192)91:0.1599952488,Triad_B3S7D8_B3S7D8_TRIAD:0.3027665664)100:0.4419564689,((Lytva_XP_041464485.1:0.1676908876,(((Maggi_XP_011441298.1:0.0710362077,Owefu_CAH1797111.1:0.2256939446)98:0.0169083815,Owefu_CAH1797164.1:0.0423883920)98:0.0494282233,Brafl_XP_035667310.1:1.1038919770)68:0.0451586589)84:0.1011718709,((Exada_XP_020904840.1:0.0912280818,Nemve_NV2.23888.1:0.0475972032)97:0.0929551199,Stypi_XP_022780476.1:0.1479621135)100:0.4631834252)94:0.2247032584)93:0.1232847123)97:0.1168888208,(((((Clyhe_Chem_XLOC_042605:0.2153876865,Hydsy_XP_057315801.1:0.1075182258)93:0.0970619706,Hydvu_HVAEP12.G022887:0.3872349217)65:0.0123596868,(Clyhe_Chem_XLOC_018078:0.0000023427,Hydsy_XP_057315802.1:0.0747070065)99:0.0285913860)97:0.0993168740,((((Sanma_ENSXQXP00000011504.1_ENSXQXG00000008379.1:0.0155847359,PnocFOXB1:0.0276378141)100:0.0313600268,Aur_foxB1_best_hit:0.0000020281)88:0.0184859631,(FoxB1_NW_027019762.1:0.0000020393,((Sanma_ENSXQXP00000012300.1_ENSXQXG00000008891.1:0.1462391123,PnocFOXB2:0.0868918669)100:0.2007940561,((Casxa_jgi_Casxa1_18156:0.0758670063,Rhoes_XP_065066175.1:0.1247878245)100:0.0939837402,Aurco_scaffold13.g642.t1:0.0690419635)100:0.1504312319)100:0.4039989127)92:0.0125560151)78:0.0492426931,Tripe_ENA_GHAQ01133162_GHAQ01133162.1:0.1193518562)71:0.0579074464)84:0.2339507478,(Aurco_scaffold8.g352.t1:0.4684641712,Sanma_ENSXQXP00000015714.1_ENSXQXG00000011219.1:0.5510574280)100:0.4136886648)99:0.2841294809)87:0.1104762611)76:0.1244460044,(Triad_B3RSE6_B3RSE6_TRIAD:0.6413976534,(Q99853_FOXB1_HUMAN:0.0529725641,Q5VYV0_FOXB2_HUMAN:0.0720069640)22:0.0000025760)47:0.0206149143)75:0.0393085898,(Owefu_CAH1796923.1:0.0293427350,((Dapma_XP_032779745.2:0.4257763046,Lytva_XP_041465359.1:0.1226040912)82:0.0509032821,Maggi_XP_011445364.3:0.0734028692)82:0.0402204997)68:0.0409786521);
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t /lisc/data/scratch/molevo/peyroche/forkhead/FOXABC/results//foxABC_local_trimal.treefile -m "Q.INSECT+I{0.163873}+G4{0.717732}" --length 120
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s /lisc/data/scratch/molevo/peyroche/forkhead/FOXABC/alignment/FOXABC_prots_all_mafft_local_trimal.fasta --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s /lisc/data/scratch/molevo/peyroche/forkhead/FOXABC/alignment/FOXABC_prots_all_mafft_local_trimal.fasta --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Fri Jun 26 15:51:01 2026
+Total CPU time used: 358.374928 seconds (0h:5m:58s)
+Total wall-clock time used: 138.8869834 seconds (0h:2m:18s)
+

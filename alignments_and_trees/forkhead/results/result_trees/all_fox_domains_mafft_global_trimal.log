@@ -1,0 +1,2595 @@
+IQ-TREE version 3.0.1 for Linux x86 64-bit built May  5 2025
+Developed by Bui Quang Minh, Thomas Wong, Nhan Ly-Trong, Huaiyan Ren
+Contributed by Lam-Tung Nguyen, Dominik Schrempf, Chris Bielow,
+Olga Chernomor, Michael Woodhams, Diep Thi Hoang, Heiko Schmidt
+
+Host:    node-b10.lisc (AVX512, FMA3, 376 GB RAM)
+Command: /lisc/opt/sw/software/IQ-TREE/3.0.1/bin/iqtree3_intel -s /lisc/data/scratch/molevo/peyroche/forkhead/alignment/all_fox_domains_renamed_mafft_global_trimal.fasta --seqtype AA -T 16 -B 10000 -m MFP --alrt 10000 --prefix /lisc/data/scratch/molevo/peyroche/forkhead/results//all_fox_domains_mafft_global_trimal
+Seed:    637329 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Fri Jun  5 14:21:33 2026
+Kernel:  AVX+FMA - 16 threads (16 CPU cores detected)
+
+Reading alignment file /lisc/data/scratch/molevo/peyroche/forkhead/alignment/all_fox_domains_renamed_mafft_global_trimal.fasta ... Fasta format detected
+Reading fasta file: done in 0.00108455 secs using 87.96% CPU
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.000803402 secs using 97.96% CPU
+Alignment has 535 sequences with 75 columns, 75 distinct patterns
+66 parsimony-informative, 5 singleton sites, 4 constant sites
+                                                       Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 7.45188e-05 secs using 805.2% CPU
+   1  Ampqu_XP_003384559.2                                     6.67%    passed     99.94%
+   2  Subdo_SUB4.g6430.t1.p1|complete                          6.67%    passed     99.98%
+   3  Spola_SpoLa_ENSLPGP00000006943.1_ENSLPGG00000005072.1    6.67%    passed     99.98%
+   4  Ampqu_XP_003386405.1                                     6.67%    passed     99.38%
+   5  Spola_SpoLa_ENSLPGP00000025188.1_ENSLPGG00000017789.1    6.67%    passed     99.75%
+   6  Subdo_SUB4.g9386.t1.p1|complete                          6.67%    passed     96.07%
+   7  Ampqu_XP_003387169.1                                     6.67%    passed     99.99%
+   8  Subdo_SUB4.g10182.t1.p1|complete                         6.67%    passed     99.99%
+   9  Spola_SpoLa_ENSLPGP00000022225.1_ENSLPGG00000015690.1    6.67%    passed     99.96%
+  10  Brafl_XP_035676344.1                                     6.67%    passed     97.62%
+  11  Lytva_XP_041469507.1                                     6.67%    passed     98.92%
+  12  Dapma_XP_032791385.2                                     6.67%    passed     99.38%
+  13  Maggi_XP_011427689.3                                     6.67%    passed     99.27%
+  14  Owefu_CAH1792531.1                                       6.67%    passed     95.62%
+  15  homsa_P55316_FOXG1_HUMAN                                 6.67%    passed     97.62%
+  16  Triad_B3S585_B3S585_TRIAD                                6.67%    passed     95.98%
+  17  Exada_XP_020909243.2                                     6.67%    passed     95.69%
+  18  Nemve_NV2.20035.1                                        6.67%    passed     98.64%
+  19  Stypi_XP_022799069.1                                     6.67%    passed     97.34%
+  20  Mnele_evm.model.c12.320                                  6.67%    passed     99.99%
+  21  Mnele_evm.model.c12.597                                  6.67%    passed     99.13%
+  22  Caeel_Q22510_FKH02_CAEEL                                 6.67%    passed     99.99%
+  23  Triad_B3RJU0_B3RJU0_TRIAD                                6.67%    passed     97.33%
+  24  Eupdu_EU_stt_00015730                                    6.67%    passed     96.43%
+  25  Ampqu_XP_011407693.1                                     6.67%    passed     99.99%
+  26  Spola_SpoLa_ENSLPGP00000009609.1_ENSLPGG00000006965.1    6.67%    passed     99.44%
+  27  Subdo_SUB4.g18765.t1.p1|complete                         6.67%    passed     99.90%
+  28  Eupdu_EU_stt_00018935                                    6.67%    passed     99.71%
+  29  Aurco_scaffold19.g80.t1                                  6.67%    passed     99.14%
+  30  Rhoes_XP_065060653.1                                     6.67%    passed     99.64%
+  31  Sanma_ENSXQXP00000023434.1_ENSXQXG00000016538.1          6.67%    passed     99.64%
+  32  Tripe_ENA_GHAQ01075739_GHAQ01075739.1                    6.67%    passed     99.72%
+  33  Clyhe_Chem_XLOC_004809                                   6.67%    passed     99.77%
+  34  Aurco_scaffold19.g81.t1                                  6.67%    passed     96.53%
+  35  Casxa_jgi_Casxa1_5231                                    6.67%    passed     99.65%
+  36  Rhoes_XP_065060654.1                                     6.67%    passed     99.62%
+  37  Rhoes_XP_065061122.1                                     6.67%    passed     99.12%
+  38  Sanma_ENSXQXP00000023261.1_ENSXQXG00000016430.1          6.67%    passed     99.96%
+  39  PnocFOXL2                                                6.67%    passed     99.68%
+  40  Brafl_XP_035695832.1                                     6.67%    passed     98.23%
+  41  Nemve_NV2.14459.1                                        6.67%    passed     99.31%
+  42  Stypi_XP_022810126.1                                     6.67%    passed     99.93%
+  43  Exada_XP_020913639.1                                     6.67%    passed     99.90%
+  44  homsa_P58012_FOXL2_HUMAN                                 6.67%    passed     99.79%
+  45  Maggi_NP_001295827.1                                     6.67%    passed     99.86%
+  46  Owefu_CAH1776243.1                                       6.67%    passed     96.33%
+  47  Dapma_XP_032776905.2                                     6.67%    passed     94.39%
+  48  Lytva_XP_041479434.1                                     6.67%    passed     99.96%
+  49  Aurco_scaffold1.g144.t1                                  6.67%    passed     99.84%
+  50  Casxa_jgi_Casxa1_1805                                    6.67%    passed     99.84%
+  51  Rhoes_XP_065058170.1                                     6.67%    passed     99.84%
+  52  Sanma_ENSXQXP00000009239.1_ENSXQXG00000006953.1          6.67%    passed     99.84%
+  53  PnocFOXD                                                 6.67%    passed     99.84%
+  54  Tripe_ENA_GHAQ01119036_GHAQ01119036.1                    6.67%    passed     99.36%
+  55  Brafl_XP_035698942.1                                     6.67%    passed     99.13%
+  56  Lytva_XP_041475489.1                                     6.67%    passed     99.72%
+  57  Maggi_XP_011446328.3                                     6.67%    passed     99.89%
+  58  Owefu_CAH1773009.1                                       6.67%    passed     95.75%
+  59  Dapma_XP_032776766.2                                     6.67%    passed     99.88%
+  60  homsa_Q3SYB3_FX4L6_HUMAN                                 6.67%    passed     99.58%
+  61  homsa_Q9NU39_FX4L1_HUMAN                                 6.67%    passed     99.33%
+  62  homsa_Q12950_FOXD4_HUMAN                                 6.67%    passed     99.03%
+  63  homsa_Q9UJU5_FOXD3_HUMAN                                 6.67%    passed     99.93%
+  64  Triad_B3S118_B3S118_TRIAD                                6.67%    passed     99.56%
+  65  Hydsy_XP_057313351.1                                     6.67%    passed     99.36%
+  66  homsa_O60548_FOXD2_HUMAN                                 6.67%    passed     99.97%
+  67  Exada_XP_020891812.1                                     6.67%    passed     98.21%
+  68  Stypi_XP_022800147.1                                     6.67%    passed     96.76%
+  69  Caeel_Q18694_UN130_CAEEL                                 6.67%    passed     97.19%
+  70  Aurco_scaffold6.g58.t1                                   6.67%    passed     99.94%
+  71  Rhoes_XP_065065228.1                                     6.67%    passed     99.44%
+  72  PnocFOXC                                                 6.67%    passed     99.83%
+  73  Sanma_ENSXQXP00000029581.1_ENSXQXG00000020522.1          6.67%    passed     99.91%
+  74  Casxa_jgi_Casxa1_3372                                    6.67%    passed     99.80%
+  75  Clyhe_Chem_XLOC_001095                                   6.67%    passed     99.74%
+  76  Hydsy_XP_057291876.1                                     6.67%    passed     99.17%
+  77  Hydvu_HVAEP15.G027359                                    6.67%    passed     99.21%
+  78  Exada_XP_020902419.1                                     6.67%    passed     99.13%
+  79  Nemve_NV2.30002.1                                        6.67%    passed     99.90%
+  80  Stypi_XP_022799810.1                                     6.67%    passed     99.93%
+  81  Brafl_XP_035679441.1                                     6.67%    passed     99.72%
+  82  Maggi_XP_011417585.2                                     6.67%    passed     99.11%
+  83  Lytva_XP_041454579.1                                     6.67%    passed     96.34%
+  84  Owefu_CAH1779694.1                                       6.67%    passed     99.98%
+  85  Dapma_XP_032776812.2                                     5.33%    passed     99.95%
+  86  homsa_Q12948_FOXC1_HUMAN                                 6.67%    passed     99.86%
+  87  homsa_Q99958_FOXC2_HUMAN                                 6.67%    passed     99.97%
+  88  Eupdu_EU_stt_00018522                                    6.67%    passed     99.94%
+  89  Mnele_evm.model.c4.217                                   6.67%    passed     99.54%
+  90  Brafl_XP_035680129.1                                     6.67%    passed     96.84%
+  91  Lytva_XP_041454578.1                                     6.67%    passed     99.16%
+  92  Maggi_XP_011417586.3                                     6.67%    passed     99.79%
+  93  Owefu_CAH1779695.1                                       6.67%    passed     99.98%
+  94  Dapma_XP_045030529.1                                     6.67%    passed     95.67%
+  95  homsa_Q12952_FOXL1_HUMAN                                 6.67%    passed     96.41%
+  96  Brafl_XP_035699484.1                                     6.67%    passed     99.64%
+  97  Eupdu_EU_stt_00029579                                    6.67%    passed     99.78%
+  98  Eupdu_EU_stt_00029581                                    6.67%    passed     99.99%
+  99  Mnele_evm.model.c9.1139                                  6.67%    passed     98.77%
+ 100  Brafl_XP_035697506.1                                     6.67%    passed     99.90%
+ 101  homsa_O43638_FOXS1_HUMAN                                 6.67%    passed     96.57%
+ 102  Brafl_XP_035674207.1                                     6.67%    passed     98.22%
+ 103  Lytva_XP_041477593.1                                     6.67%    passed     99.99%
+ 104  homsa_A8MTJ6_FOXI3_HUMAN                                 6.67%    passed     99.61%
+ 105  homsa_Q6ZQN5_FOXI2_HUMAN                                 6.67%    passed     98.47%
+ 106  homsa_Q12951_FOXI1_HUMAN                                 6.67%    passed     95.82%
+ 107  homsa_O00358_FOXE1_HUMAN                                 6.67%    passed     92.80%
+ 108  homsa_Q13461_FOXE3_HUMAN                                 6.67%    passed     66.25%
+ 109  Exada_XP_020905431.1                                     6.67%    passed     99.87%
+ 110  Nemve_NV2.30003.1                                        6.67%    passed     99.54%
+ 111  Exada_XP_020914209.1                                     6.67%    passed    100.00%
+ 112  Nemve_NV2.7345.1                                         6.67%    passed     98.97%
+ 113  Stypi_XP_022781401.1                                     6.67%    passed     99.99%
+ 114  Stypi_XP_022781399.1                                     6.67%    passed     99.66%
+ 115  Hydsy_XP_057297593.1                                     6.67%    passed     96.72%
+ 116  Aurco_scaffold16.g749.t1                                 6.67%    passed     97.37%
+ 117  Rhoes_XP_065052199.1                                     6.67%    passed     97.37%
+ 118  Hydsy_XP_057304130.1                                     6.67%    passed     89.52%
+ 119  Tripe_ENA_GHAQ01132272_GHAQ01132272.1                    6.67%    passed     90.75%
+ 120  Sanma_ENSXQXP00000024501.1_ENSXQXG00000017190.1          6.67%    passed     89.93%
+ 121  PnocFOXA                                                 6.67%    passed     89.93%
+ 122  Casxa_jgi_Casxa1_23848                                   6.67%    passed     96.42%
+ 123  Clyhe_Chem_XLOC_044586                                   6.67%    passed     95.74%
+ 124  Hydvu_HVAEP6.G011613                                     6.67%    passed     97.56%
+ 125  Dapma_XP_032799237.1                                     6.67%    passed     98.48%
+ 126  Brafl_XP_035683186.1                                     6.67%    passed     97.69%
+ 127  Exada_XP_020893103.1                                     6.67%    passed     95.92%
+ 128  Nemve_NV2.11441.1                                        6.67%    passed     95.92%
+ 129  Stypi_XP_022789920.1                                     6.67%    passed     95.44%
+ 130  Maggi_XP_011413445.1                                     6.67%    passed     95.05%
+ 131  Owefu_CAH1792690.1                                       6.67%    passed     95.05%
+ 132  Lytva_XP_041469659.1                                     6.67%    passed     58.82%
+ 133  Brafl_XP_035684564.1                                     6.67%    passed     96.53%
+ 134  homsa_P55317_FOXA1_HUMAN                                 6.67%    passed     98.02%
+ 135  homsa_P55318_FOXA3_HUMAN                                 6.67%    passed     99.09%
+ 136  homsa_Q9Y261_FOXA2_HUMAN                                 6.67%    passed     92.34%
+ 137  Triad_B3S1K8_B3S1K8_TRIAD                                6.67%    passed     82.73%
+ 138  Caeel_Q17381_PHA4_CAEEL                                  6.67%    passed     99.30%
+ 139  Brafl_XP_035666163.1                                     6.67%    passed     96.77%
+ 140  Owefu_CAH1796923.1                                       6.67%    passed     98.87%
+ 141  Maggi_XP_011445364.3                                     6.67%    passed     97.46%
+ 142  Lytva_XP_041465359.1                                     6.67%    passed     95.78%
+ 143  homsa_Q99853_FOXB1_HUMAN                                 6.67%    passed     97.81%
+ 144  homsa_Q5VYV0_FOXB2_HUMAN                                 6.67%    passed     98.74%
+ 145  Exada_XP_020904925.1                                     6.67%    passed     93.84%
+ 146  Nemve_NV2.25999.1                                        6.67%    passed     91.69%
+ 147  Stypi_XP_022780413.1                                     6.67%    passed     82.33%
+ 148  Dapma_XP_032779745.2                                     6.67%    passed     95.56%
+ 149  Caeel_P34683_LIN31_CAEEL                                 6.67%    passed     88.84%
+ 150  Triad_B3RSE6_B3RSE6_TRIAD                                6.67%    passed     98.63%
+ 151  Exada_XP_020904840.1                                     6.67%    passed     99.60%
+ 152  Nemve_NV2.23888.1                                        6.67%    passed     99.23%
+ 153  Stypi_XP_022780476.1                                     6.67%    passed     99.01%
+ 154  Lytva_XP_041464485.1                                     6.67%    passed     99.97%
+ 155  Maggi_XP_011441298.1                                     6.67%    passed     99.73%
+ 156  Owefu_CAH1797164.1                                       6.67%    passed     99.57%
+ 157  Owefu_CAH1797111.1                                       6.67%    passed     96.84%
+ 158  Exada_XP_020891796.1                                     6.67%    passed     99.80%
+ 159  Nemve_NV2.413.1                                          6.67%    passed     91.93%
+ 160  Triad_B3S121_B3S121_TRIAD                                6.67%    passed     96.40%
+ 161  Triad_B3S7D8_B3S7D8_TRIAD                                6.67%    passed     99.91%
+ 162  Aurco_scaffold13.g642.t1                                 6.67%    passed     91.92%
+ 163  Casxa_jgi_Casxa1_18156                                   6.67%    passed     87.79%
+ 164  Rhoes_XP_065066175.1                                     6.67%    passed     99.06%
+ 165  Sanma_ENSXQXP00000012300.1_ENSXQXG00000008891.1          6.67%    passed     91.43%
+ 166  PnocFOXB2                                                6.67%    passed     96.50%
+ 167  Clyhe_Chem_XLOC_018078                                   6.67%    passed     97.19%
+ 168  Hydsy_XP_057315802.1                                     6.67%    passed     95.66%
+ 169  Hydsy_XP_057315801.1                                     6.67%    passed     93.15%
+ 170  Sanma_ENSXQXP00000011504.1_ENSXQXG00000008379.1          6.67%    passed     98.78%
+ 171  Aurco_foxB1_best_hit                                     6.67%    passed     98.78%
+ 172  PnocFOXB1                                                6.67%    passed     96.64%
+ 173  FoxB1_NW_027019762.1                                     6.67%    passed     98.15%
+ 174  Tripe_ENA_GHAQ01133162_GHAQ01133162.1                    6.67%    passed     98.72%
+ 175  Hydvu_HVAEP12.G022887                                    6.67%    passed     72.64%
+ 176  Clyhe_Chem_XLOC_042605                                   6.67%    passed     98.91%
+ 177  Brafl_XP_035667310.1                                     6.67%    passed     94.75%
+ 178  Brafl_XP_035679121.1                                     6.67%    passed     99.80%
+ 179  Dapma_XP_032776864.2                                     6.67%    passed     99.79%
+ 180  Lytva_XP_041457525.1                                     6.67%    passed     99.98%
+ 181  homsa_Q12946_FOXF1_HUMAN                                 6.67%    passed     99.93%
+ 182  homsa_Q12947_FOXF2_HUMAN                                 6.67%    passed     99.97%
+ 183  Maggi_XP_011445317.2                                     6.67%    passed     99.96%
+ 184  Owefu_CAH1779044.1                                       6.67%    passed     99.83%
+ 185  Triad_B3S7E1_B3S7E1_TRIAD                                6.67%    passed     99.90%
+ 186  Caeel_P91278_FOXF_CAEEL                                  6.67%    passed     98.01%
+ 187  Ampqu_XP_019849045.1                                     6.67%    passed     97.91%
+ 188  Subdo_SUB4.g14478.t1.p1|5prime_partial                   6.67%    passed     98.18%
+ 189  Ampqu_XP_019858442.1                                     6.67%    passed    100.00%
+ 190  Spola_SpoLa_ENSLPGP00000022980.1_ENSLPGG00000016233.1    6.67%    passed    100.00%
+ 191  Subdo_SUB4.g14328.t1.p1|complete                         6.67%    passed     99.68%
+ 192  Brafl_XP_035678955.1                                     6.67%    passed     53.82%
+ 193  Brafl_XP_035680367.1                                     6.67%    passed     89.66%
+ 194  Lytva_XP_041455583.1                                     6.67%    passed     97.10%
+ 195  Owefu_CAH1778806.1                                       6.67%    passed     95.49%
+ 196  homsa_Q9C009_FOXQ1_HUMAN                                 6.67%    passed     94.51%
+ 197  Exada_XP_020896644.1                                     6.67%    passed     94.44%
+ 198  Nemve_NV2.4570.1                                         6.67%    passed     94.44%
+ 199  Stypi_XP_022799797.1                                     6.67%    passed     99.40%
+ 200  Stypi_XP_022799809.1                                     6.67%    passed     76.33%
+ 201  Triad_B3S7D9_B3S7D9_TRIAD                                6.67%    passed     23.52%
+ 202  Ampqu_XP_003392087.1                                     6.67%    passed     96.61%
+ 203  Spola_SpoLa_ENSLPGP00000007374.1_ENSLPGG00000005367.1    6.67%    passed     83.74%
+ 204  Subdo_SUB4.g6402.t1.p1|complete                          6.67%    passed     88.82%
+ 205  Ampqu_XP_019851887.1                                    21.33%    passed     72.24%
+ 206  Aurco_scaffold13.g277.t1                                 6.67%    passed     96.02%
+ 207  Casxa_jgi_Casxa1_19467                                   6.67%    passed     87.89%
+ 208  Rhoes_XP_065065606.1                                     6.67%    passed     84.12%
+ 209  Sanma_ENSXQXP00000014510.1_ENSXQXG00000010395.1          6.67%    passed     91.27%
+ 210  PnocFOXK                                                 6.67%    passed     94.30%
+ 211  Tripe_ENA_GHAQ01016578_GHAQ01016578.1                    6.67%    passed     90.31%
+ 212  Clyhe_Chem_XLOC_029186                                   6.67%    passed     90.65%
+ 213  Hydsy_XP_057310983.1                                     6.67%    passed     96.02%
+ 214  Hydvu_HVAEP8.G015369                                     6.67%    passed     96.21%
+ 215  Brafl_XP_035695021.1                                     6.67%    passed     96.16%
+ 216  Exada_XP_020914191.1                                     6.67%    passed     96.93%
+ 217  Nemve_NV2.7400.1                                         6.67%    passed     97.05%
+ 218  Stypi_XP_022800280.1                                     6.67%    passed     98.38%
+ 219  Maggi_XP_011416099.2                                     6.67%    passed     96.40%
+ 220  Dapma_XP_032779360.2                                     6.67%    passed     95.39%
+ 221  Lytva_XP_041474647.1                                     6.67%    passed     89.70%
+ 222  homsa_P85037_FOXK1_HUMAN                                 6.67%    passed     89.56%
+ 223  homsa_Q01167_FOXK2_HUMAN                                 6.67%    passed     94.64%
+ 224  Triad_B3RMJ3_B3RMJ3_TRIAD                                6.67%    passed     96.06%
+ 225  Mnele_evm.model.c6.1089                                  6.67%    passed     98.95%
+ 226  Ampqu_XP_019849225.1                                     6.67%    passed     97.65%
+ 227  Aurco_scaffold13.g541.t1                                 6.67%    passed     99.77%
+ 228  Sanma_ENSXQXP00000016450.1_ENSXQXG00000011708.1          6.67%    passed     99.03%
+ 229  Casxa_jgi_Casxa1_18491                                   6.67%    passed     98.53%
+ 230  Rhoes_XP_065065561.1                                     6.67%    passed     98.97%
+ 231  PnocFOXJ1                                                6.67%    passed     97.91%
+ 232  Tripe_ENA_GHAQ01098555_GHAQ01098555.1                    6.67%    passed     87.01%
+ 233  Clyhe_Chem_XLOC_002186                                   6.67%    passed     97.12%
+ 234  Hydsy_XP_057311005.1                                     6.67%    passed     97.36%
+ 235  Hydvu_HVAEP8.G014722                                     6.67%    passed     96.42%
+ 236  Brafl_XP_035695335.1                                     6.67%    passed     74.70%
+ 237  Exada_XP_020903174.1                                     6.67%    passed     97.34%
+ 238  Nemve_NV2.7956.1                                         6.67%    passed     99.12%
+ 239  Stypi_XP_022784179.1                                     6.67%    passed     97.12%
+ 240  Triad_B3RN68_B3RN68_TRIAD                                6.67%    passed     99.54%
+ 241  Lytva_XP_041473097.1                                     6.67%    passed     96.32%
+ 242  Maggi_XP_011445234.1                                     6.67%    passed     99.57%
+ 243  Owefu_CAH1795068.1                                       6.67%    passed     97.37%
+ 244  Mnele_evm.model.c10.729                                  6.67%    passed     97.22%
+ 245  homsa_Q92949_FOXJ1_HUMAN                                 6.67%    passed     94.90%
+ 246  Dapma_XP_032790346.1                                     8.00%    passed     96.80%
+ 247  Subdo_SUB4.g5193.t1.p1|complete                          6.67%    passed     94.81%
+ 248  Ampqu_XP_019850221.1                                     6.67%    passed     92.88%
+ 249  Subdo_SUB4.g18527.t2.p1|complete                         6.67%    passed     93.97%
+ 250  Spola_SpoLa_ENSLPGP00000009774.1_ENSLPGG00000007078.1    6.67%    passed     87.37%
+ 251  Aurco_scaffold19.g250.t1                                 6.67%    passed     91.61%
+ 252  Rhoes_XP_065060988.1                                     6.67%    passed     87.08%
+ 253  Sanma_ENSXQXP00000020250.1_ENSXQXG00000014319.1          6.67%    passed     96.82%
+ 254  Casxa_jgi_Casxa1_5511                                    6.67%    passed     78.79%
+ 255  PnocFOXJ2/3                                              6.67%    passed     96.80%
+ 256  Brafl_XP_035697226.1                                     6.67%    passed     98.44%
+ 257  Exada_XP_020900450.1                                     6.67%    passed     99.53%
+ 258  Nemve_NV2.13336.1                                        6.67%    passed     99.78%
+ 259  Lytva_XP_041479759.1                                     6.67%    passed     98.31%
+ 260  Stypi_XP_022783463.1                                     6.67%    passed     97.90%
+ 261  Tripe_ENA_GHAQ01048157_GHAQ01048157.1                    6.67%    passed     99.95%
+ 262  Maggi_XP_011422959.2                                     6.67%    passed     89.82%
+ 263  Owefu_CAH1776062.1                                       6.67%    passed     99.88%
+ 264  homsa_Q9UPW0_FOXJ3_HUMAN                                 6.67%    passed     99.59%
+ 265  homsa_Q9P0K8_FOXJ2_HUMAN                                 8.00%    passed     95.15%
+ 266  Clyhe_Chem_TRINITY_DN48476_c0_g2_i1                      6.67%    passed     91.50%
+ 267  Hydsy_XP_057304897.1                                     6.67%    passed     97.00%
+ 268  Hydvu_HVAEP6.G011546                                     6.67%    passed     98.91%
+ 269  Triad_B3S0A6_B3S0A6_TRIAD                                6.67%    passed     99.20%
+ 270  Mnele_evm.model.c4.827                                   6.67%    passed     98.28%
+ 271  Exada_XP_020906948.1                                     6.67%    passed     75.63%
+ 272  Nemve_NV2.18631.1                                        6.67%    passed     46.20%
+ 273  Stypi_XP_022785666.1                                     6.67%    passed     97.86%
+ 274  homsa_A0A1W2PRP0_FOXL3_HUMAN                             6.67%    passed     85.53%
+ 275  Aurco_scaffold8.g352.t1                                  6.67%    passed     99.80%
+ 276  Sanma_ENSXQXP00000015714.1_ENSXQXG00000011219.1          6.67%    passed     96.48%
+ 277  Exada_XP_020917652.1                                     6.67%    passed     63.62%
+ 278  Nemve_NV2.23089.1                                        6.67%    passed     88.17%
+ 279  Stypi_XP_022780223.1                                     6.67%    passed     79.91%
+ 280  Aurco_scaffold14.g311.t1                                 6.67%    passed     97.78%
+ 281  Casxa_jgi_Casxa1_23953                                   6.67%    passed     96.31%
+ 282  Sanma_ENSXQXP00000008067.1_ENSXQXG00000006168.1          6.67%    passed     82.15%
+ 283  PnocFOX-like1                                            6.67%    passed     88.71%
+ 284  PnocFOX-like2                                            6.67%    passed     88.71%
+ 285  Maggi_XP_011444776.3                                     6.67%    passed     82.02%
+ 286  Exada_XP_020917839.1                                     6.67%    passed     96.02%
+ 287  Nemve_NV2.25991.1                                        6.67%    passed     99.81%
+ 288  Stypi_XP_022800136.1                                     6.67%    passed     92.42%
+ 289  Brafl_XP_035680103.1                                     6.67%    passed     42.81%
+ 290  Owefu_CAH1779156.1                                       6.67%    passed     97.17%
+ 291  homsa_O75593_FOXH1_HUMAN                                 6.67%    passed     50.91%
+ 292  Aurco_scaffold18.g466.t1                                 6.67%    passed     37.99%
+ 293  Aurco_scaffold3.g568.t1                                  8.00%    passed     62.24%
+ 294  Rhoes_XP_065060371.1                                     8.00%    passed     60.87%
+ 295  Casxa_jgi_Casxa1_15770                                   6.67%    passed     35.54%
+ 296  Sanma_ENSXQXP00000031108.1_ENSXQXG00000021611.1          6.67%    passed     88.19%
+ 297  PnocFOXQ2B                                               6.67%    passed     53.72%
+ 298  Tripe_ENA_GHAQ01020424_GHAQ01020424.1                    8.00%    passed     64.73%
+ 299  Aurco_scaffold3.g570.t1                                  8.00%    passed     85.13%
+ 300  Casxa_jgi_Casxa1_14671                                   8.00%    passed     84.80%
+ 301  PnocFOXQ2A                                               8.00%    passed     93.33%
+ 302  Rhoes_XP_065066505.1                                     9.33%    passed     84.36%
+ 303  Sanma_ENSXQXP00000032249.1_ENSXQXG00000022448.1          9.33%    passed     60.45%
+ 304  Tripe_ENA_GHAQ01006626_GHAQ01006626.1                    9.33%    passed     79.63%
+ 305  Tripe_ENA_GHAQ01037600_GHAQ01037600.1                    8.00%    passed     63.01%
+ 306  Clyhe_Chem_XLOC_000890                                   8.00%    passed     91.70%
+ 307  Hydsy_XP_057316929.1                                     8.00%    passed     93.85%
+ 308  Clyhe_Chem_XLOC_003681                                   6.67%    passed     25.80%
+ 309  Hydvu_HVAEP9.G016399                                     6.67%    passed     32.05%
+ 310  Hydsy_XP_057315679.1                                     6.67%    passed     76.71%
+ 311  Aurco_scaffold1.g49.t1                                   6.67%    passed     81.88%
+ 312  Casxa_jgi_Casxa1_1314                                    6.67%    passed     87.48%
+ 313  Sanma_ENSXQXP00000007747.1_ENSXQXG00000005939.1          6.67%    passed     90.90%
+ 314  PnocFOXQ2E                                               6.67%    passed     90.90%
+ 315  Rhoes_XP_065059072.1                                     6.67%    passed     92.01%
+ 316  Tripe_ENA_GHAQ01054078_GHAQ01054078.1                    6.67%    passed     96.55%
+ 317  Clyhe_Chem_XLOC_011738                                   6.67%    passed     93.36%
+ 318  Hydsy_XP_057314391.1                                     6.67%    passed     80.73%
+ 319  Hydvu_HVAEP12.G021359                                    6.67%    passed     88.16%
+ 320  Hydvu_HVAEP12.G021363                                    6.67%    passed     76.57%
+ 321  Aurco_scaffold6.g184.t1                                  6.67%    passed     36.74%
+ 322  Rhoes_XP_065064909.1                                     6.67%    passed     50.26%
+ 323  Sanma_ENSXQXP00000029362.1_ENSXQXG00000020381.1          6.67%    passed     68.89%
+ 324  PnocFOXQ2D                                               6.67%    passed     46.34%
+ 325  Casxa_jgi_Casxa1_3085                                    8.00%    passed     87.02%
+ 326  Clyhe_Chem_XLOC_004250                                   9.33%    passed     90.15%
+ 327  Tripe_ENA_GHAQ01104189_GHAQ01104189.1                    6.67%    passed     73.00%
+ 328  Aurco_scaffold8.g689.t1                                  6.67%    passed     97.01%
+ 329  Brafl_XP_035658352.1                                     6.67%    passed     93.02%
+ 330  Dapma_XP_032788162.2                                     6.67%    passed     81.47%
+ 331  Maggi_XP_011425762.3                                     6.67%    passed     75.89%
+ 332  Owefu_CAH1797153.1                                       6.67%    passed     74.14%
+ 333  Owefu_CAH1797154.1                                       6.67%    passed     70.91%
+ 334  Exada_XP_020894072.1                                     6.67%    passed     97.30%
+ 335  Nemve_NV2.13108.1                                        6.67%    passed     98.98%
+ 336  Stypi_XP_022793008.1                                     6.67%    passed     78.70%
+ 337  Stypi_XP_022793010.1                                     6.67%    passed     82.72%
+ 338  Stypi_XP_022793009.1                                     6.67%    passed     97.74%
+ 339  Exada_XP_020916973.1                                     6.67%    passed     74.97%
+ 340  Stypi_XP_022788808.1                                     6.67%    passed     96.42%
+ 341  Stypi_XP_022783718.1                                     6.67%    passed     96.71%
+ 342  Nemve_NV2.13437.1                                        6.67%    passed     98.88%
+ 343  Clyhe_Chem_XLOC_010956                                   6.67%    passed     99.77%
+ 344  Hydsy_XP_057307510.1                                     6.67%    passed     88.03%
+ 345  Hydvu_HVAEP13.G025203                                    6.67%    passed     84.28%
+ 346  Mnele_evm.model.c9.390                                   6.67%    passed     97.99%
+ 347  Brafl_XP_035677674.1                                     6.67%    passed     75.32%
+ 348  Maggi_XP_011439389.1                                     6.67%    passed     87.24%
+ 349  Brafl_XP_035685196.1                                     6.67%    passed     66.01%
+ 350  Exada_XP_020908211.1                                     6.67%    passed     75.10%
+ 351  Nemve_NV2.23678.1                                        6.67%    passed     79.63%
+ 352  Stypi_XP_022803289.1                                     6.67%    passed     94.04%
+ 353  Clyhe_Chem_XLOC_014597                                   6.67%    passed     97.74%
+ 354  Hydsy_XP_057291682.1                                     6.67%    passed     99.96%
+ 355  Rhoes_XP_065051725.1                                     6.67%    passed     99.85%
+ 356  Sanma_ENSXQXP00000023407.1_ENSXQXG00000016521.1          6.67%    passed     92.18%
+ 357  Maggi_XP_011435457.3                                     6.67%    passed     99.64%
+ 358  Owefu_CAH1791637.1                                       6.67%    passed     86.16%
+ 359  Owefu_CAH1791640.1                                       6.67%    passed     87.84%
+ 360  Owefu_CAH1772308.1                                       6.67%    passed     65.71%
+ 361  Lytva_XP_041473326.1                                     6.67%    passed     60.95%
+ 362  Owefu_CAH1796331.1                                       6.67%    passed     97.40%
+ 363  Owefu_CAH1797155.1                                       6.67%    passed     67.53%
+ 364  Eupdu_EU_stt_00029063                                    6.67%    passed     92.44%
+ 365  Mnele_evm.model.c9.127                                   6.67%    passed     94.88%
+ 366  Owefu_CAH1797500.1                                       6.67%    passed     96.50%
+ 367  Exada_XP_020903273.1                                     5.33%    passed     87.79%
+ 368  Nemve_NV2.232.1                                          5.33%    passed     94.80%
+ 369  Stypi_XP_022801170.1                                     5.33%    passed     92.01%
+ 370  Exada_XP_020903274.1                                     6.67%    passed     77.66%
+ 371  Nemve_NV2.1396.1                                         5.33%    passed     92.77%
+ 372  Stypi_XP_022801171.1                                     8.00%    passed     90.80%
+ 373  Aurco_scaffold3.g220.t1                                  9.33%    passed     64.37%
+ 374  Rhoes_XP_065060136.1                                     6.67%    passed     39.45%
+ 375  Casxa_jgi_Casxa1_14337                                   9.33%    passed     87.25%
+ 376  Sanma_ENSXQXP00000028966.1_ENSXQXG00000020125.1          6.67%    passed     77.28%
+ 377  PnocFOXQ2C                                               6.67%    passed     96.30%
+ 378  Clyhe_Chem_XLOC_035798                                   6.67%    passed     85.15%
+ 379  Hydvu_HVAEP9.G016939                                     6.67%    passed     90.91%
+ 380  Hydsy_XP_057315263.1                                     6.67%    passed     95.76%
+ 381  Triad_B3S2K3_B3S2K3_TRIAD                                6.67%    passed     54.06%
+ 382  Stypi_XP_022787555.1                                     6.67%    passed     88.55%
+ 383  Stypi_XP_022805085.1                                     6.67%    passed     82.34%
+ 384  Stypi_XP_022806034.1                                     6.67%    passed     30.27%
+ 385  Caeel_Q10924_FKH6_CAEEL                                  6.67%    passed     92.68%
+ 386  Brafl_XP_035673342.1                                     6.67%    passed     95.63%
+ 387  homsa_Q08050_FOXM1_HUMAN                                 6.67%    passed     72.20%
+ 388  Lytva_XP_041472262.1                                     6.67%    passed     90.17%
+ 389  Owefu_CAH1785768.1                                       6.67%    passed     99.20%
+ 390  Maggi_XP_065941476.1                                     6.67%    passed     60.44%
+ 391  Ampqu_XP_003386176.1                                     6.67%    passed     92.44%
+ 392  Ampqu_XP_003386177.1                                     6.67%    passed     99.25%
+ 393  Spola_SpoLa_ENSLPGP00000042598.1_ENSLPGG00000030307.1    6.67%    passed     38.80%
+ 394  Aurco_scaffold18.g661.t1                                 6.67%    passed     76.49%
+ 395  Casxa_jgi_Casxa1_4106                                    6.67%    passed     86.00%
+ 396  Rhoes_XP_065072406.1                                     6.67%    passed     87.70%
+ 397  Sanma_ENSXQXP00000026632.1_ENSXQXG00000018584.1          6.67%    passed     93.41%
+ 398  PnocFOXN1/4                                              6.67%    passed     95.21%
+ 399  Tripe_ENA_GHAQ01068163_GHAQ01068163.1                    6.67%    passed     71.53%
+ 400  Clyhe_Chem_XLOC_0166380                                  6.67%    passed     92.04%
+ 401  Hydsy_XP_057297831.1                                     6.67%    passed     94.25%
+ 402  Hydvu_HVAEP3.G005557                                     6.67%    passed     94.79%
+ 403  Exada_XP_020892444.1                                     6.67%    passed     87.57%
+ 404  Nemve_NV2.14917.1                                        6.67%    passed     57.23%
+ 405  Stypi_XP_022799613.1                                     6.67%    passed     57.23%
+ 406  Eupdu_EU_stt_00026688                                    6.67%    passed     97.93%
+ 407  Brafl_XP_035692028.1                                     6.67%    passed     37.34%
+ 408  Lytva_XP_041467186.1                                     6.67%    passed     55.22%
+ 409  Dapma_XP_032787534.2                                     6.67%    passed     46.66%
+ 410  Maggi_XP_034303195.2                                     6.67%    passed     87.46%
+ 411  homsa_O15353_FOXN1_HUMAN                                 6.67%    passed     87.58%
+ 412  homsa_Q96NZ1_FOXN4_HUMAN                                 6.67%    passed     69.91%
+ 413  Triad_B3RKS1_B3RKS1_TRIAD                                6.67%    passed     91.74%
+ 414  Brafl_XP_035677940.1                                     6.67%    passed     98.14%
+ 415  Subdo_SUB4.g18159.t1.p1|complete                         6.67%    passed     32.51%
+ 416  Subdo_SUB4.g6545.t1.p1|complete                          6.67%    passed     72.13%
+ 417  Ampqu_XP_003387576.1                                     6.67%    passed     81.98%
+ 418  Subdo_SUB4.g7684.t1.p1|complete                          6.67%    passed     86.78%
+ 419  Spola_SpoLa_ENSLPGP00000005344.1_ENSLPGG00000003949.1    6.67%    passed     21.32%
+ 420  Spola_SpoLa_ENSLPGP00000005354.1_ENSLPGG00000003949.1   10.67%    failed      4.51%
+ 421  Aurco_scaffold16.g589.t1                                 6.67%    passed     89.75%
+ 422  Rhoes_XP_065052498.1                                     6.67%    passed     89.30%
+ 423  PnocFoxN2/3                                              6.67%    passed     95.98%
+ 424  Sanma_ENSXQXP00000026145.1_ENSXQXG00000018279.1         16.00%    passed     86.18%
+ 425  Brafl_XP_035695377.1                                     6.67%    passed     81.46%
+ 426  Maggi_XP_034324254.2                                     6.67%    passed     79.63%
+ 427  Owefu_CAH1793025.1                                       6.67%    passed     99.63%
+ 428  homsa_O00409_FOXN3_HUMAN                                 6.67%    passed     86.76%
+ 429  Lytva_XP_041468298.1                                     6.67%    passed     53.24%
+ 430  Exada_XP_020911880.1                                     6.67%    passed     82.44%
+ 431  Nemve_NV2.11642.1                                        6.67%    passed     83.28%
+ 432  Stypi_XP_022782448.1                                     6.67%    passed     77.45%
+ 433  Tripe_ENA_GHAQ01048212_GHAQ01048212.1                    6.67%    passed     84.15%
+ 434  Triad_B3RL96_B3RL96_TRIAD                                6.67%    passed     91.95%
+ 435  homsa_P32314_FOXN2_HUMAN                                 6.67%    passed     96.93%
+ 436  Mnele_evm.model.c13.582                                  6.67%    passed     98.40%
+ 437  Casxa_jgi_Casxa1_23684                                   8.00%    passed     66.01%
+ 438  Clyhe_Chem_XLOC_028622                                   6.67%    passed     91.92%
+ 439  Hydsy_XP_057303654.1                                     6.67%    passed     96.11%
+ 440  Hydvu_HVAEP6.G011403                                     6.67%    passed     92.23%
+ 441  Eupdu_EU_stt_00007924                                   18.67%    passed     81.56%
+ 442  Dapma_XP_032784487.2                                     6.67%    passed     98.44%
+ 443  Triad_B3RJ86_B3RJ86_TRIAD                                6.67%    passed     36.79%
+ 444  Ampqu_XP_019850123.1                                     5.33%    passed     94.14%
+ 445  Spola_SpoLa_ENSLPGP00000035639.1_ENSLPGG00000025264.1    5.33%    passed     97.47%
+ 446  Subdo_SUB4.g6895.t1.p1|complete                          5.33%    passed     99.36%
+ 447  Maggi_XP_034313225.2                                     6.67%    passed     24.81%
+ 448  Ampqu_XP_019855855.1                                     6.67%    passed     92.75%
+ 449  Subdo_SUB4.g7692.t1.p1|complete                          6.67%    passed     79.36%
+ 450  Aurco_scaffold20.g528.t5                                 6.67%    passed     96.45%
+ 451  Sanma_ENSXQXP00000007889.1_ENSXQXG00000006040.1          6.67%    passed     96.45%
+ 452  Rhoes_XP_065066917.1                                     6.67%    passed     92.53%
+ 453  PnocFOXP                                                 6.67%    passed     88.22%
+ 454  Clyhe_Chem_XLOC_042667                                   6.67%    passed     83.82%
+ 455  Hydsy_XP_057296057.1                                     6.67%    passed     95.27%
+ 456  Hydvu_HVAEP14.G026976                                    6.67%    passed     90.97%
+ 457  Tripe_ENA_GHAQ01073254_GHAQ01073254.1                    6.67%    passed     92.75%
+ 458  Dapma_XP_045029233.1                                     6.67%    passed     45.02%
+ 459  Maggi_XP_011419330.3                                     6.67%    passed     68.75%
+ 460  Exada_XP_020898095.1                                     6.67%    passed     84.99%
+ 461  Nemve_NV2.645.2                                          6.67%    passed     71.29%
+ 462  Lytva_XP_041460423.1                                     6.67%    passed      9.94%
+ 463  Stypi_XP_022801164.1                                     6.67%    passed     85.24%
+ 464  Owefu_CAH1784951.1                                       6.67%    passed     62.68%
+ 465  homsa_O15409_FOXP2_HUMAN                                 6.67%    passed     20.51%
+ 466  homsa_Q9H334_FOXP1_HUMAN                                 6.67%    passed     43.79%
+ 467  homsa_Q8IVH2_FOXP4_HUMAN                                 6.67%    passed     29.94%
+ 468  Dapma_XP_045029222.1                                     6.67%    passed     59.46%
+ 469  Brafl_XP_035678150.1                                     6.67%    passed     52.10%
+ 470  homsa_Q9BZS1_FOXP3_HUMAN                                 6.67%    passed      8.37%
+ 471  Mnele_evm.model.c2.282                                   6.67%    passed     92.73%
+ 472  Triad_B3RUJ2_B3RUJ2_TRIAD                                6.67%    passed     43.75%
+ 473  Mnele_evm.model.c4.715                                   6.67%    passed     69.29%
+ 474  Ampqu_XP_019848933.1                                     8.00%    passed     94.83%
+ 475  Caeel_G5EGC9_PES1_CAEEL                                  6.67%    passed     86.78%
+ 476  Caeel_Q21187_FKH9_CAEEL                                  6.67%    passed     64.31%
+ 477  Ampqu_XP_003387810.3                                     6.67%    passed     38.16%
+ 478  Ampqu_XP_019858167.1                                     6.67%    passed     50.06%
+ 479  Spola_SpoLa_ENSLPGP00000036831.1_ENSLPGG00000026141.1    6.67%    passed     13.80%
+ 480  Subdo_SUB4.g567.t1.p1|complete                           6.67%    passed     49.21%
+ 481  Aurco_scaffold11.g208.t1                                 6.67%    passed     94.98%
+ 482  Casxa_jgi_Casxa1_27742                                   6.67%    passed     98.32%
+ 483  PnocFOXO                                                 6.67%    passed     96.22%
+ 484  Sanma_ENSXQXP00000001352.1_ENSXQXG00000001178.1          6.67%    passed     94.21%
+ 485  Rhoes_XP_065057244.1                                     6.67%    passed     97.13%
+ 486  Clyhe_Chem_XLOC_004723                                   6.67%    passed     96.75%
+ 487  Hydsy_XP_057306250.1                                     6.67%    passed     93.65%
+ 488  Tripe_ENA_GHAQ01131611_GHAQ01131611.1                    6.67%    passed     99.70%
+ 489  Hydvu_HVAEP3.G005217                                     6.67%    passed     83.44%
+ 490  Brafl_XP_035685890.1                                     6.67%    passed     97.13%
+ 491  Stypi_XP_022789569.1                                     6.67%    passed     65.83%
+ 492  Exada_XP_020895685.1                                     6.67%    passed     80.43%
+ 493  Nemve_NV2.9025.1                                         6.67%    passed     78.91%
+ 494  Dapma_XP_032787349.1                                     6.67%    passed     72.60%
+ 495  Owefu_CAH1798357.1                                       6.67%    passed     91.06%
+ 496  Lytva_XP_041463504.1                                     6.67%    passed     86.92%
+ 497  Caeel_O16850_FOXO_CAEEL                                  6.67%    passed     70.93%
+ 498  Triad_B3RXR0_B3RXR0_TRIAD                                6.67%    passed     72.81%
+ 499  homsa_O43524_FOXO3_HUMAN                                 6.67%    passed     99.13%
+ 500  homsa_A8MYZ6_FOXO6_HUMAN                                 6.67%    passed     99.10%
+ 501  homsa_Q12778_FOXO1_HUMAN                                14.67%    passed     93.79%
+ 502  homsa_P98177_FOXO4_HUMAN                                 6.67%    passed     86.53%
+ 503  Exada_XP_020907065.1                                     6.67%    passed     34.99%
+ 504  Nemve_NV2.13053.1                                        6.67%    passed     21.13%
+ 505  Nemve_NV2.13744.1                                        6.67%    passed     67.23%
+ 506  Nemve_NV2.14350.1                                        6.67%    passed     50.01%
+ 507  Stypi_XP_022792313.1                                     6.67%    passed     30.64%
+ 508  Exada_XP_028519169.1                                     8.00%    passed     90.89%
+ 509  Exada_XP_020915574.1                                     6.67%    passed     29.73%
+ 510  Nemve_NV2.20634.1                                        6.67%    passed     43.09%
+ 511  Dapma_XP_032786490.1                                     9.33%    passed     71.87%
+ 512  Owefu_CAH1787765.1                                       9.33%    passed     74.06%
+ 513  Lytva_XP_041464060.1                                     6.67%    passed     73.06%
+ 514  homsa_Q6PIV2_FOXR1_HUMAN                                 6.67%    passed     57.93%
+ 515  homsa_Q6PJQ5_FOXR2_HUMAN                                 6.67%    passed     63.61%
+ 516  Mnele_evm.model.c8.473                                  32.00%    passed     35.63%
+ 517  Maggi_XP_011412452.3                                     6.67%    passed     92.22%
+ 518  Owefu_CAH1782543.1                                       6.67%    passed     15.72%
+ 519  Owefu_CAH1775657.1                                       5.33%    passed     43.96%
+ 520  Lytva_XP_041459487.1                                     6.67%    passed     60.49%
+ 521  Spola_SpoLa_ENSLPGP00000028744.1_ENSLPGG00000020188.1    6.67%    passed     95.16%
+ 522  Subdo_SUB4.g16505.t1.p1|complete                         6.67%    passed     96.84%
+ 523  Subdo_SUB4.g16630.t1.p1|complete                         6.67%    passed     97.31%
+ 524  Aurco_scaffold17.g697.t1                                 8.00%    passed     80.36%
+ 525  Rhoes_XP_065070786.1                                     8.00%    passed      9.10%
+ 526  Casxa_jgi_Casxa1_14198                                   8.00%    passed     68.46%
+ 527  Maggi_XP_011447567.3                                     6.67%    passed     70.68%
+ 528  Maggi_XP_065937026.1                                     6.67%    passed     32.42%
+ 529  Lytva_XP_041485922.1                                     5.33%    passed     21.65%
+ 530  Maggi_XP_019927657.3                                     8.00%    passed     31.40%
+ 531  Owefu_CAH1785469.1                                       8.00%    passed     28.70%
+ 532  Caeel_A0A078BQN7_FKH3_CAEEL                              5.33%    passed     84.73%
+ 533  Caeel_O17617_FKH4_CAEEL                                  5.33%    passed     70.84%
+ 534  Caeel_Q19802_FKH5_CAEEL                                  5.33%    passed     82.57%
+ 535  Brafl_XP_035663165.1                                     8.00%    failed      1.21%
+****  TOTAL                                                    6.87%  2 sequences failed composition chi2 test (p-value<5%; df=19)
+NOTE: Subdo_SUB4.g10182.t1.p1|complete is identical to Ampqu_XP_003387169.1 but kept for subsequent analysis
+NOTE: homsa_P55316_FOXG1_HUMAN is identical to Brafl_XP_035676344.1 but kept for subsequent analysis
+NOTE: Sanma_ENSXQXP00000023434.1_ENSXQXG00000016538.1 is identical to Rhoes_XP_065060653.1 but kept for subsequent analysis
+NOTE: Casxa_jgi_Casxa1_1805 is identical to Aurco_scaffold1.g144.t1 but kept for subsequent analysis
+NOTE: Rhoes_XP_065052199.1 is identical to Aurco_scaffold16.g749.t1 but kept for subsequent analysis
+NOTE: PnocFOXA is identical to Sanma_ENSXQXP00000024501.1_ENSXQXG00000017190.1 but kept for subsequent analysis
+NOTE: Nemve_NV2.11441.1 is identical to Exada_XP_020893103.1 but kept for subsequent analysis
+NOTE: Owefu_CAH1792690.1 is identical to Maggi_XP_011413445.1 but kept for subsequent analysis
+NOTE: Nemve_NV2.4570.1 is identical to Exada_XP_020896644.1 but kept for subsequent analysis
+NOTE: Hydsy_XP_057310983.1 is identical to Aurco_scaffold13.g277.t1 but kept for subsequent analysis
+NOTE: PnocFOX-like2 is identical to PnocFOX-like1 but kept for subsequent analysis
+NOTE: PnocFOXQ2E is identical to Sanma_ENSXQXP00000007747.1_ENSXQXG00000005939.1 but kept for subsequent analysis
+NOTE: Stypi_XP_022799613.1 is identical to Nemve_NV2.14917.1 but kept for subsequent analysis
+NOTE: Sanma_ENSXQXP00000007889.1_ENSXQXG00000006040.1 is identical to Aurco_scaffold20.g528.t5 but kept for subsequent analysis
+Checking for duplicate sequences: done in 0.00218185 secs using 1241% CPU
+Identifying sites to remove: done in 0.00061645 secs using 2517% CPU
+NOTE: 3 identical sequences (see below) will be ignored for subsequent analysis
+NOTE: Rhoes_XP_065058170.1 (identical to Aurco_scaffold1.g144.t1) is ignored but added at the end
+NOTE: Sanma_ENSXQXP00000009239.1_ENSXQXG00000006953.1 (identical to Aurco_scaffold1.g144.t1) is ignored but added at the end
+NOTE: PnocFOXD (identical to Aurco_scaffold1.g144.t1) is ignored but added at the end
+Alignment was printed to /lisc/data/scratch/molevo/peyroche/forkhead/results//all_fox_domains_mafft_global_trimal.uniqueseq.phy
+
+For your convenience alignment with unique sequences printed to /lisc/data/scratch/molevo/peyroche/forkhead/results//all_fox_domains_mafft_global_trimal.uniqueseq.phy
+
+WARNING: 16 threads for alignment length 75 will slow down analysis
+Creating fast initial parsimony tree by random order stepwise addition...
+0.910 seconds, parsimony score: 4597 (based on 71 sites)
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+Perform fast likelihood tree search using LG+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Optimizing NNI: done in 5.23261 secs using 890.6% CPU
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -22328.808
+Optimal log-likelihood: -22328.748
+Proportion of invariable sites: 0.014
+Gamma shape alpha: 0.923
+Parameters optimization took 1 rounds (0.290 sec)
+Time for fast ML tree search: 6.436 seconds
+
+NOTE: ModelFinder requires 82 MB RAM!
+ModelFinder will test up to 1232 protein models (sample size: 75 epsilon: 0.100) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  1  LG            23993.758    1061 50109.516    2303673.516  52568.371
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  2  LG+I          23935.950    1062 49995.900    2307807.900  52457.072
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  3  LG+G4         22333.782    1062 46791.563    2304603.563  49252.736
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  4  LG+I+G4       22328.719    1063 46783.438    2308847.438  49246.928
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  5  LG+R2         22651.040    1063 47428.081    2309492.081  49891.570
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  6  LG+R3         22394.374    1065 46918.748    2317498.748  49386.873
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  7  LG+R4         22267.848    1067 46669.695    2325781.695  49142.455
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  8  LG+R5         22217.845    1069 46573.689    2334233.689  49051.084
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  9  LG+R6         22195.541    1071 46533.082    2342757.082  49015.112
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 10  LG+R7         22191.255    1073 46528.510    2351332.510  49015.175
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 14  LG+I+R2       22633.857    1064 47395.714    2313715.714  49861.522
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 15  LG+I+R3       22383.527    1066 46899.053    2321743.053  49369.496
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 16  LG+I+R4       22258.009    1068 46652.018    2330036.018  49127.096
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 17  LG+I+R5       22221.201    1070 46582.402    2338522.402  49062.114
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 18  LG+I+R6       22191.755    1072 46527.510    2347039.510  49011.858
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 19  LG+I+R7       22187.445    1074 46522.890    2355622.890  49011.872
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 31  LG+F+R6       22382.483    1090 46944.966    2425324.966  49471.028
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 32  LG+F+R7       22377.606    1092 46939.213    2434051.213  49469.910
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 40  LG+F+I+R6     22377.566    1091 46937.132    2429681.132  49465.512
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 41  LG+F+I+R7     22372.651    1093 46931.303    2438415.303  49464.317
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 53  WAG+R6        22465.320    1071 47072.641    2343296.641  49554.670
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 54  WAG+R7        22459.651    1073 47065.302    2351869.302  49551.967
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 62  WAG+I+R6      22461.259    1072 47066.519    2347578.519  49550.866
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 63  WAG+I+R7      22455.792    1074 47059.583    2356159.583  49548.565
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 75  WAG+F+R6      22645.967    1090 47471.934    2425851.934  49997.997
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 76  WAG+F+R7      22640.283    1092 47464.565    2434576.565  49995.262
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 84  WAG+F+I+R6    22641.060    1091 47464.121    2430208.121  49992.500
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 85  WAG+F+I+R7    22635.179    1093 47456.358    2438940.358  49989.372
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 97  JTT+R6        22384.132    1071 46910.264    2343134.264  49392.293
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 98  JTT+R7        22374.114    1073 46894.227    2351698.227  49380.892
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+106  JTT+I+R6      22381.116    1072 46906.232    2347418.232  49390.580
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+107  JTT+I+R7      22371.153    1074 46890.306    2355990.306  49379.289
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+119  JTT+F+R6      22548.086    1090 47276.171    2425656.171  49802.234
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+120  JTT+F+R7      22541.740    1092 47267.480    2434379.480  49798.177
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+128  JTT+F+I+R6    22543.811    1091 47269.622    2430013.622  49798.002
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+129  JTT+F+I+R7    22537.539    1093 47261.078    2438745.078  49794.092
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+141  Q.PFAM+R6     22271.517    1071 46685.034    2342909.034  49167.063
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+142  Q.PFAM+R7     22268.612    1073 46683.225    2351487.225  49169.889
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+150  Q.PFAM+I+R6   22267.556    1072 46679.111    2347191.111  49163.459
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+151  Q.PFAM+I+R7   22264.499    1074 46676.997    2355776.997  49165.980
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+163  Q.PFAM+F+R6   22418.463    1090 47016.927    2425396.927  49542.989
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+164  Q.PFAM+F+R7   22416.782    1092 47017.564    2434129.564  49548.261
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+172  Q.PFAM+F+I+R6 22412.896    1091 47007.792    2429751.792  49536.171
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+173  Q.PFAM+F+I+R7 22411.289    1093 47008.577    2438492.577  49541.592
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+185  Q.BIRD+R6     22809.413    1071 47760.825    2343984.825  50242.855
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+186  Q.BIRD+R7     22792.970    1073 47731.939    2352535.939  50218.604
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+194  Q.BIRD+I+R6   22807.438    1072 47758.877    2348270.877  50243.224
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+195  Q.BIRD+I+R7   22791.672    1074 47731.345    2356831.345  50220.327
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+207  Q.BIRD+F+R6   22992.701    1090 48165.402    2426545.402  50691.464
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+208  Q.BIRD+F+R7   22984.970    1092 48153.941    2435265.941  50684.638
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+216  Q.BIRD+F+I+R6 22989.235    1091 48160.470    2430904.470  50688.850
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+217  Q.BIRD+F+I+R7 22981.578    1093 48149.155    2439633.155  50682.170
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+229  Q.MAMMAL+R6   22616.005    1071 47374.010    2343598.010  49856.040
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+230  Q.MAMMAL+R7   22607.734    1073 47361.469    2352165.469  49848.133
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+238  Q.MAMMAL+I+R6 22614.306    1072 47372.612    2347884.612  49856.959
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+239  Q.MAMMAL+I+R7 22606.323    1074 47360.646    2356460.646  49849.628
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+251  Q.MAMMAL+F+R6 22828.009    1090 47836.018    2426216.018  50362.080
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+252  Q.MAMMAL+F+R7 22819.723    1092 47823.447    2434935.447  50354.144
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+260  Q.MAMMAL+F+I+R6 22823.887    1091 47829.773    2430573.773  50358.153
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+261  Q.MAMMAL+F+I+R7 22815.659    1093 47817.319    2439301.319  50350.333
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+273  Q.INSECT+R6   22057.494    1071 46256.988    2342480.988  48739.018
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+274  Q.INSECT+R7   22048.008    1073 46242.016    2351046.016  48728.681
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+282  Q.INSECT+I+R6 22054.106    1072 46252.212    2346764.212  48736.559
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+283  Q.INSECT+I+R7 22044.640    1074 46237.280    2355337.280  48726.262
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+295  Q.INSECT+F+R6 22301.191    1090 46782.382    2425162.382  49308.444
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+296  Q.INSECT+F+R7 22292.491    1092 46768.982    2433880.982  49299.679
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+304  Q.INSECT+F+I+R6 22296.507    1091 46775.014    2429519.014  49303.394
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+305  Q.INSECT+F+I+R7 22288.089    1093 46762.178    2438246.178  49295.192
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+317  Q.PLANT+R6    22235.265    1071 46612.530    2342836.530  49094.560
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+318  Q.PLANT+R7    22230.034    1073 46606.069    2351410.069  49092.733
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+326  Q.PLANT+I+R6  22231.765    1072 46607.530    2347119.530  49091.877
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+327  Q.PLANT+I+R7  22226.539    1074 46601.078    2355701.078  49090.061
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+339  Q.PLANT+F+R6  22465.316    1090 47110.633    2425490.633  49636.695
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+340  Q.PLANT+F+R7  22459.183    1092 47102.366    2434214.366  49633.063
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+348  Q.PLANT+F+I+R6 22460.687    1091 47103.374    2429847.374  49631.754
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+349  Q.PLANT+F+I+R7 22454.658    1093 47095.316    2438579.316  49628.331
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+361  Q.YEAST+R6    22155.423    1071 46452.846    2342676.846  48934.876
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+362  Q.YEAST+R7    22147.935    1073 46441.870    2351245.870  48928.535
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+370  Q.YEAST+I+R6  22152.061    1072 46448.123    2346960.123  48932.470
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+371  Q.YEAST+I+R7  22144.616    1074 46437.233    2355537.233  48926.215
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+383  Q.YEAST+F+R6  22275.191    1090 46730.382    2425110.382  49256.444
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+384  Q.YEAST+F+R7  22271.947    1092 46727.894    2433839.894  49258.591
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+392  Q.YEAST+F+I+R6 22270.672    1091 46723.344    2429467.344  49251.724
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+393  Q.YEAST+F+I+R7 22267.472    1093 46720.943    2438204.943  49253.958
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+405  JTTDCMUT+R6   22374.755    1071 46891.509    2343115.509  49373.539
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+406  JTTDCMUT+R7   22365.478    1073 46876.955    2351680.955  49363.620
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+414  JTTDCMUT+I+R6 22371.591    1072 46887.182    2347399.182  49371.529
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+415  JTTDCMUT+I+R7 22362.675    1074 46873.351    2355973.351  49362.333
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+427  JTTDCMUT+F+R6 22545.105    1090 47270.210    2425650.210  49796.272
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+428  JTTDCMUT+F+R7 22539.490    1092 47262.979    2434374.979  49793.676
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+436  JTTDCMUT+F+I+R6 22540.660    1091 47263.320    2430007.320  49791.699
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+437  JTTDCMUT+F+I+R7 22535.271    1093 47256.542    2438740.542  49789.557
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+449  DCMUT+R6      22558.670    1071 47259.341    2343483.341  49741.370
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+450  DCMUT+R7      22555.139    1073 47256.278    2352060.278  49742.943
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+458  DCMUT+I+R6    22557.110    1072 47258.220    2347770.220  49742.567
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+459  DCMUT+I+R7    22553.553    1074 47255.105    2356355.105  49744.087
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+471  DCMUT+F+R6    22660.268    1090 47500.537    2425880.537  50026.599
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+472  DCMUT+F+R7    22653.805    1092 47491.610    2434603.610  50022.307
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+480  DCMUT+F+I+R6  22656.910    1091 47495.820    2430239.820  50024.200
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+481  DCMUT+F+I+R7  22650.598    1093 47487.196    2438971.196  50020.210
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+493  VT+R6         22580.036    1071 47302.071    2343526.071  49784.101
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+494  VT+R7         22573.343    1073 47292.686    2352096.686  49779.351
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+502  VT+I+R6       22575.215    1072 47294.430    2347806.430  49778.777
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+503  VT+I+R7       22568.677    1074 47285.355    2356385.355  49774.337
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+515  VT+F+R6       22731.169    1090 47642.339    2426022.339  50168.401
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+516  VT+F+R7       22727.512    1092 47639.024    2434751.024  50169.721
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+524  VT+F+I+R6     22725.519    1091 47633.038    2430377.038  50161.417
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+525  VT+F+I+R7     22721.952    1093 47629.903    2439113.903  50162.918
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+537  PMB+R6        22841.802    1071 47825.604    2344049.604  50307.634
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+538  PMB+R7        22832.733    1073 47811.466    2352615.466  50298.130
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+546  PMB+I+R6      22835.704    1072 47815.409    2348327.409  50299.756
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+547  PMB+I+R7      22826.857    1074 47801.714    2356901.714  50290.696
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+559  PMB+F+R6      23044.320    1090 48268.640    2426648.640  50794.702
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+560  PMB+F+R7      23037.692    1092 48259.383    2435371.383  50790.080
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+568  PMB+F+I+R6    23037.612    1091 48257.224    2431001.224  50785.604
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+569  PMB+F+I+R7    23031.217    1093 48248.434    2439732.434  50781.448
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+581  BLOSUM62+R6   22830.410    1071 47802.820    2344026.820  50284.849
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+582  BLOSUM62+R7   22818.289    1073 47782.578    2352586.578  50269.243
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+590  BLOSUM62+I+R6 22824.461    1072 47792.923    2348304.923  50277.270
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+591  BLOSUM62+I+R7 22812.887    1074 47773.773    2356873.773  50262.756
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+603  BLOSUM62+F+R6 23006.594    1090 48193.188    2426573.188  50719.250
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+604  BLOSUM62+F+R7 22998.250    1092 48180.500    2435292.500  50711.197
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+612  BLOSUM62+F+I+R6 23000.481    1091 48182.963    2430926.963  50711.342
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+613  BLOSUM62+F+I+R7 22992.448    1093 48170.895    2439654.895  50703.910
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+625  DAYHOFF+R6    22556.196    1071 47254.392    2343478.392  49736.421
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+626  DAYHOFF+R7    22554.068    1073 47254.136    2352058.136  49740.801
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+634  DAYHOFF+I+R6  22554.853    1072 47253.706    2347765.706  49738.053
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+635  DAYHOFF+I+R7  22552.534    1074 47253.068    2356353.068  49742.050
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+647  DAYHOFF+F+R6  22658.064    1090 47496.128    2425876.128  50022.190
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+648  DAYHOFF+F+R7  22653.768    1092 47491.535    2434603.535  50022.232
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+656  DAYHOFF+F+I+R6 22654.800    1091 47491.600    2430235.600  50019.980
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+657  DAYHOFF+F+I+R7 22650.619    1093 47487.238    2438971.238  50020.253
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+669  MTREV+R6      23821.396    1071 49784.792    2346008.792  52266.822
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+670  MTREV+R7      23814.482    1073 49774.964    2354578.964  52261.628
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+678  MTREV+I+R6    23824.325    1072 49792.650    2350304.650  52276.997
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+679  MTREV+I+R7    23808.737    1074 49765.474    2358865.474  52254.456
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+691  MTREV+F+R6    23149.562    1090 48479.124    2426859.124  51005.186
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+692  MTREV+F+R7    23146.315    1092 48476.630    2435588.630  51007.327
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+700  MTREV+F+I+R6  23145.511    1091 48473.022    2431217.022  51001.401
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+701  MTREV+F+I+R7  23141.706    1093 48469.411    2439953.411  51002.426
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+713  MTART+R6      23813.629    1071 49769.257    2345993.257  52251.287
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+714  MTART+R7      23811.113    1073 49768.226    2354572.226  52254.891
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+722  MTART+I+R6    23809.912    1072 49763.824    2350275.824  52248.171
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+723  MTART+I+R7    23798.475    1074 49744.949    2358844.949  52233.931
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+735  MTART+F+R6    23045.111    1090 48270.222    2426650.222  50796.284
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+736  MTART+F+R7    23038.165    1092 48260.329    2435372.329  50791.026
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+744  MTART+F+I+R6  23034.294    1091 48250.588    2430994.588  50778.967
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+745  MTART+F+I+R7  23023.200    1093 48232.401    2439716.401  50765.415
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+757  MTZOA+R6      23195.691    1071 48533.382    2344757.382  51015.412
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+758  MTZOA+R7      23187.702    1073 48521.403    2353325.403  51008.068
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+766  MTZOA+I+R6    23185.471    1072 48514.943    2349026.943  50999.290
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+767  MTZOA+I+R7    23179.440    1074 48506.881    2357606.881  50995.863
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+779  MTZOA+F+R6    22638.076    1090 47456.151    2425836.151  49982.213
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+780  MTZOA+F+R7    22609.137    1092 47402.273    2434514.273  49932.970
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+788  MTZOA+F+I+R6  22620.773    1091 47423.547    2430167.547  49951.926
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+789  MTZOA+F+I+R7  22604.330    1093 47394.660    2438878.660  49927.674
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+801  MTMET+R6      23566.071    1071 49274.141    2345498.141  51756.171
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+802  MTMET+R7      23544.153    1073 49234.306    2354038.306  51720.971
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+810  MTMET+I+R6    23564.068    1072 49272.136    2349784.136  51756.483
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+811  MTMET+I+R7    23541.243    1074 49230.487    2358330.487  51719.469
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+823  MTMET+F+R6    22841.242    1090 47862.483    2426242.483  50388.545
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+824  MTMET+F+R7    22836.584    1092 47857.168    2434969.168  50387.865
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+832  MTMET+F+I+R6  22837.104    1091 47856.208    2430600.208  50384.588
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+833  MTMET+F+I+R7  22835.488    1093 47856.976    2439340.976  50389.991
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+845  MTVER+R6      24075.635    1071 50293.269    2346517.269  52775.299
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+846  MTVER+R7      24048.248    1073 50242.496    2355046.496  52729.161
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+854  MTVER+I+R6    24076.814    1072 50297.629    2350809.629  52781.976
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+855  MTVER+I+R7    24046.194    1074 50240.389    2359340.389  52729.371
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+867  MTVER+F+R6    23362.800    1090 48905.600    2427285.600  51431.662
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+868  MTVER+F+R7    23353.573    1092 48891.145    2436003.145  51421.842
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+876  MTVER+F+I+R6  23360.175    1091 48902.349    2431646.349  51430.729
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+877  MTVER+F+I+R7  23340.894    1093 48867.787    2440351.787  51400.802
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+889  MTINV+R6      23595.209    1071 49332.417    2345556.417  51814.447
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+890  MTINV+R7      23573.744    1073 49293.488    2354097.488  51780.152
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+898  MTINV+I+R6    23592.077    1072 49328.154    2349840.154  51812.501
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+899  MTINV+I+R7    23572.349    1074 49292.698    2358392.698  51781.680
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+911  MTINV+F+R6    22676.841    1090 47533.682    2425913.682  50059.744
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+912  MTINV+F+R7    22670.026    1092 47524.051    2434636.051  50054.748
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+920  MTINV+F+I+R6  22672.450    1091 47526.900    2430270.900  50055.280
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+921  MTINV+F+I+R7  22670.059    1093 47526.119    2439010.119  50059.133
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+933  MTMAM+R6      24385.385    1071 50912.770    2347136.770  53394.799
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+934  MTMAM+R7      24370.062    1073 50886.125    2355690.125  53372.790
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+942  MTMAM+I+R6    24388.891    1072 50921.781    2351433.781  53406.129
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+943  MTMAM+I+R7    24364.796    1074 50877.592    2359977.592  53366.575
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+955  MTMAM+F+R6    23663.970    1090 49507.941    2427887.941  52034.003
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+956  MTMAM+F+R7    23629.446    1092 49442.891    2436554.891  51973.588
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+964  MTMAM+F+I+R6  23638.848    1091 49459.696    2432203.696  51988.076
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+965  MTMAM+F+I+R7  23626.028    1093 49438.057    2440922.057  51971.072
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+977  FLAVI+R6      23424.242    1071 48990.485    2345214.485  51472.515
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+978  FLAVI+R7      23394.793    1073 48935.585    2353739.585  51422.250
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+986  FLAVI+I+R6    23425.809    1072 48995.618    2349507.618  51479.965
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+987  FLAVI+I+R7    23394.565    1074 48937.131    2358037.131  51426.113
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+999  FLAVI+F+R6    23616.369    1090 49412.738    2427792.738  51938.800
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1000  FLAVI+F+R7    23599.131    1092 49382.263    2436494.263  51912.960
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1008  FLAVI+F+I+R6  23612.396    1091 49406.792    2432150.792  51935.171
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1009  FLAVI+F+I+R7  23598.785    1093 49383.570    2440867.570  51916.585
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1021  HIVB+R6       22953.200    1071 48048.399    2344272.399  50530.429
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1022  HIVB+R7       22940.785    1073 48027.571    2352831.571  50514.235
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1030  HIVB+I+R6     22949.531    1072 48043.062    2348555.062  50527.410
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1031  HIVB+I+R7     22940.581    1074 48029.162    2357129.162  50518.144
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1043  HIVB+F+R6     23143.766    1090 48467.533    2426847.533  50993.595
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1044  HIVB+F+R7     23127.838    1092 48439.675    2435551.675  50970.372
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1052  HIVB+F+I+R6   23138.841    1091 48459.682    2431203.682  50988.062
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1053  HIVB+F+I+R7   23127.001    1093 48440.002    2439924.002  50973.017
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1065  HIVW+R6       24231.322    1071 50604.643    2346828.643  53086.673
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1066  HIVW+R7       24220.345    1073 50586.690    2355390.690  53073.355
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1074  HIVW+I+R6     24226.267    1072 50596.533    2351108.533  53080.881
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1075  HIVW+I+R7     24219.011    1074 50586.022    2359686.022  53075.004
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1087  HIVW+F+R6     24120.807    1090 50421.615    2428801.615  52947.677
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1088  HIVW+F+R7     24104.736    1092 50393.471    2437505.471  52924.168
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1096  HIVW+F+I+R6   24114.666    1091 50411.333    2433155.333  52939.712
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1097  HIVW+F+I+R7   24102.954    1093 50391.908    2441875.908  52924.923
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1109  FLU+R6        22852.381    1071 47846.761    2344070.761  50328.791
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1110  FLU+R7        22838.968    1073 47823.936    2352627.936  50310.601
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1118  FLU+I+R6      22850.079    1072 47844.159    2348356.159  50328.506
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1119  FLU+I+R7      22838.406    1074 47824.813    2356924.813  50313.795
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1131  FLU+F+R6      22991.154    1090 48162.307    2426542.307  50688.369
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1132  FLU+F+R7      22973.790    1092 48131.580    2435243.580  50662.277
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1140  FLU+F+I+R6    22987.019    1091 48156.037    2430900.037  50684.417
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1141  FLU+F+I+R7    22973.655    1093 48133.311    2439617.311  50666.325
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1153  RTREV+R6      22421.316    1071 46984.632    2343208.632  49466.662
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1154  RTREV+R7      22412.831    1073 46971.662    2351775.662  49458.327
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1162  RTREV+I+R6    22418.017    1072 46980.033    2347492.033  49464.380
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1163  RTREV+I+R7    22413.118    1074 46974.235    2356074.235  49463.217
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1175  RTREV+F+R6    22468.240    1090 47116.480    2425496.480  49642.542
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1176  RTREV+F+R7    22454.150    1092 47092.301    2434204.301  49622.998
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1184  RTREV+F+I+R6  22463.428    1091 47108.856    2429852.856  49637.235
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1185  RTREV+F+I+R7  22453.721    1093 47093.443    2438577.443  49626.457
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1197  CPREV+R6      22627.546    1071 47397.092    2343621.092  49879.122
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1198  CPREV+R7      22619.704    1073 47385.408    2352189.408  49872.073
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1206  CPREV+I+R6    22622.889    1072 47389.778    2347901.778  49874.126
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1207  CPREV+I+R7    22619.171    1074 47386.342    2356486.342  49875.324
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1219  CPREV+F+R6    22840.307    1090 47860.613    2426240.613  50386.675
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1220  CPREV+F+R7    22829.525    1092 47843.050    2434955.050  50373.747
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1228  CPREV+F+I+R6  22835.524    1091 47853.048    2430597.048  50381.427
+WARNING: 16 threads for alignment length 75 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+1229  CPREV+F+I+R7  22829.163    1093 47844.327    2439328.327  50377.341
+Akaike Information Criterion:           Q.INSECT+I+R7
+Corrected Akaike Information Criterion: LG
+Bayesian Information Criterion:         Q.INSECT+I+R7
+Best-fit model: Q.INSECT+I+R7 chosen according to BIC
+
+All model information printed to /lisc/data/scratch/molevo/peyroche/forkhead/results//all_fox_domains_mafft_global_trimal.model.gz
+CPU time for ModelFinder: 15116.248 seconds (4h:11m:56s)
+Wall-clock time for ModelFinder: 1688.896 seconds (0h:28m:8s)
+Generating 10000 samples for ultrafast bootstrap (seed: 637329)...
+WARNING: 16 threads for alignment length 75 will slow down analysis
+
+NOTE: 58 MB RAM (0 GB) is required!
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -22094.266
+2. Current log-likelihood: -22050.438
+3. Current log-likelihood: -22048.545
+4. Current log-likelihood: -22047.288
+5. Current log-likelihood: -22046.740
+Optimal log-likelihood: -22046.636
+Proportion of invariable sites: 0.012
+Site proportion and rates:  (0.058,0.039) (0.135,0.131) (0.140,0.261) (0.190,0.567) (0.172,1.055) (0.231,1.748) (0.062,4.023)
+Parameters optimization took 5 rounds (7.701 sec)
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 9.9027 secs using 1586% CPU
+Computing ML distances took 9.973133 sec (of wall-clock time) 158.086616 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 0.00857497 secs using 169.1% CPU
+Constructing RapidNJ tree: done in 0.0207831 secs using 182.6% CPU
+Computing RapidNJ tree took 0.029505 sec (of wall-clock time) 0.052564 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -22204.222
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 20.185 second
+Computing log-likelihood of 98 initial trees ... 22.004 seconds
+Current best score: -22046.636
+
+Do NNI search on 20 best initial trees
+Optimizing NNI: done in 9.14082 secs using 1111% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -22026.139
+Optimizing NNI: done in 14.7018 secs using 949.9% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 2: -21880.738
+Optimizing NNI: done in 12.527 secs using 940.1% CPU
+Optimizing NNI: done in 17.0502 secs using 958.2% CPU
+Optimizing NNI: done in 14.1998 secs using 953.3% CPU
+Optimizing NNI: done in 19.2554 secs using 1074% CPU
+Optimizing NNI: done in 18.0309 secs using 1092% CPU
+Optimizing NNI: done in 13.1231 secs using 951.2% CPU
+Optimizing NNI: done in 16.0611 secs using 939.4% CPU
+Optimizing NNI: done in 14.8666 secs using 947.7% CPU
+Iteration 10 / LogL: -21977.187 / Time: 0h:31m:48s
+Optimizing NNI: done in 13.8183 secs using 942% CPU
+Optimizing NNI: done in 16.3441 secs using 937.2% CPU
+Optimizing NNI: done in 14.7446 secs using 942.5% CPU
+Optimizing NNI: done in 14.8786 secs using 954.7% CPU
+Optimizing NNI: done in 16.4394 secs using 955.7% CPU
+Optimizing NNI: done in 14.8286 secs using 941.7% CPU
+Optimizing NNI: done in 14.3246 secs using 953.6% CPU
+Optimizing NNI: done in 12.0923 secs using 943.6% CPU
+Optimizing NNI: done in 13.6934 secs using 944% CPU
+Optimizing NNI: done in 14.999 secs using 979.5% CPU
+Iteration 20 / LogL: -22058.360 / Time: 0h:34m:14s
+Finish initializing candidate tree set (20)
+Current best tree score: -21880.738 / CPU time: 346.100
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Optimizing NNI: done in 10.3411 secs using 935.3% CPU
+Optimizing NNI: done in 11.5577 secs using 940% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 22: -21859.664
+Optimizing NNI: done in 11.4696 secs using 934.9% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 23: -21823.890
+Optimizing NNI: done in 10.4176 secs using 937% CPU
+Optimizing NNI: done in 10.8239 secs using 933.4% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 25: -21822.155
+Optimizing NNI: done in 9.2026 secs using 919.5% CPU
+Optimizing NNI: done in 9.82953 secs using 936% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 27: -21817.978
+Optimizing NNI: done in 10.3392 secs using 940.3% CPU
+Optimizing NNI: done in 9.11915 secs using 928.4% CPU
+Optimizing NNI: done in 14.2478 secs using 1081% CPU
+Iteration 30 / LogL: -21828.439 / Time: 0h:36m:17s (0h:27m:12s left)
+Optimizing NNI: done in 9.88439 secs using 953.4% CPU
+Optimizing NNI: done in 10.1041 secs using 940.2% CPU
+Optimizing NNI: done in 9.76465 secs using 936.7% CPU
+Optimizing NNI: done in 10.0072 secs using 941.8% CPU
+Optimizing NNI: done in 8.84916 secs using 944.9% CPU
+Optimizing NNI: done in 9.54263 secs using 925.7% CPU
+Optimizing NNI: done in 22.1484 secs using 1252% CPU
+Optimizing NNI: done in 10.0214 secs using 929% CPU
+Optimizing NNI: done in 9.3836 secs using 936.7% CPU
+Optimizing NNI: done in 51.7631 secs using 1376% CPU
+Iteration 40 / LogL: -21827.446 / Time: 0h:38m:50s (0h:23m:50s left)
+Optimizing NNI: done in 9.46546 secs using 924.3% CPU
+Optimizing NNI: done in 10.2945 secs using 942.3% CPU
+Optimizing NNI: done in 9.50786 secs using 933.9% CPU
+Optimizing NNI: done in 10.2831 secs using 999.3% CPU
+Optimizing NNI: done in 9.1973 secs using 928.5% CPU
+Optimizing NNI: done in 10.2073 secs using 934.7% CPU
+Optimizing NNI: done in 10.9533 secs using 946.2% CPU
+Optimizing NNI: done in 10.8036 secs using 942.8% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 48: -21817.561
+Optimizing NNI: done in 9.74129 secs using 938.9% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 49: -21815.645
+Optimizing NNI: done in 9.20541 secs using 942.1% CPU
+Iteration 50 / LogL: -21890.806 / Time: 0h:40m:36s (0h:25m:9s left)
+Log-likelihood cutoff on original alignment: -22047.194
+Optimizing NNI: done in 9.25209 secs using 937.4% CPU
+Optimizing NNI: done in 10.1345 secs using 936.1% CPU
+Optimizing NNI: done in 10.5659 secs using 936.4% CPU
+Optimizing NNI: done in 9.54834 secs using 936.7% CPU
+Optimizing NNI: done in 9.47651 secs using 944.8% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 55: -21812.260
+Optimizing NNI: done in 9.4811 secs using 936.2% CPU
+Optimizing NNI: done in 8.4374 secs using 916% CPU
+Optimizing NNI: done in 9.94159 secs using 937.8% CPU
+Optimizing NNI: done in 9.40503 secs using 944.7% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 59: -21806.102
+Optimizing NNI: done in 9.32363 secs using 936.9% CPU
+Iteration 60 / LogL: -21840.433 / Time: 0h:42m:47s (0h:24m:33s left)
+Optimizing NNI: done in 10.1835 secs using 931.4% CPU
+Optimizing NNI: done in 9.95085 secs using 938.1% CPU
+Optimizing NNI: done in 10.4248 secs using 949.7% CPU
+Optimizing NNI: done in 10.6231 secs using 947.1% CPU
+Optimizing NNI: done in 11.6864 secs using 955.4% CPU
+Optimizing NNI: done in 9.29829 secs using 928.5% CPU
+Optimizing NNI: done in 107.271 secs using 1321% CPU
+Optimizing NNI: done in 141.699 secs using 1320% CPU
+Optimizing NNI: done in 128.917 secs using 1325% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 69: -21794.561
+Optimizing NNI: done in 62.7976 secs using 1288% CPU
+Iteration 70 / LogL: -21828.372 / Time: 0h:51m:18s (0h:33m:13s left)
+Optimizing NNI: done in 65.8043 secs using 1279% CPU
+Optimizing NNI: done in 63.3487 secs using 1289% CPU
+Optimizing NNI: done in 65.8653 secs using 1280% CPU
+Optimizing NNI: done in 66.4572 secs using 1288% CPU
+Optimizing NNI: done in 64.3012 secs using 1304% CPU
+Optimizing NNI: done in 158.676 secs using 1332% CPU
+Optimizing NNI: done in 127.919 secs using 1326% CPU
+Optimizing NNI: done in 108.09 secs using 1331% CPU
+Optimizing NNI: done in 81.4233 secs using 1311% CPU
+Optimizing NNI: done in 10.1166 secs using 938.6% CPU
+Iteration 80 / LogL: -21902.122 / Time: 1h:5m:17s (0h:41m:50s left)
+Optimizing NNI: done in 9.73247 secs using 948.7% CPU
+Optimizing NNI: done in 10.6023 secs using 971.7% CPU
+Optimizing NNI: done in 17.3431 secs using 1133% CPU
+Optimizing NNI: done in 10.7077 secs using 988.9% CPU
+Optimizing NNI: done in 10.894 secs using 952.2% CPU
+Optimizing NNI: done in 8.99779 secs using 929.1% CPU
+Optimizing NNI: done in 10.7145 secs using 930.7% CPU
+Optimizing NNI: done in 12.931 secs using 1086% CPU
+Optimizing NNI: done in 8.60633 secs using 932.9% CPU
+Optimizing NNI: done in 9.6676 secs using 939.7% CPU
+Iteration 90 / LogL: -21844.425 / Time: 1h:7m:9s (0h:34m:37s left)
+Optimizing NNI: done in 9.76697 secs using 927.5% CPU
+Optimizing NNI: done in 12.4558 secs using 935.9% CPU
+Optimizing NNI: done in 11.0313 secs using 944% CPU
+Optimizing NNI: done in 10.4428 secs using 941% CPU
+Optimizing NNI: done in 9.24879 secs using 928.2% CPU
+Optimizing NNI: done in 8.99052 secs using 940% CPU
+Optimizing NNI: done in 13.1197 secs using 1024% CPU
+Optimizing NNI: done in 71.9737 secs using 1310% CPU
+Optimizing NNI: done in 122.194 secs using 1326% CPU
+Optimizing NNI: done in 103.333 secs using 1311% CPU
+Iteration 100 / LogL: -21912.283 / Time: 1h:13m:24s (0h:31m:32s left)
+Log-likelihood cutoff on original alignment: -22046.749
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.948
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Optimizing NNI: done in 128.121 secs using 1319% CPU
+Optimizing NNI: done in 127.089 secs using 1317% CPU
+Optimizing NNI: done in 137.425 secs using 1328% CPU
+Optimizing NNI: done in 120.094 secs using 1324% CPU
+Optimizing NNI: done in 145.459 secs using 1340% CPU
+Optimizing NNI: done in 145.214 secs using 1325% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 106: -21791.122
+Optimizing NNI: done in 155.748 secs using 1324% CPU
+Optimizing NNI: done in 119.607 secs using 1323% CPU
+Optimizing NNI: done in 124.945 secs using 1330% CPU
+Optimizing NNI: done in 99.624 secs using 1321% CPU
+Iteration 110 / LogL: -21800.133 / Time: 1h:35m:43s (0h:59m:31s left)
+Optimizing NNI: done in 109.899 secs using 1316% CPU
+Optimizing NNI: done in 129.869 secs using 1320% CPU
+Optimizing NNI: done in 131.696 secs using 1317% CPU
+Optimizing NNI: done in 128.604 secs using 1307% CPU
+Optimizing NNI: done in 10.3844 secs using 930.7% CPU
+Optimizing NNI: done in 8.68725 secs using 934.9% CPU
+Optimizing NNI: done in 8.41512 secs using 924.3% CPU
+Optimizing NNI: done in 8.32576 secs using 921.8% CPU
+Optimizing NNI: done in 9.38714 secs using 936.5% CPU
+Optimizing NNI: done in 11.7987 secs using 1041% CPU
+Iteration 120 / LogL: -21806.892 / Time: 1h:45m:3s (0h:55m:35s left)
+Optimizing NNI: done in 10.6552 secs using 942% CPU
+Optimizing NNI: done in 8.48918 secs using 932.3% CPU
+Optimizing NNI: done in 8.81235 secs using 931% CPU
+Optimizing NNI: done in 9.19121 secs using 927% CPU
+Optimizing NNI: done in 9.84257 secs using 928.4% CPU
+Optimizing NNI: done in 10.0165 secs using 928.7% CPU
+Optimizing NNI: done in 8.97908 secs using 917% CPU
+Optimizing NNI: done in 9.88597 secs using 926.9% CPU
+Optimizing NNI: done in 10.322 secs using 945.4% CPU
+Optimizing NNI: done in 9.10765 secs using 924% CPU
+Iteration 130 / LogL: -21799.512 / Time: 1h:46m:41s (0h:46m:16s left)
+Optimizing NNI: done in 10.5721 secs using 935.8% CPU
+Optimizing NNI: done in 12.6488 secs using 1082% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 132: -21790.779
+Optimizing NNI: done in 9.75469 secs using 927.2% CPU
+Optimizing NNI: done in 8.98069 secs using 952.9% CPU
+Optimizing NNI: done in 10.2473 secs using 934.7% CPU
+Optimizing NNI: done in 9.13796 secs using 931% CPU
+Optimizing NNI: done in 8.9563 secs using 931.4% CPU
+Optimizing NNI: done in 10.5761 secs using 921.4% CPU
+Optimizing NNI: done in 9.20126 secs using 936.8% CPU
+Optimizing NNI: done in 10.5312 secs using 936.1% CPU
+Iteration 140 / LogL: -21823.390 / Time: 1h:48m:25s (0h:53m:8s left)
+Optimizing NNI: done in 10.3806 secs using 926.9% CPU
+Optimizing NNI: done in 9.52708 secs using 929.2% CPU
+Optimizing NNI: done in 10.311 secs using 938.6% CPU
+Optimizing NNI: done in 10.0669 secs using 926.7% CPU
+Optimizing NNI: done in 10.452 secs using 928.7% CPU
+Optimizing NNI: done in 9.6159 secs using 931.3% CPU
+Optimizing NNI: done in 10.918 secs using 944.6% CPU
+Optimizing NNI: done in 8.65545 secs using 936.3% CPU
+Optimizing NNI: done in 10.2338 secs using 935% CPU
+Optimizing NNI: done in 11.1414 secs using 943.1% CPU
+Iteration 150 / LogL: -21800.540 / Time: 1h:50m:9s (0h:45m:7s left)
+Log-likelihood cutoff on original alignment: -22042.851
+Optimizing NNI: done in 10.3841 secs using 936.6% CPU
+Optimizing NNI: done in 9.19304 secs using 934.5% CPU
+Optimizing NNI: done in 9.7453 secs using 935.4% CPU
+Optimizing NNI: done in 9.70829 secs using 928.7% CPU
+Optimizing NNI: done in 11.8258 secs using 941.3% CPU
+Optimizing NNI: done in 9.42626 secs using 928% CPU
+Optimizing NNI: done in 8.79276 secs using 941.3% CPU
+Optimizing NNI: done in 10.1331 secs using 934.3% CPU
+Optimizing NNI: done in 10.3635 secs using 931.7% CPU
+Optimizing NNI: done in 9.3459 secs using 935.6% CPU
+Iteration 160 / LogL: -21809.336 / Time: 1h:52m:28s (0h:38m:11s left)
+Optimizing NNI: done in 9.79158 secs using 933.2% CPU
+Optimizing NNI: done in 9.91569 secs using 933.9% CPU
+Optimizing NNI: done in 10.1897 secs using 952.2% CPU
+Optimizing NNI: done in 8.9423 secs using 926.6% CPU
+Optimizing NNI: done in 8.46825 secs using 914.9% CPU
+Optimizing NNI: done in 8.85925 secs using 922.9% CPU
+Optimizing NNI: done in 9.02025 secs using 929% CPU
+Optimizing NNI: done in 8.69996 secs using 941.1% CPU
+Optimizing NNI: done in 11.1216 secs using 1000% CPU
+Optimizing NNI: done in 12.4134 secs using 978.1% CPU
+Iteration 170 / LogL: -21810.954 / Time: 1h:54m:11s (0h:31m:33s left)
+Optimizing NNI: done in 8.84263 secs using 926.9% CPU
+Optimizing NNI: done in 8.91574 secs using 929.7% CPU
+Optimizing NNI: done in 11.3002 secs using 937% CPU
+Optimizing NNI: done in 8.82706 secs using 924.2% CPU
+Optimizing NNI: done in 8.61722 secs using 922.1% CPU
+Optimizing NNI: done in 10.2671 secs using 933.8% CPU
+Optimizing NNI: done in 10.2992 secs using 934.2% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 177: -21787.155
+Optimizing NNI: done in 10.0878 secs using 930% CPU
+Optimizing NNI: done in 10.1542 secs using 926.8% CPU
+Optimizing NNI: done in 10.4041 secs using 1025% CPU
+Iteration 180 / LogL: -21851.983 / Time: 1h:56m:9s (0h:47m:41s left)
+Optimizing NNI: done in 10.0828 secs using 928% CPU
+Optimizing NNI: done in 10.677 secs using 948.8% CPU
+Optimizing NNI: done in 10.1323 secs using 940.7% CPU
+Optimizing NNI: done in 10.0647 secs using 990.1% CPU
+Optimizing NNI: done in 9.15775 secs using 934.2% CPU
+Optimizing NNI: done in 8.19471 secs using 923.3% CPU
+Optimizing NNI: done in 9.06311 secs using 934% CPU
+Optimizing NNI: done in 9.87573 secs using 937.3% CPU
+Optimizing NNI: done in 12.2441 secs using 934.2% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 189: -21782.797
+Optimizing NNI: done in 9.50389 secs using 942.3% CPU
+Iteration 190 / LogL: -21796.817 / Time: 1h:58m:1s (0h:47m:4s left)
+Optimizing NNI: done in 10.728 secs using 936.6% CPU
+Optimizing NNI: done in 12.4939 secs using 932.9% CPU
+Optimizing NNI: done in 10.6587 secs using 943.9% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 193: -21781.841
+Optimizing NNI: done in 9.26142 secs using 932.4% CPU
+Optimizing NNI: done in 13.7139 secs using 1040% CPU
+Optimizing NNI: done in 12.6537 secs using 988.7% CPU
+Optimizing NNI: done in 11.4419 secs using 982.5% CPU
+Optimizing NNI: done in 10.2025 secs using 927.7% CPU
+Optimizing NNI: done in 8.88513 secs using 919% CPU
+Optimizing NNI: done in 9.04262 secs using 920.6% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 200: -21773.170
+Iteration 200 / LogL: -21773.170 / Time: 1h:59m:56s (0h:46m:7s left)
+Log-likelihood cutoff on original alignment: -22021.486
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.974
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Optimizing NNI: done in 8.26083 secs using 919.6% CPU
+Optimizing NNI: done in 8.8307 secs using 940.6% CPU
+Optimizing NNI: done in 9.20907 secs using 933.7% CPU
+Optimizing NNI: done in 9.65807 secs using 949% CPU
+Optimizing NNI: done in 7.65157 secs using 923.6% CPU
+Optimizing NNI: done in 9.60275 secs using 992.8% CPU
+Optimizing NNI: done in 10.881 secs using 984.9% CPU
+Optimizing NNI: done in 9.85289 secs using 922.2% CPU
+Optimizing NNI: done in 9.55899 secs using 961.7% CPU
+Optimizing NNI: done in 10.0187 secs using 931.8% CPU
+Iteration 210 / LogL: -21778.057 / Time: 2h:1m:58s (0h:40m:24s left)
+Optimizing NNI: done in 9.15322 secs using 920.6% CPU
+Optimizing NNI: done in 8.98214 secs using 929.4% CPU
+Optimizing NNI: done in 11.1124 secs using 991.5% CPU
+Optimizing NNI: done in 10.5816 secs using 935.8% CPU
+Optimizing NNI: done in 10.236 secs using 935.1% CPU
+Optimizing NNI: done in 10.1581 secs using 949.5% CPU
+Optimizing NNI: done in 9.87315 secs using 927.1% CPU
+Optimizing NNI: done in 10.1326 secs using 924% CPU
+Optimizing NNI: done in 8.45664 secs using 926.5% CPU
+Optimizing NNI: done in 8.83259 secs using 927.3% CPU
+Iteration 220 / LogL: -21815.012 / Time: 2h:3m:38s (0h:34m:53s left)
+Optimizing NNI: done in 9.24722 secs using 929.4% CPU
+Optimizing NNI: done in 9.88146 secs using 927.1% CPU
+Optimizing NNI: done in 8.5202 secs using 923% CPU
+Optimizing NNI: done in 8.74792 secs using 937.5% CPU
+Optimizing NNI: done in 12.1432 secs using 1038% CPU
+Optimizing NNI: done in 8.85432 secs using 957.4% CPU
+Optimizing NNI: done in 10.2976 secs using 941.5% CPU
+Optimizing NNI: done in 9.00316 secs using 935.5% CPU
+Optimizing NNI: done in 9.26763 secs using 925.6% CPU
+Optimizing NNI: done in 10.3578 secs using 940.2% CPU
+Iteration 230 / LogL: -21781.751 / Time: 2h:5m:17s (0h:29m:41s left)
+Optimizing NNI: done in 9.39503 secs using 929.2% CPU
+Optimizing NNI: done in 9.49782 secs using 925.7% CPU
+Optimizing NNI: done in 10.3169 secs using 944.1% CPU
+Optimizing NNI: done in 9.58938 secs using 926.8% CPU
+Optimizing NNI: done in 9.40445 secs using 928.7% CPU
+Optimizing NNI: done in 9.2957 secs using 929% CPU
+Optimizing NNI: done in 8.99603 secs using 930% CPU
+Optimizing NNI: done in 9.18733 secs using 927.5% CPU
+Optimizing NNI: done in 8.94899 secs using 925.2% CPU
+Optimizing NNI: done in 9.82781 secs using 928.9% CPU
+Iteration 240 / LogL: -21791.826 / Time: 2h:6m:54s (0h:24m:47s left)
+Optimizing NNI: done in 9.5697 secs using 929.9% CPU
+Optimizing NNI: done in 8.38055 secs using 935.1% CPU
+Optimizing NNI: done in 9.39812 secs using 929.3% CPU
+Optimizing NNI: done in 9.90683 secs using 943.5% CPU
+Optimizing NNI: done in 10.0132 secs using 936.4% CPU
+Optimizing NNI: done in 9.12674 secs using 923.6% CPU
+Optimizing NNI: done in 10.4018 secs using 935% CPU
+Optimizing NNI: done in 9.31742 secs using 940.9% CPU
+Optimizing NNI: done in 9.60194 secs using 922.1% CPU
+Optimizing NNI: done in 9.86807 secs using 927.8% CPU
+Iteration 250 / LogL: -21810.983 / Time: 2h:8m:32s (0h:20m:9s left)
+Log-likelihood cutoff on original alignment: -22021.486
+Optimizing NNI: done in 9.11066 secs using 934.4% CPU
+Optimizing NNI: done in 9.06636 secs using 935.6% CPU
+Optimizing NNI: done in 8.99816 secs using 915.9% CPU
+Optimizing NNI: done in 8.26322 secs using 919.6% CPU
+Optimizing NNI: done in 10.1512 secs using 944.8% CPU
+Optimizing NNI: done in 10.7306 secs using 926.5% CPU
+Optimizing NNI: done in 10.1909 secs using 935.3% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 257: -21770.172
+Optimizing NNI: done in 10.5862 secs using 942.3% CPU
+Optimizing NNI: done in 9.09549 secs using 936.2% CPU
+Optimizing NNI: done in 9.07787 secs using 919% CPU
+Iteration 260 / LogL: -21790.119 / Time: 2h:10m:37s (0h:38m:22s left)
+Optimizing NNI: done in 8.24654 secs using 924.2% CPU
+Optimizing NNI: done in 10.8226 secs using 928.6% CPU
+Optimizing NNI: done in 9.73567 secs using 923.4% CPU
+Optimizing NNI: done in 9.45423 secs using 923.5% CPU
+Optimizing NNI: done in 11.046 secs using 932.1% CPU
+Optimizing NNI: done in 10.8958 secs using 955.7% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 266: -21766.333
+Optimizing NNI: done in 9.224 secs using 928.8% CPU
+Optimizing NNI: done in 9.54555 secs using 927.7% CPU
+Optimizing NNI: done in 10.3981 secs using 930.6% CPU
+Optimizing NNI: done in 11.3741 secs using 940.2% CPU
+Iteration 270 / LogL: -21781.892 / Time: 2h:12m:22s (0h:37m:11s left)
+Optimizing NNI: done in 9.97834 secs using 942.4% CPU
+Optimizing NNI: done in 9.97758 secs using 946.4% CPU
+Optimizing NNI: done in 8.59669 secs using 931% CPU
+Optimizing NNI: done in 10.108 secs using 938.1% CPU
+Optimizing NNI: done in 9.50715 secs using 931% CPU
+Optimizing NNI: done in 8.51058 secs using 930.2% CPU
+Optimizing NNI: done in 9.589 secs using 926.6% CPU
+Optimizing NNI: done in 10.1253 secs using 931.9% CPU
+Optimizing NNI: done in 8.99139 secs using 939% CPU
+Optimizing NNI: done in 9.25375 secs using 945.9% CPU
+Iteration 280 / LogL: -21834.914 / Time: 2h:13m:59s (0h:32m:37s left)
+Optimizing NNI: done in 9.52952 secs using 940.3% CPU
+Optimizing NNI: done in 10.8317 secs using 930.3% CPU
+Optimizing NNI: done in 9.24933 secs using 931.5% CPU
+Optimizing NNI: done in 9.19516 secs using 925.1% CPU
+Optimizing NNI: done in 9.02768 secs using 929.9% CPU
+Optimizing NNI: done in 8.46749 secs using 944.1% CPU
+Optimizing NNI: done in 10.2162 secs using 945% CPU
+Optimizing NNI: done in 11.7808 secs using 944.7% CPU
+Optimizing NNI: done in 10.0229 secs using 947.5% CPU
+Optimizing NNI: done in 134.004 secs using 1235% CPU
+Iteration 290 / LogL: -21779.654 / Time: 2h:17m:44s (0h:28m:49s left)
+Optimizing NNI: done in 173.511 secs using 1211% CPU
+Optimizing NNI: done in 130.187 secs using 1294% CPU
+Optimizing NNI: done in 88.9975 secs using 1312% CPU
+Optimizing NNI: done in 91.1436 secs using 1316% CPU
+Optimizing NNI: done in 92.4872 secs using 1308% CPU
+Optimizing NNI: done in 88.6126 secs using 1313% CPU
+Optimizing NNI: done in 68.6366 secs using 1298% CPU
+Optimizing NNI: done in 105.392 secs using 1323% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 298: -21765.799
+Optimizing NNI: done in 107.459 secs using 1323% CPU
+Optimizing NNI: done in 101.593 secs using 1329% CPU
+Iteration 300 / LogL: -21816.734 / Time: 2h:35m:20s (0h:41m:41s left)
+Log-likelihood cutoff on original alignment: -22021.486
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.961
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Optimizing NNI: done in 53.7796 secs using 1245% CPU
+Optimizing NNI: done in 10.6096 secs using 941.8% CPU
+Optimizing NNI: done in 10.9047 secs using 935.7% CPU
+Optimizing NNI: done in 9.70796 secs using 921.9% CPU
+Optimizing NNI: done in 10.1811 secs using 934.5% CPU
+Optimizing NNI: done in 10.3962 secs using 950.9% CPU
+Optimizing NNI: done in 8.90421 secs using 933.7% CPU
+Optimizing NNI: done in 14.9723 secs using 1128% CPU
+Optimizing NNI: done in 87.0188 secs using 1307% CPU
+Optimizing NNI: done in 133.312 secs using 1332% CPU
+Iteration 310 / LogL: -21792.194 / Time: 2h:41m:41s (0h:38m:53s left)
+Optimizing NNI: done in 119.268 secs using 1311% CPU
+Optimizing NNI: done in 124.24 secs using 1321% CPU
+Optimizing NNI: done in 115.586 secs using 1298% CPU
+Optimizing NNI: done in 128.744 secs using 1322% CPU
+Optimizing NNI: done in 59.5009 secs using 1295% CPU
+Optimizing NNI: done in 11.4206 secs using 934.1% CPU
+Optimizing NNI: done in 9.46344 secs using 923.6% CPU
+Optimizing NNI: done in 11.2195 secs using 933.2% CPU
+Optimizing NNI: done in 9.00641 secs using 930% CPU
+Optimizing NNI: done in 8.99509 secs using 940.7% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 320: -21763.408
+Iteration 320 / LogL: -21763.408 / Time: 2h:51m:49s (0h:45m:2s left)
+Optimizing NNI: done in 11.574 secs using 945.7% CPU
+Optimizing NNI: done in 9.60669 secs using 924.3% CPU
+Optimizing NNI: done in 10.9387 secs using 946.7% CPU
+Optimizing NNI: done in 12.2407 secs using 957.1% CPU
+Optimizing NNI: done in 9.94691 secs using 928.4% CPU
+Optimizing NNI: done in 12.1759 secs using 996.1% CPU
+Optimizing NNI: done in 15.224 secs using 1049% CPU
+Optimizing NNI: done in 10.824 secs using 927.6% CPU
+Optimizing NNI: done in 10.2038 secs using 950.2% CPU
+Optimizing NNI: done in 11.863 secs using 996.8% CPU
+Iteration 330 / LogL: -21776.575 / Time: 2h:54m:1s (0h:39m:54s left)
+Optimizing NNI: done in 10.665 secs using 952.7% CPU
+Optimizing NNI: done in 12.8567 secs using 942.1% CPU
+Optimizing NNI: done in 10.6669 secs using 940.3% CPU
+Optimizing NNI: done in 11.539 secs using 1012% CPU
+Optimizing NNI: done in 9.14177 secs using 928.7% CPU
+Optimizing NNI: done in 10.1836 secs using 935.5% CPU
+Optimizing NNI: done in 9.76142 secs using 928.9% CPU
+Optimizing NNI: done in 10.8483 secs using 930.7% CPU
+Optimizing NNI: done in 11.0751 secs using 933.7% CPU
+Optimizing NNI: done in 10.737 secs using 937.3% CPU
+Iteration 340 / LogL: -21798.933 / Time: 2h:55m:58s (0h:34m:53s left)
+Optimizing NNI: done in 10.3914 secs using 939.7% CPU
+Optimizing NNI: done in 10.0498 secs using 952.3% CPU
+Optimizing NNI: done in 11.9316 secs using 940.3% CPU
+Optimizing NNI: done in 9.96551 secs using 939.4% CPU
+Optimizing NNI: done in 11.0039 secs using 936.9% CPU
+Optimizing NNI: done in 12.5019 secs using 946.3% CPU
+Optimizing NNI: done in 11.418 secs using 950.8% CPU
+Optimizing NNI: done in 11.1868 secs using 933.5% CPU
+Optimizing NNI: done in 9.96892 secs using 932.1% CPU
+Optimizing NNI: done in 12.6677 secs using 944.2% CPU
+Iteration 350 / LogL: -21780.299 / Time: 2h:57m:55s (0h:30m:2s left)
+Log-likelihood cutoff on original alignment: -22021.486
+Optimizing NNI: done in 11.8886 secs using 929% CPU
+Optimizing NNI: done in 10.389 secs using 931.6% CPU
+Optimizing NNI: done in 10.44 secs using 950.7% CPU
+Optimizing NNI: done in 12.1585 secs using 985.7% CPU
+Optimizing NNI: done in 9.67737 secs using 933.9% CPU
+Optimizing NNI: done in 14.1251 secs using 1037% CPU
+Optimizing NNI: done in 12.3979 secs using 981.7% CPU
+Optimizing NNI: done in 36.5292 secs using 1253% CPU
+Optimizing NNI: done in 48.662 secs using 1277% CPU
+Optimizing NNI: done in 31.7485 secs using 1234% CPU
+Iteration 360 / LogL: -21777.497 / Time: 3h:1m:43s (0h:25m:40s left)
+Optimizing NNI: done in 55.1039 secs using 1297% CPU
+Optimizing NNI: done in 82.9312 secs using 1297% CPU
+Optimizing NNI: done in 71.4091 secs using 1317% CPU
+Optimizing NNI: done in 62.3311 secs using 1309% CPU
+Optimizing NNI: done in 63.2781 secs using 1294% CPU
+Optimizing NNI: done in 75.0011 secs using 1301% CPU
+Optimizing NNI: done in 63.15 secs using 1298% CPU
+Optimizing NNI: done in 29.9581 secs using 1202% CPU
+Optimizing NNI: done in 39.0597 secs using 1245% CPU
+Optimizing NNI: done in 65.987 secs using 1306% CPU
+Iteration 370 / LogL: -21775.864 / Time: 3h:11m:58s (0h:22m:11s left)
+Optimizing NNI: done in 58.4299 secs using 1284% CPU
+Optimizing NNI: done in 76.1885 secs using 1279% CPU
+Optimizing NNI: done in 39.3132 secs using 1256% CPU
+Optimizing NNI: done in 27.4123 secs using 1207% CPU
+Optimizing NNI: done in 43.9549 secs using 1280% CPU
+Optimizing NNI: done in 24.0254 secs using 1152% CPU
+Optimizing NNI: done in 8.7753 secs using 926% CPU
+Optimizing NNI: done in 9.58038 secs using 932.2% CPU
+Optimizing NNI: done in 9.99627 secs using 939.8% CPU
+Optimizing NNI: done in 10.3006 secs using 962.3% CPU
+Iteration 380 / LogL: -21828.922 / Time: 3h:17m:10s (0h:17m:50s left)
+Optimizing NNI: done in 9.92915 secs using 976.6% CPU
+Optimizing NNI: done in 9.1953 secs using 943.6% CPU
+Optimizing NNI: done in 14.4528 secs using 1050% CPU
+Optimizing NNI: done in 11.6298 secs using 998.8% CPU
+Optimizing NNI: done in 12.1466 secs using 990.3% CPU
+Optimizing NNI: done in 10.8317 secs using 929% CPU
+Optimizing NNI: done in 10.1302 secs using 923.5% CPU
+Optimizing NNI: done in 9.99888 secs using 937.3% CPU
+Optimizing NNI: done in 11.0915 secs using 939.7% CPU
+Optimizing NNI: done in 11.308 secs using 939% CPU
+Iteration 390 / LogL: -21787.558 / Time: 3h:19m:4s (0h:13m:10s left)
+Optimizing NNI: done in 12.289 secs using 920.1% CPU
+Optimizing NNI: done in 9.21658 secs using 926% CPU
+Optimizing NNI: done in 10.6963 secs using 936.2% CPU
+Optimizing NNI: done in 10.8726 secs using 939.9% CPU
+Optimizing NNI: done in 9.78761 secs using 968.9% CPU
+Optimizing NNI: done in 29.2789 secs using 1211% CPU
+Optimizing NNI: done in 10.6887 secs using 933.9% CPU
+Optimizing NNI: done in 11.3615 secs using 987.5% CPU
+Optimizing NNI: done in 29.3235 secs using 1232% CPU
+Optimizing NNI: done in 27.6555 secs using 1212% CPU
+Iteration 400 / LogL: -21792.560 / Time: 3h:21m:49s (0h:8m:42s left)
+Log-likelihood cutoff on original alignment: -22021.486
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.972
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Optimizing NNI: done in 14.4563 secs using 1092% CPU
+Optimizing NNI: done in 11.1476 secs using 981.7% CPU
+Optimizing NNI: done in 8.69068 secs using 925.3% CPU
+Optimizing NNI: done in 10.4285 secs using 931% CPU
+Optimizing NNI: done in 9.54414 secs using 926.4% CPU
+Optimizing NNI: done in 10.7679 secs using 943.3% CPU
+Optimizing NNI: done in 9.41226 secs using 938.4% CPU
+Optimizing NNI: done in 9.21687 secs using 939.7% CPU
+Optimizing NNI: done in 11.3945 secs using 945.1% CPU
+Optimizing NNI: done in 10.1158 secs using 934.6% CPU
+Iteration 410 / LogL: -21800.124 / Time: 3h:24m:5s (0h:38m:42s left)
+Optimizing NNI: done in 10.1386 secs using 946.7% CPU
+Optimizing NNI: done in 11.15 secs using 925.2% CPU
+Optimizing NNI: done in 10.896 secs using 929.6% CPU
+Optimizing NNI: done in 9.99895 secs using 929.5% CPU
+Optimizing NNI: done in 10.2877 secs using 929.5% CPU
+Optimizing NNI: done in 9.91775 secs using 937.2% CPU
+Optimizing NNI: done in 9.54866 secs using 936.5% CPU
+Optimizing NNI: done in 10.5855 secs using 934.5% CPU
+Optimizing NNI: done in 10.6922 secs using 945.1% CPU
+Optimizing NNI: done in 11.3221 secs using 944.8% CPU
+Iteration 420 / LogL: -21777.677 / Time: 3h:25m:53s (0h:33m:56s left)
+Optimizing NNI: done in 10.9099 secs using 934.1% CPU
+Optimizing NNI: done in 10.3629 secs using 941.5% CPU
+Optimizing NNI: done in 9.35649 secs using 927.1% CPU
+Optimizing NNI: done in 10.1984 secs using 936.3% CPU
+Optimizing NNI: done in 9.97902 secs using 931.2% CPU
+Optimizing NNI: done in 12.2872 secs using 955.3% CPU
+Optimizing NNI: done in 10.0592 secs using 924.7% CPU
+Optimizing NNI: done in 33.3909 secs using 1256% CPU
+Optimizing NNI: done in 210.695 secs using 1307% CPU
+Optimizing NNI: done in 213.543 secs using 1254% CPU
+Iteration 430 / LogL: -21830.734 / Time: 3h:34m:48s (0h:30m:27s left)
+Optimizing NNI: done in 10.306 secs using 927.6% CPU
+Optimizing NNI: done in 10.5364 secs using 932.4% CPU
+Optimizing NNI: done in 9.71931 secs using 924.4% CPU
+Optimizing NNI: done in 10.694 secs using 930.4% CPU
+Optimizing NNI: done in 9.81881 secs using 935.5% CPU
+Optimizing NNI: done in 10.5334 secs using 969.8% CPU
+Optimizing NNI: done in 10.8229 secs using 941.7% CPU
+Optimizing NNI: done in 9.77039 secs using 926.6% CPU
+Optimizing NNI: done in 11.2477 secs using 943.9% CPU
+Optimizing NNI: done in 11.4425 secs using 962.4% CPU
+Iteration 440 / LogL: -21824.490 / Time: 3h:36m:36s (0h:25m:45s left)
+Optimizing NNI: done in 11.5638 secs using 982.1% CPU
+Optimizing NNI: done in 10.792 secs using 940% CPU
+Optimizing NNI: done in 9.84635 secs using 927.3% CPU
+Optimizing NNI: done in 9.57976 secs using 927.5% CPU
+Optimizing NNI: done in 10.7028 secs using 925.6% CPU
+Optimizing NNI: done in 8.79316 secs using 931.8% CPU
+Optimizing NNI: done in 9.58303 secs using 926.7% CPU
+Optimizing NNI: done in 9.8374 secs using 937.2% CPU
+Optimizing NNI: done in 10.2749 secs using 941.9% CPU
+Optimizing NNI: done in 9.00171 secs using 928.8% CPU
+Iteration 450 / LogL: -21796.886 / Time: 3h:38m:20s (0h:21m:10s left)
+Log-likelihood cutoff on original alignment: -22021.486
+Optimizing NNI: done in 11.1916 secs using 1007% CPU
+Optimizing NNI: done in 9.48569 secs using 934.2% CPU
+Optimizing NNI: done in 9.8846 secs using 925.2% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 453: -21762.830
+Optimizing NNI: done in 11.4654 secs using 918.5% CPU
+Optimizing NNI: done in 10.1506 secs using 939.4% CPU
+Optimizing NNI: done in 9.24583 secs using 930.8% CPU
+Optimizing NNI: done in 9.52012 secs using 949% CPU
+Optimizing NNI: done in 11.0624 secs using 945.6% CPU
+Optimizing NNI: done in 10.223 secs using 940% CPU
+Optimizing NNI: done in 10.6821 secs using 932.4% CPU
+Iteration 460 / LogL: -21826.418 / Time: 3h:40m:41s (0h:39m:0s left)
+Optimizing NNI: done in 11.5019 secs using 928.5% CPU
+Optimizing NNI: done in 10.2798 secs using 937.7% CPU
+Optimizing NNI: done in 9.94796 secs using 926.8% CPU
+Optimizing NNI: done in 10.3202 secs using 934.8% CPU
+Optimizing NNI: done in 9.9363 secs using 924.1% CPU
+Optimizing NNI: done in 9.69411 secs using 929.6% CPU
+Optimizing NNI: done in 9.39491 secs using 929% CPU
+Optimizing NNI: done in 10.6658 secs using 942.2% CPU
+Optimizing NNI: done in 10.4219 secs using 929.2% CPU
+Optimizing NNI: done in 10.2904 secs using 954.8% CPU
+Iteration 470 / LogL: -21774.407 / Time: 3h:42m:39s (0h:34m:25s left)
+Optimizing NNI: done in 10.6714 secs using 930.8% CPU
+Optimizing NNI: done in 10.7512 secs using 969.5% CPU
+Optimizing NNI: done in 10.5307 secs using 933.9% CPU
+Optimizing NNI: done in 9.50046 secs using 951.4% CPU
+Optimizing NNI: done in 11.3328 secs using 966% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 475: -21761.757
+Optimizing NNI: done in 9.03371 secs using 914.2% CPU
+Optimizing NNI: done in 10.3623 secs using 919% CPU
+Optimizing NNI: done in 10.9906 secs using 946% CPU
+Optimizing NNI: done in 10.8957 secs using 958.7% CPU
+Optimizing NNI: done in 10.4736 secs using 939.3% CPU
+Iteration 480 / LogL: -21776.569 / Time: 3h:44m:34s (0h:38m:57s left)
+Optimizing NNI: done in 9.93277 secs using 924.7% CPU
+Optimizing NNI: done in 9.70999 secs using 924% CPU
+Optimizing NNI: done in 10.7213 secs using 931% CPU
+Optimizing NNI: done in 10.9495 secs using 938.4% CPU
+Optimizing NNI: done in 10.924 secs using 949.3% CPU
+Optimizing NNI: done in 9.52096 secs using 929.8% CPU
+Optimizing NNI: done in 9.21494 secs using 940.4% CPU
+Optimizing NNI: done in 10.0855 secs using 940.6% CPU
+Optimizing NNI: done in 10.2205 secs using 927.5% CPU
+Optimizing NNI: done in 10.3273 secs using 940.4% CPU
+Iteration 490 / LogL: -21777.396 / Time: 3h:46m:31s (0h:34m:28s left)
+Optimizing NNI: done in 10.3408 secs using 933.3% CPU
+Optimizing NNI: done in 11.6678 secs using 931.3% CPU
+Optimizing NNI: done in 10.3802 secs using 933.5% CPU
+Optimizing NNI: done in 9.39512 secs using 930.8% CPU
+Optimizing NNI: done in 9.84294 secs using 935.6% CPU
+Optimizing NNI: done in 10.5821 secs using 935.8% CPU
+Optimizing NNI: done in 10.9123 secs using 937% CPU
+Optimizing NNI: done in 11.368 secs using 940.6% CPU
+Optimizing NNI: done in 9.9319 secs using 925% CPU
+Optimizing NNI: done in 10.472 secs using 942.9% CPU
+Iteration 500 / LogL: -21769.781 / Time: 3h:48m:19s (0h:30m:5s left)
+Log-likelihood cutoff on original alignment: -22021.486
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.971
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Optimizing NNI: done in 10.3126 secs using 928.8% CPU
+Optimizing NNI: done in 11.4739 secs using 937.1% CPU
+Optimizing NNI: done in 9.05747 secs using 934.6% CPU
+Optimizing NNI: done in 10.0382 secs using 937.6% CPU
+Optimizing NNI: done in 13.4636 secs using 944.3% CPU
+Optimizing NNI: done in 10.2661 secs using 956.3% CPU
+Optimizing NNI: done in 14.9279 secs using 1001% CPU
+Optimizing NNI: done in 11.3599 secs using 964.4% CPU
+Optimizing NNI: done in 12.2332 secs using 997.8% CPU
+Optimizing NNI: done in 10.2562 secs using 930.1% CPU
+Iteration 510 / LogL: -21818.335 / Time: 3h:50m:42s (0h:35m:48s left)
+Optimizing NNI: done in 10.2982 secs using 944.2% CPU
+Optimizing NNI: done in 11.9371 secs using 933.2% CPU
+Optimizing NNI: done in 9.17055 secs using 920% CPU
+Optimizing NNI: done in 9.05448 secs using 932.6% CPU
+Optimizing NNI: done in 10.4153 secs using 934.4% CPU
+Optimizing NNI: done in 8.02395 secs using 928.7% CPU
+Optimizing NNI: done in 9.20081 secs using 937.9% CPU
+Optimizing NNI: done in 9.6547 secs using 921% CPU
+Optimizing NNI: done in 11.2537 secs using 933.1% CPU
+Optimizing NNI: done in 11.1542 secs using 930.6% CPU
+Iteration 520 / LogL: -21775.444 / Time: 3h:52m:27s (0h:31m:29s left)
+Optimizing NNI: done in 10.5567 secs using 941.8% CPU
+Optimizing NNI: done in 10.0017 secs using 927.3% CPU
+Optimizing NNI: done in 10.5315 secs using 945.9% CPU
+Optimizing NNI: done in 9.47394 secs using 936.7% CPU
+Optimizing NNI: done in 11.9919 secs using 934.6% CPU
+Optimizing NNI: done in 10.5107 secs using 932.2% CPU
+Optimizing NNI: done in 9.82873 secs using 943.2% CPU
+Optimizing NNI: done in 10.1148 secs using 946.8% CPU
+Optimizing NNI: done in 10.3069 secs using 939.8% CPU
+Optimizing NNI: done in 9.1718 secs using 925.9% CPU
+Iteration 530 / LogL: -21844.014 / Time: 3h:54m:13s (0h:27m:16s left)
+Optimizing NNI: done in 9.23368 secs using 936.3% CPU
+Optimizing NNI: done in 10.2054 secs using 936.3% CPU
+Optimizing NNI: done in 9.41035 secs using 924% CPU
+Optimizing NNI: done in 10.7323 secs using 924% CPU
+Optimizing NNI: done in 9.37237 secs using 931.8% CPU
+Optimizing NNI: done in 9.28486 secs using 935.3% CPU
+Optimizing NNI: done in 9.71576 secs using 930.7% CPU
+Optimizing NNI: done in 10.1653 secs using 951.3% CPU
+Optimizing NNI: done in 11.2902 secs using 943.9% CPU
+Optimizing NNI: done in 9.86679 secs using 919.9% CPU
+Iteration 540 / LogL: -21780.088 / Time: 3h:55m:57s (0h:23m:7s left)
+Optimizing NNI: done in 11.7913 secs using 940.9% CPU
+Optimizing NNI: done in 10.7513 secs using 927.5% CPU
+Optimizing NNI: done in 10.7348 secs using 922.8% CPU
+Optimizing NNI: done in 8.771 secs using 935.2% CPU
+Optimizing NNI: done in 9.26203 secs using 929.3% CPU
+Optimizing NNI: done in 10.4851 secs using 929.8% CPU
+Optimizing NNI: done in 9.63822 secs using 929.8% CPU
+Optimizing NNI: done in 11.304 secs using 935.2% CPU
+Optimizing NNI: done in 11.3779 secs using 943.9% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 549: -21759.421
+Optimizing NNI: done in 9.64605 secs using 932.7% CPU
+Iteration 550 / LogL: -21802.929 / Time: 3h:57m:46s (0h:37m:48s left)
+Log-likelihood cutoff on original alignment: -22021.486
+Optimizing NNI: done in 8.85719 secs using 929.1% CPU
+Optimizing NNI: done in 9.69432 secs using 940.7% CPU
+Optimizing NNI: done in 9.47548 secs using 925.5% CPU
+Optimizing NNI: done in 10.6587 secs using 933.6% CPU
+Optimizing NNI: done in 10.6819 secs using 944.3% CPU
+Optimizing NNI: done in 15.4824 secs using 1083% CPU
+Optimizing NNI: done in 9.04094 secs using 931% CPU
+Optimizing NNI: done in 10.1827 secs using 935.2% CPU
+Optimizing NNI: done in 17.3503 secs using 1151% CPU
+Optimizing NNI: done in 11.2995 secs using 928.1% CPU
+Iteration 560 / LogL: -21790.065 / Time: 4h:0m:9s (0h:33m:45s left)
+Optimizing NNI: done in 12.5992 secs using 978.5% CPU
+Optimizing NNI: done in 10.0409 secs using 929.9% CPU
+Optimizing NNI: done in 10.4821 secs using 945.1% CPU
+Optimizing NNI: done in 10.6229 secs using 928.1% CPU
+Optimizing NNI: done in 9.46548 secs using 949.3% CPU
+Optimizing NNI: done in 9.72295 secs using 924.7% CPU
+Optimizing NNI: done in 9.34645 secs using 940.2% CPU
+Optimizing NNI: done in 10.7376 secs using 1003% CPU
+Optimizing NNI: done in 10.7547 secs using 941% CPU
+Optimizing NNI: done in 10.8367 secs using 970% CPU
+Iteration 570 / LogL: -21797.095 / Time: 4h:1m:58s (0h:29m:41s left)
+Optimizing NNI: done in 10.2502 secs using 935% CPU
+Optimizing NNI: done in 9.69015 secs using 930.9% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 572: -21758.006
+Optimizing NNI: done in 11.6732 secs using 955.8% CPU
+Optimizing NNI: done in 10.1917 secs using 938.5% CPU
+Optimizing NNI: done in 10.7371 secs using 941% CPU
+Optimizing NNI: done in 11.1586 secs using 919.5% CPU
+Optimizing NNI: done in 10.4513 secs using 931.9% CPU
+Optimizing NNI: done in 10.1391 secs using 937.9% CPU
+Optimizing NNI: done in 11.6417 secs using 927.7% CPU
+Optimizing NNI: done in 9.628 secs using 935.5% CPU
+Iteration 580 / LogL: -21772.934 / Time: 4h:3m:50s (0h:34m:16s left)
+Optimizing NNI: done in 10.5607 secs using 935.1% CPU
+Optimizing NNI: done in 11.4804 secs using 941.4% CPU
+Optimizing NNI: done in 11.7492 secs using 936.2% CPU
+Optimizing NNI: done in 10.1162 secs using 927.8% CPU
+Optimizing NNI: done in 10.4413 secs using 947.7% CPU
+Optimizing NNI: done in 12.9434 secs using 955.9% CPU
+Optimizing NNI: done in 11.7571 secs using 942.3% CPU
+Optimizing NNI: done in 8.67442 secs using 925.2% CPU
+Optimizing NNI: done in 11.5036 secs using 970.6% CPU
+Optimizing NNI: done in 16.2197 secs using 1076% CPU
+Iteration 590 / LogL: -21764.704 / Time: 4h:5m:50s (0h:30m:18s left)
+Optimizing NNI: done in 12.3377 secs using 954.1% CPU
+Optimizing NNI: done in 11.6806 secs using 934% CPU
+Optimizing NNI: done in 13.6882 secs using 943.3% CPU
+Optimizing NNI: done in 88.8085 secs using 1396% CPU
+Optimizing NNI: done in 180.792 secs using 1271% CPU
+Optimizing NNI: done in 211.642 secs using 1264% CPU
+Optimizing NNI: done in 125.52 secs using 1329% CPU
+Optimizing NNI: done in 145.228 secs using 1339% CPU
+Optimizing NNI: done in 114.556 secs using 1323% CPU
+Optimizing NNI: done in 97.918 secs using 1314% CPU
+Iteration 600 / LogL: -21807.887 / Time: 4h:22m:39s (0h:28m:11s left)
+Log-likelihood cutoff on original alignment: -22021.486
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.977
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Optimizing NNI: done in 87.7061 secs using 1317% CPU
+Optimizing NNI: done in 123.64 secs using 1332% CPU
+Optimizing NNI: done in 98.964 secs using 1331% CPU
+Optimizing NNI: done in 120.275 secs using 1331% CPU
+Optimizing NNI: done in 102.93 secs using 1318% CPU
+Optimizing NNI: done in 90.301 secs using 1293% CPU
+Optimizing NNI: done in 10.6357 secs using 974.3% CPU
+Optimizing NNI: done in 13.1545 secs using 969.3% CPU
+Optimizing NNI: done in 10.3185 secs using 926.2% CPU
+Optimizing NNI: done in 11.1021 secs using 938.1% CPU
+Iteration 610 / LogL: -21779.137 / Time: 4h:34m:22s (0h:36m:23s left)
+Optimizing NNI: done in 11.3574 secs using 937.4% CPU
+Optimizing NNI: done in 10.0989 secs using 933.4% CPU
+Optimizing NNI: done in 10.6696 secs using 923.2% CPU
+Optimizing NNI: done in 9.55251 secs using 932.2% CPU
+Optimizing NNI: done in 12.064 secs using 944.7% CPU
+Optimizing NNI: done in 10.1169 secs using 929.4% CPU
+Optimizing NNI: done in 9.22967 secs using 928.5% CPU
+Optimizing NNI: done in 11.2335 secs using 930.5% CPU
+Optimizing NNI: done in 10.7003 secs using 947.1% CPU
+Optimizing NNI: done in 25.8974 secs using 1208% CPU
+Iteration 620 / LogL: -21778.220 / Time: 4h:36m:29s (0h:32m:5s left)
+Optimizing NNI: done in 110.655 secs using 1311% CPU
+Optimizing NNI: done in 110.475 secs using 1324% CPU
+Optimizing NNI: done in 64.193 secs using 1294% CPU
+Optimizing NNI: done in 65.312 secs using 1283% CPU
+Optimizing NNI: done in 67.3899 secs using 1292% CPU
+Optimizing NNI: done in 61.9292 secs using 1289% CPU
+Optimizing NNI: done in 64.0485 secs using 1295% CPU
+Optimizing NNI: done in 98.0863 secs using 1319% CPU
+Optimizing NNI: done in 87.3564 secs using 1308% CPU
+Optimizing NNI: done in 109.717 secs using 1322% CPU
+Iteration 630 / LogL: -21778.589 / Time: 4h:51m:6s (0h:29m:15s left)
+Optimizing NNI: done in 91.9972 secs using 1312% CPU
+Optimizing NNI: done in 97.5755 secs using 1280% CPU
+Optimizing NNI: done in 11.1038 secs using 939.8% CPU
+Optimizing NNI: done in 9.71818 secs using 926.2% CPU
+Optimizing NNI: done in 10.8596 secs using 944.5% CPU
+Optimizing NNI: done in 10.2631 secs using 929.4% CPU
+Optimizing NNI: done in 10.9199 secs using 933.5% CPU
+Optimizing NNI: done in 13.0126 secs using 928.2% CPU
+Optimizing NNI: done in 10.3019 secs using 927.2% CPU
+Optimizing NNI: done in 8.45751 secs using 939.6% CPU
+Iteration 640 / LogL: -21765.154 / Time: 4h:55m:47s (0h:25m:7s left)
+Optimizing NNI: done in 12.2654 secs using 941.7% CPU
+Optimizing NNI: done in 10.213 secs using 935.7% CPU
+Optimizing NNI: done in 12.3445 secs using 937.6% CPU
+Optimizing NNI: done in 10.5775 secs using 932.7% CPU
+Optimizing NNI: done in 11.6202 secs using 929.4% CPU
+Optimizing NNI: done in 10.1077 secs using 932.9% CPU
+Optimizing NNI: done in 10.1404 secs using 936.7% CPU
+Optimizing NNI: done in 11.82 secs using 944.2% CPU
+Optimizing NNI: done in 9.24643 secs using 931.2% CPU
+Optimizing NNI: done in 11.5476 secs using 940.9% CPU
+Iteration 650 / LogL: -21830.092 / Time: 4h:57m:41s (0h:20m:45s left)
+Log-likelihood cutoff on original alignment: -22021.486
+Optimizing NNI: done in 116.701 secs using 1328% CPU
+Optimizing NNI: done in 111.699 secs using 1313% CPU
+Optimizing NNI: done in 85.9511 secs using 1315% CPU
+Optimizing NNI: done in 149.734 secs using 1325% CPU
+Optimizing NNI: done in 101.546 secs using 1317% CPU
+Optimizing NNI: done in 113.486 secs using 1314% CPU
+Optimizing NNI: done in 89.8635 secs using 1301% CPU
+Optimizing NNI: done in 72.7467 secs using 1301% CPU
+Optimizing NNI: done in 58.8353 secs using 1277% CPU
+Optimizing NNI: done in 59.0887 secs using 1272% CPU
+Iteration 660 / LogL: -21767.797 / Time: 5h:14m:16s (0h:17m:22s left)
+Optimizing NNI: done in 87.1067 secs using 1260% CPU
+Optimizing NNI: done in 10.533 secs using 932.9% CPU
+Optimizing NNI: done in 10.8195 secs using 924.8% CPU
+Optimizing NNI: done in 12.5352 secs using 991% CPU
+Optimizing NNI: done in 11.6415 secs using 936.4% CPU
+Optimizing NNI: done in 10.9508 secs using 926.6% CPU
+Optimizing NNI: done in 10.594 secs using 928.8% CPU
+Optimizing NNI: done in 10.4609 secs using 931% CPU
+Optimizing NNI: done in 10.6493 secs using 935.5% CPU
+Optimizing NNI: done in 11.03 secs using 942.8% CPU
+Iteration 670 / LogL: -21799.675 / Time: 5h:17m:29s (0h:12m:58s left)
+Optimizing NNI: done in 11.3973 secs using 968.2% CPU
+Optimizing NNI: done in 13.3068 secs using 1016% CPU
+Optimizing NNI: done in 13.8797 secs using 1043% CPU
+Optimizing NNI: done in 14.3515 secs using 1055% CPU
+Optimizing NNI: done in 11.535 secs using 945.9% CPU
+Optimizing NNI: done in 11.8799 secs using 1006% CPU
+Optimizing NNI: done in 9.55095 secs using 924.1% CPU
+Optimizing NNI: done in 11.9865 secs using 958.5% CPU
+Optimizing NNI: done in 12.543 secs using 935% CPU
+Optimizing NNI: done in 10.9752 secs using 935.2% CPU
+Iteration 680 / LogL: -21783.458 / Time: 5h:19m:36s (0h:8m:35s left)
+Optimizing NNI: done in 10.7412 secs using 936.9% CPU
+Optimizing NNI: done in 12.9171 secs using 944.4% CPU
+Optimizing NNI: done in 13.7308 secs using 928% CPU
+Optimizing NNI: done in 13.412 secs using 995.1% CPU
+Optimizing NNI: done in 147.163 secs using 1219% CPU
+Optimizing NNI: done in 13.9518 secs using 1023% CPU
+Optimizing NNI: done in 14.0076 secs using 1044% CPU
+Optimizing NNI: done in 18.3942 secs using 1055% CPU
+Optimizing NNI: done in 9.89849 secs using 953.2% CPU
+Optimizing NNI: done in 11.8128 secs using 979.5% CPU
+Iteration 690 / LogL: -21780.811 / Time: 5h:24m:8s (0h:4m:17s left)
+Optimizing NNI: done in 11.1261 secs using 978.4% CPU
+Optimizing NNI: done in 8.90026 secs using 930.4% CPU
+Optimizing NNI: done in 10.6584 secs using 935.7% CPU
+Optimizing NNI: done in 11.0102 secs using 935.9% CPU
+Optimizing NNI: done in 11.7248 secs using 936.5% CPU
+Optimizing NNI: done in 12.2474 secs using 930.1% CPU
+Optimizing NNI: done in 11.3331 secs using 940.1% CPU
+Optimizing NNI: done in 11.0458 secs using 942.6% CPU
+Optimizing NNI: done in 12.0027 secs using 935.9% CPU
+Optimizing NNI: done in 11.6328 secs using 945.2% CPU
+Iteration 700 / LogL: -21842.807 / Time: 5h:26m:5s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -22021.486
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.978
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Optimizing NNI: done in 11.8295 secs using 936.8% CPU
+Optimizing NNI: done in 10.8968 secs using 946.4% CPU
+Optimizing NNI: done in 12.9534 secs using 940.9% CPU
+Optimizing NNI: done in 11.7299 secs using 932.3% CPU
+Optimizing NNI: done in 83.7312 secs using 1272% CPU
+Optimizing NNI: done in 85.5146 secs using 1174% CPU
+Optimizing NNI: done in 12.0867 secs using 956.5% CPU
+Optimizing NNI: done in 10.8897 secs using 928.2% CPU
+Optimizing NNI: done in 12.3954 secs using 966.8% CPU
+Optimizing NNI: done in 11.5572 secs using 924.8% CPU
+Iteration 710 / LogL: -21871.403 / Time: 5h:31m:2s (0h:38m:26s left)
+Optimizing NNI: done in 12.4261 secs using 939.3% CPU
+Optimizing NNI: done in 9.92656 secs using 932.6% CPU
+Optimizing NNI: done in 19.2199 secs using 1162% CPU
+Optimizing NNI: done in 61.5437 secs using 1293% CPU
+Optimizing NNI: done in 12.6491 secs using 1057% CPU
+Optimizing NNI: done in 38.1783 secs using 1255% CPU
+Optimizing NNI: done in 35.4587 secs using 1204% CPU
+Optimizing NNI: done in 56.7147 secs using 1302% CPU
+Optimizing NNI: done in 30.8334 secs using 1206% CPU
+Optimizing NNI: done in 38.4355 secs using 1235% CPU
+Iteration 720 / LogL: -21784.929 / Time: 5h:36m:24s (0h:34m:17s left)
+Optimizing NNI: done in 38.134 secs using 1188% CPU
+Optimizing NNI: done in 28.236 secs using 1239% CPU
+Optimizing NNI: done in 59.8862 secs using 1281% CPU
+Optimizing NNI: done in 71.6897 secs using 1301% CPU
+Optimizing NNI: done in 48.9162 secs using 1300% CPU
+Optimizing NNI: done in 44.1418 secs using 1249% CPU
+Optimizing NNI: done in 37.7912 secs using 1258% CPU
+Optimizing NNI: done in 29.7602 secs using 1194% CPU
+Optimizing NNI: done in 69.6211 secs using 1275% CPU
+Optimizing NNI: done in 28.1837 secs using 1185% CPU
+Iteration 730 / LogL: -21792.593 / Time: 5h:44m:19s (0h:30m:21s left)
+Optimizing NNI: done in 12.225 secs using 963.9% CPU
+Optimizing NNI: done in 48.5976 secs using 1249% CPU
+Optimizing NNI: done in 53.8047 secs using 1261% CPU
+Optimizing NNI: done in 42.2443 secs using 1259% CPU
+Optimizing NNI: done in 20.7653 secs using 1153% CPU
+Optimizing NNI: done in 48.981 secs using 1268% CPU
+Optimizing NNI: done in 22.0743 secs using 1136% CPU
+Optimizing NNI: done in 56.9064 secs using 1284% CPU
+Optimizing NNI: done in 21.1282 secs using 1191% CPU
+Optimizing NNI: done in 45.5027 secs using 1284% CPU
+Iteration 740 / LogL: -21776.308 / Time: 5h:50m:38s (0h:26m:11s left)
+Optimizing NNI: done in 30.2103 secs using 1241% CPU
+Optimizing NNI: done in 17.8154 secs using 1091% CPU
+Optimizing NNI: done in 45.8006 secs using 1245% CPU
+Optimizing NNI: done in 23.0122 secs using 1139% CPU
+Optimizing NNI: done in 55.2097 secs using 1289% CPU
+Optimizing NNI: done in 26.2082 secs using 1210% CPU
+Optimizing NNI: done in 11.8917 secs using 953.2% CPU
+Optimizing NNI: done in 14.9857 secs using 1026% CPU
+Optimizing NNI: done in 30.945 secs using 1246% CPU
+Optimizing NNI: done in 14.6736 secs using 1065% CPU
+Iteration 750 / LogL: -21777.697 / Time: 5h:55m:16s (0h:21m:50s left)
+Log-likelihood cutoff on original alignment: -22021.486
+Optimizing NNI: done in 51.7596 secs using 1244% CPU
+Optimizing NNI: done in 24.5118 secs using 1153% CPU
+Optimizing NNI: done in 23.7983 secs using 1179% CPU
+Optimizing NNI: done in 46.7752 secs using 1292% CPU
+Optimizing NNI: done in 24.3249 secs using 1208% CPU
+Optimizing NNI: done in 59.4703 secs using 1260% CPU
+Optimizing NNI: done in 43.5852 secs using 1246% CPU
+Optimizing NNI: done in 44.8324 secs using 1263% CPU
+Optimizing NNI: done in 39.4184 secs using 1273% CPU
+Optimizing NNI: done in 41.0699 secs using 1261% CPU
+Iteration 760 / LogL: -21769.330 / Time: 6h:2m:33s (0h:17m:37s left)
+Optimizing NNI: done in 33.2739 secs using 1228% CPU
+Optimizing NNI: done in 44.4487 secs using 1287% CPU
+Optimizing NNI: done in 12.0743 secs using 973.3% CPU
+Optimizing NNI: done in 58.9653 secs using 1272% CPU
+Optimizing NNI: done in 19.3038 secs using 1164% CPU
+Optimizing NNI: done in 25.0539 secs using 1163% CPU
+Optimizing NNI: done in 21.5077 secs using 1166% CPU
+Optimizing NNI: done in 36.0913 secs using 1235% CPU
+Optimizing NNI: done in 34.3434 secs using 1210% CPU
+Optimizing NNI: done in 48.6288 secs using 1262% CPU
+Iteration 770 / LogL: -21809.945 / Time: 6h:8m:15s (0h:13m:16s left)
+Optimizing NNI: done in 10.374 secs using 950.1% CPU
+Optimizing NNI: done in 13.3969 secs using 952.3% CPU
+Optimizing NNI: done in 20.0089 secs using 1102% CPU
+Optimizing NNI: done in 31.7949 secs using 1187% CPU
+Optimizing NNI: done in 10.2897 secs using 930% CPU
+Optimizing NNI: done in 38.1562 secs using 1251% CPU
+Optimizing NNI: done in 19.2027 secs using 1117% CPU
+Optimizing NNI: done in 25.2559 secs using 1196% CPU
+Optimizing NNI: done in 26.961 secs using 1202% CPU
+Optimizing NNI: done in 22.0419 secs using 1176% CPU
+Iteration 780 / LogL: -21836.645 / Time: 6h:12m:0s (0h:8m:49s left)
+Optimizing NNI: done in 34.3773 secs using 1259% CPU
+Optimizing NNI: done in 45.7947 secs using 1262% CPU
+Optimizing NNI: done in 56.2708 secs using 1272% CPU
+Optimizing NNI: done in 18.2068 secs using 1126% CPU
+Optimizing NNI: done in 36.3727 secs using 1228% CPU
+Optimizing NNI: done in 36.3829 secs using 1210% CPU
+Optimizing NNI: done in 16.102 secs using 1060% CPU
+Optimizing NNI: done in 31.359 secs using 1256% CPU
+Optimizing NNI: done in 36.225 secs using 1229% CPU
+Optimizing NNI: done in 54.4109 secs using 1256% CPU
+Iteration 790 / LogL: -21789.966 / Time: 6h:18m:14s (0h:4m:26s left)
+Optimizing NNI: done in 13.9775 secs using 973.4% CPU
+Optimizing NNI: done in 26.9658 secs using 1156% CPU
+Optimizing NNI: done in 39.2689 secs using 1246% CPU
+Optimizing NNI: done in 12.4744 secs using 967.2% CPU
+Optimizing NNI: done in 26.0264 secs using 1154% CPU
+Optimizing NNI: done in 33.882 secs using 1256% CPU
+Optimizing NNI: done in 43.6839 secs using 1243% CPU
+Optimizing NNI: done in 11.8909 secs using 968.8% CPU
+Optimizing NNI: done in 15.8957 secs using 1070% CPU
+Optimizing NNI: done in 47.0342 secs using 1249% CPU
+Iteration 800 / LogL: -21793.121 / Time: 6h:22m:53s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -22021.486
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.979
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Optimizing NNI: done in 50.3431 secs using 1263% CPU
+Optimizing NNI: done in 12.2438 secs using 1002% CPU
+Optimizing NNI: done in 30.5266 secs using 1190% CPU
+Optimizing NNI: done in 40.2314 secs using 1268% CPU
+Optimizing NNI: done in 26.5838 secs using 1191% CPU
+Optimizing NNI: done in 58.5615 secs using 1262% CPU
+Optimizing NNI: done in 55.8623 secs using 1286% CPU
+Optimizing NNI: done in 30.0114 secs using 1231% CPU
+Optimizing NNI: done in 67.321 secs using 1310% CPU
+Optimizing NNI: done in 22.2541 secs using 1133% CPU
+Iteration 810 / LogL: -21800.340 / Time: 6h:30m:3s (0h:40m:15s left)
+Optimizing NNI: done in 25.8897 secs using 1152% CPU
+Optimizing NNI: done in 47.9232 secs using 1258% CPU
+Optimizing NNI: done in 35.4924 secs using 1262% CPU
+Optimizing NNI: done in 17.609 secs using 1108% CPU
+Optimizing NNI: done in 31.9529 secs using 1236% CPU
+Optimizing NNI: done in 41.6796 secs using 1245% CPU
+Optimizing NNI: done in 32.6336 secs using 1193% CPU
+Optimizing NNI: done in 12.6384 secs using 991.7% CPU
+Optimizing NNI: done in 69.452 secs using 1307% CPU
+Optimizing NNI: done in 14.2884 secs using 1098% CPU
+Iteration 820 / LogL: -21783.971 / Time: 6h:35m:41s (0h:35m:54s left)
+Optimizing NNI: done in 13.7873 secs using 1052% CPU
+Optimizing NNI: done in 26.2376 secs using 1228% CPU
+Optimizing NNI: done in 48.7167 secs using 1227% CPU
+Optimizing NNI: done in 14.8336 secs using 1069% CPU
+Optimizing NNI: done in 62.0528 secs using 1294% CPU
+Optimizing NNI: done in 13.395 secs using 1030% CPU
+Optimizing NNI: done in 50.6109 secs using 1270% CPU
+Optimizing NNI: done in 35.7823 secs using 1211% CPU
+Optimizing NNI: done in 43.798 secs using 1267% CPU
+Optimizing NNI: done in 42.1801 secs using 1261% CPU
+Iteration 830 / LogL: -21776.378 / Time: 6h:41m:46s (0h:31m:32s left)
+Optimizing NNI: done in 48.114 secs using 1241% CPU
+Optimizing NNI: done in 43.954 secs using 1279% CPU
+Optimizing NNI: done in 63.4872 secs using 1307% CPU
+Optimizing NNI: done in 13.9382 secs using 994.5% CPU
+Optimizing NNI: done in 28.2671 secs using 1183% CPU
+Optimizing NNI: done in 43.5057 secs using 1246% CPU
+Optimizing NNI: done in 22.8966 secs using 1149% CPU
+Optimizing NNI: done in 53.4163 secs using 1271% CPU
+Optimizing NNI: done in 24.5767 secs using 1190% CPU
+Optimizing NNI: done in 68.4382 secs using 1313% CPU
+Iteration 840 / LogL: -21802.767 / Time: 6h:48m:49s (0h:27m:13s left)
+Optimizing NNI: done in 19.8575 secs using 1149% CPU
+Optimizing NNI: done in 19.2491 secs using 1130% CPU
+Optimizing NNI: done in 55.6595 secs using 1274% CPU
+Optimizing NNI: done in 12.2127 secs using 949.3% CPU
+Optimizing NNI: done in 64.049 secs using 1291% CPU
+Optimizing NNI: done in 11.6395 secs using 1010% CPU
+Optimizing NNI: done in 73.6931 secs using 1292% CPU
+Optimizing NNI: done in 46.0076 secs using 1263% CPU
+Optimizing NNI: done in 39.2696 secs using 1229% CPU
+Optimizing NNI: done in 18.9962 secs using 1139% CPU
+Iteration 850 / LogL: -21767.314 / Time: 6h:54m:58s (0h:22m:46s left)
+Log-likelihood cutoff on original alignment: -22021.486
+Optimizing NNI: done in 37.9144 secs using 1251% CPU
+Optimizing NNI: done in 63.1923 secs using 1304% CPU
+Optimizing NNI: done in 17.915 secs using 1141% CPU
+Optimizing NNI: done in 30.3858 secs using 1182% CPU
+Optimizing NNI: done in 54.2779 secs using 1249% CPU
+Optimizing NNI: done in 12.4489 secs using 995.7% CPU
+Optimizing NNI: done in 57.5628 secs using 1251% CPU
+Optimizing NNI: done in 18.9929 secs using 1088% CPU
+Optimizing NNI: done in 62.7182 secs using 1284% CPU
+Optimizing NNI: done in 48.7672 secs using 1272% CPU
+Iteration 860 / LogL: -21823.096 / Time: 7h:2m:20s (0h:18m:21s left)
+Optimizing NNI: done in 50.9766 secs using 1247% CPU
+Optimizing NNI: done in 46.8687 secs using 1270% CPU
+Optimizing NNI: done in 31.9676 secs using 1216% CPU
+Optimizing NNI: done in 9.52655 secs using 958.3% CPU
+Optimizing NNI: done in 42.7128 secs using 1284% CPU
+Optimizing NNI: done in 25.6421 secs using 1206% CPU
+Optimizing NNI: done in 19.4265 secs using 1126% CPU
+Optimizing NNI: done in 61.8298 secs using 1302% CPU
+Optimizing NNI: done in 31.1669 secs using 1247% CPU
+Optimizing NNI: done in 81.9576 secs using 1321% CPU
+Iteration 870 / LogL: -21778.842 / Time: 7h:9m:10s (0h:13m:50s left)
+Optimizing NNI: done in 30.4043 secs using 1236% CPU
+Optimizing NNI: done in 34.5405 secs using 1201% CPU
+Optimizing NNI: done in 73.4562 secs using 1301% CPU
+Optimizing NNI: done in 37.9683 secs using 1238% CPU
+Optimizing NNI: done in 49.9682 secs using 1279% CPU
+Optimizing NNI: done in 27.298 secs using 1247% CPU
+Optimizing NNI: done in 21.6841 secs using 1182% CPU
+Optimizing NNI: done in 37.2546 secs using 1231% CPU
+Optimizing NNI: done in 16.0757 secs using 1112% CPU
+Optimizing NNI: done in 29.4288 secs using 1225% CPU
+Iteration 880 / LogL: -21772.270 / Time: 7h:15m:18s (0h:9m:15s left)
+Optimizing NNI: done in 36.0412 secs using 1246% CPU
+Optimizing NNI: done in 16.9365 secs using 1086% CPU
+Optimizing NNI: done in 42.0398 secs using 1262% CPU
+Optimizing NNI: done in 34.3158 secs using 1243% CPU
+Optimizing NNI: done in 33.3401 secs using 1253% CPU
+Optimizing NNI: done in 42.4071 secs using 1238% CPU
+Optimizing NNI: done in 38.4461 secs using 1241% CPU
+Optimizing NNI: done in 29.9762 secs using 1240% CPU
+Optimizing NNI: done in 28.9115 secs using 1222% CPU
+Optimizing NNI: done in 50.3879 secs using 1273% CPU
+Iteration 890 / LogL: -21797.044 / Time: 7h:21m:20s (0h:4m:38s left)
+Optimizing NNI: done in 16.6547 secs using 1067% CPU
+Optimizing NNI: done in 65.7165 secs using 1296% CPU
+Optimizing NNI: done in 13.9272 secs using 1045% CPU
+Optimizing NNI: done in 38.2275 secs using 1254% CPU
+Optimizing NNI: done in 41.5915 secs using 1253% CPU
+Optimizing NNI: done in 78.151 secs using 1282% CPU
+Optimizing NNI: done in 14.6599 secs using 1053% CPU
+Optimizing NNI: done in 77.3486 secs using 1281% CPU
+Optimizing NNI: done in 66.0851 secs using 1284% CPU
+Optimizing NNI: done in 18.8276 secs using 1133% CPU
+Iteration 900 / LogL: -21808.409 / Time: 7h:28m:40s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -22021.486
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.980
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Optimizing NNI: done in 52.3971 secs using 1265% CPU
+Optimizing NNI: done in 70.7864 secs using 1288% CPU
+Optimizing NNI: done in 33.029 secs using 1235% CPU
+Optimizing NNI: done in 45.8395 secs using 1269% CPU
+Optimizing NNI: done in 20.5314 secs using 1159% CPU
+Optimizing NNI: done in 18.8675 secs using 1142% CPU
+Optimizing NNI: done in 59.1456 secs using 1270% CPU
+Optimizing NNI: done in 35.9449 secs using 1268% CPU
+Optimizing NNI: done in 44.7877 secs using 1233% CPU
+Optimizing NNI: done in 41.5568 secs using 1248% CPU
+Iteration 910 / LogL: -21778.300 / Time: 7h:36m:23s (0h:42m:23s left)
+Optimizing NNI: done in 14.1969 secs using 1007% CPU
+Optimizing NNI: done in 14.5088 secs using 1062% CPU
+Optimizing NNI: done in 13.0413 secs using 1009% CPU
+Optimizing NNI: done in 11.1263 secs using 956.2% CPU
+Optimizing NNI: done in 47.3123 secs using 1276% CPU
+Optimizing NNI: done in 19.2006 secs using 1111% CPU
+Optimizing NNI: done in 20.6719 secs using 1133% CPU
+Optimizing NNI: done in 55.0707 secs using 1269% CPU
+Optimizing NNI: done in 10.5626 secs using 934% CPU
+Optimizing NNI: done in 35.5756 secs using 1251% CPU
+Iteration 920 / LogL: -21813.354 / Time: 7h:40m:33s (0h:37m:38s left)
+Optimizing NNI: done in 39.289 secs using 1239% CPU
+Optimizing NNI: done in 71.7645 secs using 1289% CPU
+Optimizing NNI: done in 16.5483 secs using 1087% CPU
+Optimizing NNI: done in 47.9649 secs using 1274% CPU
+Optimizing NNI: done in 24.9783 secs using 1190% CPU
+Optimizing NNI: done in 38.4985 secs using 1250% CPU
+Optimizing NNI: done in 40.0069 secs using 1229% CPU
+Optimizing NNI: done in 24.3319 secs using 1208% CPU
+Optimizing NNI: done in 32.9096 secs using 1219% CPU
+Optimizing NNI: done in 22.9071 secs using 1196% CPU
+Iteration 930 / LogL: -21777.964 / Time: 7h:47m:0s (0h:33m:4s left)
+Optimizing NNI: done in 28.3588 secs using 1209% CPU
+Optimizing NNI: done in 53.6846 secs using 1255% CPU
+Optimizing NNI: done in 25.9466 secs using 1226% CPU
+Optimizing NNI: done in 53.0579 secs using 1259% CPU
+Optimizing NNI: done in 47.3442 secs using 1280% CPU
+Optimizing NNI: done in 36.9748 secs using 1254% CPU
+Optimizing NNI: done in 65.702 secs using 1279% CPU
+Optimizing NNI: done in 23.8877 secs using 1155% CPU
+Optimizing NNI: done in 55.7807 secs using 1285% CPU
+Optimizing NNI: done in 23.1233 secs using 1151% CPU
+Iteration 940 / LogL: -21829.051 / Time: 7h:54m:3s (0h:28m:29s left)
+Optimizing NNI: done in 12.4985 secs using 986.6% CPU
+Optimizing NNI: done in 60.575 secs using 1290% CPU
+Optimizing NNI: done in 42.7527 secs using 1276% CPU
+Optimizing NNI: done in 42.0466 secs using 1251% CPU
+Optimizing NNI: done in 18.603 secs using 1111% CPU
+Optimizing NNI: done in 57.674 secs using 1267% CPU
+Optimizing NNI: done in 43.2194 secs using 1278% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 947: -21755.106
+Optimizing NNI: done in 55.7234 secs using 1252% CPU
+Optimizing NNI: done in 11.8659 secs using 995.8% CPU
+Optimizing NNI: done in 38.9967 secs using 1255% CPU
+Iteration 950 / LogL: -21785.359 / Time: 8h:0m:38s (0h:46m:15s left)
+Log-likelihood cutoff on original alignment: -22021.486
+Optimizing NNI: done in 48.4713 secs using 1266% CPU
+Optimizing NNI: done in 35.6457 secs using 1217% CPU
+Optimizing NNI: done in 21.2372 secs using 1167% CPU
+Optimizing NNI: done in 57.9977 secs using 1274% CPU
+Optimizing NNI: done in 40.7063 secs using 1259% CPU
+Optimizing NNI: done in 42.2087 secs using 1251% CPU
+Optimizing NNI: done in 81.9895 secs using 1312% CPU
+Optimizing NNI: done in 30.9931 secs using 1229% CPU
+Optimizing NNI: done in 46.8685 secs using 1265% CPU
+Optimizing NNI: done in 15.4701 secs using 1086% CPU
+Iteration 960 / LogL: -21767.540 / Time: 8h:8m:20s (0h:41m:44s left)
+Optimizing NNI: done in 21.1707 secs using 1177% CPU
+Optimizing NNI: done in 53.9486 secs using 1300% CPU
+Optimizing NNI: done in 43.7821 secs using 1250% CPU
+Optimizing NNI: done in 47.8614 secs using 1269% CPU
+Optimizing NNI: done in 11.9435 secs using 958.3% CPU
+Optimizing NNI: done in 78.724 secs using 1284% CPU
+Optimizing NNI: done in 45.744 secs using 1261% CPU
+Optimizing NNI: done in 43.9042 secs using 1223% CPU
+Optimizing NNI: done in 57.8871 secs using 1277% CPU
+Optimizing NNI: done in 35.5698 secs using 1253% CPU
+Iteration 970 / LogL: -21767.307 / Time: 8h:15m:50s (0h:37m:9s left)
+Optimizing NNI: done in 14.2268 secs using 1052% CPU
+Optimizing NNI: done in 54.6062 secs using 1261% CPU
+Optimizing NNI: done in 38.7997 secs using 1275% CPU
+Optimizing NNI: done in 48.0607 secs using 1269% CPU
+Optimizing NNI: done in 28.5411 secs using 1214% CPU
+Optimizing NNI: done in 53.0972 secs using 1271% CPU
+Optimizing NNI: done in 28.0442 secs using 1220% CPU
+Optimizing NNI: done in 52.5296 secs using 1276% CPU
+Optimizing NNI: done in 19.8755 secs using 1200% CPU
+Optimizing NNI: done in 65.6985 secs using 1277% CPU
+Iteration 980 / LogL: -21794.823 / Time: 8h:22m:44s (0h:32m:28s left)
+Optimizing NNI: done in 22.1071 secs using 1159% CPU
+Optimizing NNI: done in 23.905 secs using 1160% CPU
+Optimizing NNI: done in 34.5487 secs using 1212% CPU
+Optimizing NNI: done in 13.4436 secs using 965.3% CPU
+Optimizing NNI: done in 42.8864 secs using 1293% CPU
+Optimizing NNI: done in 42.8938 secs using 1240% CPU
+Optimizing NNI: done in 13.809 secs using 976.2% CPU
+Optimizing NNI: done in 12.4517 secs using 960% CPU
+Optimizing NNI: done in 13.1257 secs using 961.7% CPU
+Optimizing NNI: done in 18.7167 secs using 1150% CPU
+Iteration 990 / LogL: -21762.592 / Time: 8h:26m:51s (0h:27m:35s left)
+Optimizing NNI: done in 22.0101 secs using 1138% CPU
+Optimizing NNI: done in 11.8885 secs using 995.8% CPU
+Optimizing NNI: done in 80.6596 secs using 1299% CPU
+Optimizing NNI: done in 11.5063 secs using 926.7% CPU
+Optimizing NNI: done in 27.4592 secs using 1185% CPU
+Optimizing NNI: done in 36.6643 secs using 1228% CPU
+Optimizing NNI: done in 27.7621 secs using 1182% CPU
+Optimizing NNI: done in 31.1362 secs using 1204% CPU
+Optimizing NNI: done in 33.9155 secs using 1230% CPU
+Optimizing NNI: done in 45.6396 secs using 1282% CPU
+Iteration 1000 / LogL: -21830.590 / Time: 8h:32m:29s (0h:22m:47s left)
+Log-likelihood cutoff on original alignment: -22021.486
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.987
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Optimizing NNI: done in 12.1714 secs using 952% CPU
+WARNING: bootstrap analysis did not converge. You should rerun with higher number of iterations (-nm option)
+TREE SEARCH COMPLETED AFTER 1001 ITERATIONS / Time: 8h:33m:11s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -21755.106
+2. Current log-likelihood: -21755.064
+3. Current log-likelihood: -21755.006
+4. Current log-likelihood: -21754.917
+5. Current log-likelihood: -21754.863
+6. Current log-likelihood: -21754.851
+Optimal log-likelihood: -21754.845
+Proportion of invariable sites: 0.011
+Site proportion and rates:  (0.061,0.039) (0.221,0.173) (0.159,0.421) (0.156,0.779) (0.250,1.415) (0.080,2.040) (0.062,4.086)
+Parameters optimization took 6 rounds (9.167 sec)
+BEST SCORE FOUND : -21754.845
+
+Testing tree branches by SH-like aLRT with 10000 replicates...
+Alternative NNI shows better log-likelihood -21754.838 > -21754.845
+17.786 sec.
+Creating bootstrap support values...
+Split supports printed to NEXUS file /lisc/data/scratch/molevo/peyroche/forkhead/results//all_fox_domains_mafft_global_trimal.splits.nex
+Total tree length: 106.601
+
+Total number of iterations: 1001
+CPU time used for tree search: 334064.862 sec (92h:47m:44s)
+Wall-clock time used for tree search: 29082.176 sec (8h:4m:42s)
+Total CPU time used: 349776.044 sec (97h:9m:36s)
+Total wall-clock time used: 30849.194 sec (8h:34m:9s)
+
+Computing bootstrap consensus tree...
+Reading input file /lisc/data/scratch/molevo/peyroche/forkhead/results//all_fox_domains_mafft_global_trimal.splits.nex...
+532 taxa and 6624 splits.
+Consensus tree written to /lisc/data/scratch/molevo/peyroche/forkhead/results//all_fox_domains_mafft_global_trimal.contree
+Reading input trees file /lisc/data/scratch/molevo/peyroche/forkhead/results//all_fox_domains_mafft_global_trimal.contree
+Log-likelihood of consensus tree: -21752.991
+
+Analysis results written to: 
+  IQ-TREE report:                /lisc/data/scratch/molevo/peyroche/forkhead/results//all_fox_domains_mafft_global_trimal.iqtree
+  Maximum-likelihood tree:       /lisc/data/scratch/molevo/peyroche/forkhead/results//all_fox_domains_mafft_global_trimal.treefile
+  Likelihood distances:          /lisc/data/scratch/molevo/peyroche/forkhead/results//all_fox_domains_mafft_global_trimal.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          /lisc/data/scratch/molevo/peyroche/forkhead/results//all_fox_domains_mafft_global_trimal.splits.nex
+  Consensus tree:                /lisc/data/scratch/molevo/peyroche/forkhead/results//all_fox_domains_mafft_global_trimal.contree
+  Screen log file:               /lisc/data/scratch/molevo/peyroche/forkhead/results//all_fox_domains_mafft_global_trimal.log
+
+Date and Time: Fri Jun  5 22:55:46 2026
